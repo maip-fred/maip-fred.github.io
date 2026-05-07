@@ -301,18 +301,18 @@
 .universo-cta-card {
   position: relative;
   background: linear-gradient(135deg,
-    rgba(167,139,250,.07) 0%,
-    rgba(34,211,238,.04) 60%,
-    rgba(167,139,250,.06) 100%);
-  border: 1px solid rgba(167,139,250,.2);
+    rgba(37,99,235,.06) 0%,
+    rgba(59,130,246,.03) 60%,
+    rgba(37,99,235,.05) 100%);
+  border: 1px solid rgba(59,130,246,.2);
   border-radius: var(--r-lg);
   padding: 3.5rem;
   overflow: hidden;
   transition: border-color .3s, box-shadow .4s;
 }
 .universo-cta-card:hover {
-  border-color: rgba(167,139,250,.38);
-  box-shadow: 0 24px 64px rgba(124,58,237,.1);
+  border-color: rgba(59,130,246,.38);
+  box-shadow: 0 24px 64px rgba(37,99,235,.1);
 }
 
 .universo-cta-deco {
@@ -325,13 +325,13 @@
   content: '';
   position: absolute; inset: 0;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(167,139,250,.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(59,130,246,.1) 0%, transparent 70%);
 }
 .universo-cta-deco::after {
   content: '';
   position: absolute;
   top: 3rem; left: 3rem; right: 3rem; bottom: 3rem;
-  border: 1px solid rgba(167,139,250,.1);
+  border: 1px solid rgba(59,130,246,.1);
   border-radius: 50%;
 }
 
@@ -352,7 +352,7 @@
   line-height: .95; margin: .75rem 0 1.25rem;
   letter-spacing: -.03em;
 }
-.universo-cta-title em { color: var(--purple); font-style: italic; }
+.universo-cta-title em { color: var(--blue); font-style: italic; }
 
 .universo-cta-body {
   font-size: 1rem; color: var(--lt-2);
@@ -362,7 +362,7 @@
 .universo-cta-btn {
   display: inline-flex; align-items: center; gap: .625rem;
   padding: .875rem 2rem;
-  background: rgba(109,40,217,.9); color: #fff;
+  background: rgba(37,99,235,.9); color: #fff;
   border: 1px solid transparent;
   border-radius: var(--r-sm);
   font-family: var(--f-mono); font-size: .8rem; font-weight: 600;
@@ -370,9 +370,9 @@
   transition: background .2s, transform .25s var(--ease-out), box-shadow .25s, gap .2s;
 }
 .universo-cta-btn:hover {
-  background: #7c3aed;
+  background: #1d4ed8;
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(124,58,237,.3);
+  box-shadow: 0 8px 32px rgba(37,99,235,.3);
   gap: .9rem;
 }
 
@@ -387,18 +387,18 @@
   font-family: var(--f-mono); font-size: .75rem;
   color: var(--lt-2);
   padding: .4rem 1rem;
-  border: 1px solid rgba(167,139,250,.2);
+  border: 1px solid rgba(59,130,246,.2);
   border-radius: 999px;
   background: rgba(255,255,255,.5);
   white-space: nowrap;
   transition: background .2s, border-color .2s, color .2s;
 }
 .universo-preview-item:hover {
-  background: rgba(167,139,250,.1);
-  border-color: rgba(167,139,250,.38);
+  background: rgba(59,130,246,.08);
+  border-color: rgba(59,130,246,.38);
   color: var(--lt-1);
 }
-.universo-preview-item i { color: rgba(109,40,217,.7); flex-shrink: 0; }
+.universo-preview-item i { color: rgba(37,99,235,.7); flex-shrink: 0; }
 
 /* ============================================================
    UNIVERSO PAGE — header
