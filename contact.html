@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contacta a Alfredo Ibáñez Vargas — disponible para prácticas, proyectos y colaboraciones." />
+  <title>Alfredo Ibáñez — Contacto</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans:    ['"DM Sans"', 'Inter', 'sans-serif'],
+            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            mono:    ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="manifest" href="/assets/manifest.json" />
+  <meta name="theme-color" content="#030810" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://maip-fred.github.io/contact.html" />
+  <meta property="og:title"       content="Alfredo Ibáñez — Contacto" />
+  <meta property="og:description" content="Disponible para prácticas y proyectos de colaboración — datos, seguridad, finanzas o desarrollo de software." />
+  <meta property="og:image"       content="https://maip-fred.github.io/assets/og-image.svg" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Alfredo Ibáñez — Contacto" />
+  <meta name="twitter:description" content="Disponible para prácticas y proyectos de colaboración." />
+  <meta name="twitter:image"       content="https://maip-fred.github.io/assets/og-image.svg" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/effects.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/about.css" />
+  <link rel="stylesheet" href="css/skills.css" />
+  <link rel="stylesheet" href="css/projects.css" />
+  <link rel="stylesheet" href="css/contact.css" />
+  <link rel="stylesheet" href="css/journey.css" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/chatbot.css" />
+</head>
+<body>
+<a href="#main-content" class="skip-link">Ir al contenido</a>
+
+<div id="scroll-bar"></div>
+
+<!-- GRAIN OVERLAY -->
+<div id="grain-overlay" aria-hidden="true"></div>
+
+<!-- MATRIX OVERLAY -->
+<div id="matrix-overlay" role="dialog" aria-modal="true" aria-label="Matrix mode">
+  <canvas id="matrix-canvas"></canvas>
+  <p id="matrix-label">PROTOCOLO MATRIX · AIV</p>
+  <p id="matrix-exit-hint">[ ESC ] · CLICK PARA SALIR</p>
+</div>
+
+<aside class="social-sidebar" aria-label="Redes sociales">
+  <a href="https://github.com/maip-fred" target="_blank" rel="noopener" aria-label="GitHub"><i data-lucide="github" class="w-5 h-5"></i></a>
+  <a href="mailto:ibanez.alfredo.02.10@gmail.com" aria-label="Email"><i data-lucide="mail" class="w-5 h-5"></i></a>
+</aside>
+
+<header id="header">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" data-t>AIV</a>
+    <ul class="nav-links">
+      <li><a href="index.html"    class="nav-link" data-num="00" data-t>Inicio</a></li>
+      <li><a href="about.html"    class="nav-link" data-num="01" data-t>Sobre mí</a></li>
+      <li><a href="skills.html"   class="nav-link" data-num="02" data-t>Habilidades</a></li>
+      <li><a href="retos.html"    class="nav-link" data-num="03" data-t>Retos</a></li>
+      <li><a href="projects.html" class="nav-link" data-num="04" data-t>Proyectos</a></li>
+      <li><a href="contact.html"  class="nav-cta"  data-t>Contacto</a></li>
+    </ul>
+    <button id="hamburger" class="hamburger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div id="mobile-menu">
+    <ul class="mobile-links">
+      <li><a href="index.html"    data-t>Inicio</a></li>
+      <li><a href="about.html"    data-t>Sobre mí</a></li>
+      <li><a href="skills.html"   data-t>Habilidades</a></li>
+      <li><a href="retos.html"    data-t>Retos</a></li>
+      <li><a href="projects.html" data-t>Proyectos</a></li>
+      <li><a href="contact.html"  data-t>Contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- CONTACT PAGE — Two column layout -->
+<div id="main-content" class="contact-page">
+  <div class="contact-inner" style="max-width:1200px;">
+
+    <!-- Page header — full width -->
+    <p class="page-tag animate-fade-in">04 — Contacto</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:end;margin-bottom:3rem;flex-wrap:wrap;">
+      <h1 style="font-family:var(--f-display);font-size:clamp(3.5rem,9vw,7rem);font-weight:600;color:var(--lt-1);line-height:1;margin:1rem 0 0;" class="animate-hero-name">
+        Hablemos.
+      </h1>
+      <p style="font-family:var(--f-sans);font-size:.95rem;color:var(--lt-2);line-height:1.75;padding-top:1rem;" class="animate-slide-up">
+        Buscando prácticas en datos, seguridad, finanzas cuantitativas o desarrollo de software. Si tienes algo interesante, escríbeme.
+      </p>
+    </div>
+    <div class="section-rule animate-fade-in" style="animation-delay:.35s;margin-bottom:3rem;"></div>
+
+    <!-- TWO COLUMN LAYOUT -->
+    <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:3rem;align-items:start;">
+
+      <!-- LEFT COL: Formulario principal -->
+      <div>
+        <!-- CONTACT FORM -->
+        <div class="cform-wrap" data-aos="fade-up">
+          <div class="cform-head">
+            <span class="cform-prompt">$</span>
+            <span class="cform-cmd">contact --send-message</span>
+          </div>
+          <form id="contact-form" class="cform" novalidate
+                action="https://formspree.io/f/REPLACE_WITH_YOUR_ID" method="POST">
+
+            <!-- Honeypot anti-spam -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none;" aria-hidden="true" />
+
+            <div class="cform-row">
+              <label class="cform-label" for="cf-name"># nombre</label>
+              <input id="cf-name" name="name" type="text" required minlength="2"
+                     autocomplete="name" placeholder="Tu nombre" class="cform-input" />
+              <div class="cform-error" data-for="cf-name"></div>
+            </div>
+
+            <div class="cform-row">
+              <label class="cform-label" for="cf-email"># email</label>
+              <input id="cf-email" name="email" type="email" required
+                     autocomplete="email" placeholder="tu@email.com" class="cform-input" />
+              <div class="cform-error" data-for="cf-email"></div>
+            </div>
+
+            <div class="cform-row">
+              <label class="cform-label" for="cf-subject"># asunto</label>
+              <input id="cf-subject" name="subject" type="text" required minlength="3"
+                     placeholder="Práctica · proyecto · colaboración" class="cform-input" />
+              <div class="cform-error" data-for="cf-subject"></div>
+            </div>
+
+            <div class="cform-row">
+              <label class="cform-label" for="cf-msg"># mensaje</label>
+              <textarea id="cf-msg" name="message" required minlength="10" rows="5"
+                        placeholder="Cuéntame qué tienes en mente..." class="cform-input"></textarea>
+              <div class="cform-error" data-for="cf-msg"></div>
+            </div>
+
+            <div class="cform-foot">
+              <button type="submit" id="cf-submit" class="btn btn-primary">
+                <i data-lucide="send" class="w-4 h-4"></i>
+                <span class="cf-btn-label">Enviar mensaje</span>
+              </button>
+              <span class="cform-status" id="cf-status">esperando input...</span>
+            </div>
+          </form>
+        </div>
+
+        <!-- Terminal typewriter — below the form on left -->
+        <div class="contact-terminal-wrapper" data-aos="fade-up" data-aos-delay="80" style="margin-top:2rem;">
+          <div class="terminal-win">
+            <div class="terminal-chrome">
+              <span class="t-dot red"></span>
+              <span class="t-dot yellow"></span>
+              <span class="t-dot green"></span>
+              <span class="terminal-title">bash — ~/alfredo-ibanez/contact</span>
+            </div>
+            <div class="terminal-body" id="contact-term-body"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COL: Info de contacto -->
+      <div style="position:sticky;top:7rem;display:flex;flex-direction:column;gap:1.5rem;" data-aos="fade-left" data-aos-delay="120">
+
+        <!-- Availability status -->
+        <div style="background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.2);border-radius:14px;padding:1.5rem;">
+          <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.85rem;">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:glowPulse 2s ease-in-out infinite;"></span>
+            <span style="font-family:var(--f-mono);font-size:.65rem;color:var(--green);letter-spacing:.14em;text-transform:uppercase;font-weight:700;">Disponible para prácticas</span>
+          </div>
+          <p style="font-family:var(--f-sans);font-size:.88rem;color:var(--lt-2);line-height:1.65;">Disponible para comenzar en <strong>2026</strong>. Abierto a prácticas, proyectos freelance y colaboraciones remotas o en CDMX.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem;">
+            <span style="font-family:var(--f-mono);font-size:.62rem;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.18);color:var(--green);padding:.18rem .55rem;border-radius:3px;">Data Science</span>
+            <span style="font-family:var(--f-mono);font-size:.62rem;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.18);color:var(--green);padding:.18rem .55rem;border-radius:3px;">Quant Finance</span>
+            <span style="font-family:var(--f-mono);font-size:.62rem;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.18);color:var(--green);padding:.18rem .55rem;border-radius:3px;">Ciberseguridad</span>
+          </div>
+        </div>
+
+        <!-- Email directo -->
+        <div style="background:#F9F8F6;border:1px solid var(--bd-light);border-radius:14px;padding:1.5rem;">
+          <p style="font-family:var(--f-mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lt-3);margin-bottom:.75rem;">/ Email directo</p>
+          <a href="mailto:ibanez.alfredo.02.10@gmail.com" class="contact-email-display" style="font-size:clamp(.75rem,1.8vw,1rem);word-break:break-all;">
+            ibanez.alfredo.02.10@gmail.com
+          </a>
+        </div>
+
+        <!-- Social links -->
+        <div style="background:#F9F8F6;border:1px solid var(--bd-light);border-radius:14px;padding:1.5rem;">
+          <p style="font-family:var(--f-mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lt-3);margin-bottom:1rem;">/ Encuéntrame en</p>
+          <div style="display:flex;flex-direction:column;gap:.65rem;">
+            <a href="https://github.com/maip-fred" target="_blank" rel="noopener" class="contact-social" style="border-radius:8px;">
+              <i data-lucide="github" class="w-4 h-4"></i>
+              github.com/maip-fred
+            </a>
+            <a href="mailto:ibanez.alfredo.02.10@gmail.com" class="contact-social" style="border-radius:8px;">
+              <i data-lucide="mail" class="w-4 h-4"></i>
+              ibanez.alfredo.02.10@gmail.com
+            </a>
+            <span class="contact-social" style="cursor:default;pointer-events:none;border-radius:8px;">
+              <i data-lucide="map-pin" class="w-4 h-4"></i>
+              Ciudad de México, MX
+            </span>
+          </div>
+        </div>
+
+        <!-- CAL.COM -->
+        <div class="cal-section" style="margin:0;" data-aos="fade-up" data-aos-delay="200">
+          <div class="cal-header">
+            <span class="cal-icon">
+              <i data-lucide="calendar" class="w-4 h-4"></i>
+            </span>
+            <div>
+              <p class="cal-label">/ Agenda una llamada</p>
+              <h3 class="cal-title">15 min · sin fricción</h3>
+            </div>
+            <span class="cal-badge">disponible</span>
+          </div>
+          <p class="cal-desc">¿Tienes algo concreto en mente? Agenda directamente — sin emails primero.</p>
+          <div class="cal-placeholder">
+            <div class="cal-ph-grid">
+              <div class="cal-ph-day">
+                <div class="cal-ph-date">Lun 5</div>
+                <div class="cal-ph-slot cal-ph-taken">9:00 am</div>
+                <div class="cal-ph-slot cal-ph-free">10:00 am</div>
+                <div class="cal-ph-slot cal-ph-free">11:00 am</div>
+              </div>
+              <div class="cal-ph-day">
+                <div class="cal-ph-date">Mar 6</div>
+                <div class="cal-ph-slot cal-ph-free">9:00 am</div>
+                <div class="cal-ph-slot cal-ph-taken">10:00 am</div>
+                <div class="cal-ph-slot cal-ph-free">3:00 pm</div>
+              </div>
+              <div class="cal-ph-day">
+                <div class="cal-ph-date">Mié 7</div>
+                <div class="cal-ph-slot cal-ph-free">9:00 am</div>
+                <div class="cal-ph-slot cal-ph-free">11:00 am</div>
+                <div class="cal-ph-slot cal-ph-taken">2:00 pm</div>
+              </div>
+            </div>
+            <a href="https://cal.com" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:1.25rem;font-size:.8rem;">
+              <i data-lucide="external-link" class="w-4 h-4"></i>
+              Configurar en cal.com
+            </a>
+          </div>
+        </div>
+
+        <!-- Nav back -->
+        <div style="display:flex;flex-wrap:wrap;gap:.75rem;padding-top:.5rem;">
+          <a href="projects.html" class="btn btn-ghost" data-t style="font-size:.8rem;">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            Ver proyectos
+          </a>
+          <a href="about.html" class="btn btn-ghost" data-t style="font-size:.8rem;">
+            <i data-lucide="user" class="w-4 h-4"></i>
+            Sobre mí
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>© 2026 Alfredo Ibáñez Vargas</p>
+    <p style="font-style:italic;">~/contact</p>
+    <a href="https://github.com/maip-fred/maip-fred.github.io" target="_blank" rel="noopener">
+      <i data-lucide="github" class="w-3.5 h-3.5 inline-block mr-1"></i>Ver código
+    </a>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+<script src="js/sound.js" defer></script>
+<script src="js/cmdk.js" defer></script>
+<script src="js/easter-egg.js" defer></script>
+<script src="js/cursor.js" defer></script>
+<script src="js/core.js" defer></script>
+<script src="js/chatbot.js" defer></script>
+<script src="js/contact.js" defer></script>
+<script src="js/dock.js" defer></script>
+<script src="js/magnetic.js" defer></script>
+<script src="js/scramble.js" defer></script>
+<script src="js/matrix.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#0d1117"/>
+  <text x="200" y="160" font-family="Georgia, serif" font-size="80" fill="#4ADE80" text-anchor="middle" opacity="0.3">3n+1</text>
+  <path d="M100 200 L150 150 L200 200 L250 150 L300 200" fill="none" stroke="#4ADE80" stroke-width="3" opacity="0.4"/>
+  <circle cx="100" cy="200" r="8" fill="#4ADE80" opacity="0.5"/>
+  <circle cx="150" cy="150" r="8" fill="#4ADE80" opacity="0.5"/>
+  <circle cx="200" cy="200" r="8" fill="#4ADE80" opacity="0.5"/>
+  <circle cx="250" cy="150" r="8" fill="#4ADE80" opacity="0.5"/>
+  <circle cx="300" cy="200" r="8" fill="#4ADE80" opacity="0.5"/>
+</svg>

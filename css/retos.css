@@ -1,0 +1,483 @@
+/* ============================================================
+   retos.css — Rediseño premium de la página de Retos
+   ============================================================ */
+
+/* ============================================================
+   DARK PAGE BACKGROUND
+   ============================================================ */
+body.page-retos {
+  background: var(--bg-0);
+}
+
+/* ============================================================
+   FLOATING MATH SYMBOLS — background ambiance
+   ============================================================ */
+.math-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.math-bg span {
+  position: absolute;
+  bottom: -10%;
+  font-family: var(--f-display);
+  font-weight: 300;
+  color: rgba(255,255,255,0.022);
+  animation: mathFloat linear infinite;
+  user-select: none;
+  line-height: 1;
+}
+@keyframes mathFloat {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+  5%   { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(-110vh) rotate(200deg); opacity: 0; }
+}
+
+/* ============================================================
+   RETOS STATS ROW
+   ============================================================ */
+.retos-stats {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.retos-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.stat-num {
+  font-family: var(--f-mono);
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--blue-l);
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+.stat-num::after {
+  content: attr(data-suffix);
+  font-size: 1rem;
+  opacity: 0.5;
+}
+.stat-num.clr-blue,
+.stat-num.clr-green,
+.stat-num.clr-yellow { color: var(--blue-l); }
+.stat-label {
+  font-family: var(--f-mono);
+  font-size: 0.62rem;
+  color: var(--blue-l);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+/* ============================================================
+   SECTION WRAPPER
+   ============================================================ */
+.retos-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 7rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   INTRO MONO TEXT
+   ============================================================ */
+.retos-intro {
+  max-width: 64ch;
+  margin-bottom: 2.5rem;
+}
+.retos-intro p {
+  font-family: var(--f-mono);
+  font-size: 0.77rem;
+  color: var(--t-3);
+  line-height: 1.95;
+}
+.retos-intro .accent    { color: var(--cyan); }
+.retos-intro .highlight { color: var(--yellow); }
+
+/* ============================================================
+   FILTER BAR
+   ============================================================ */
+.retos-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 2.75rem;
+}
+.r-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--f-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 0.45rem 1rem;
+  border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.09);
+  background: transparent;
+  color: var(--t-3);
+  cursor: pointer;
+  transition: all 0.3s var(--ease-out);
+  white-space: nowrap;
+}
+.r-filter .cnt {
+  font-size: 0.6rem;
+  font-weight: 400;
+  background: rgba(255,255,255,0.07);
+  padding: 0.05rem 0.45rem;
+  border-radius: 100px;
+  line-height: 1.6;
+  transition: background 0.3s;
+}
+.r-filter:hover {
+  color: var(--t-1);
+  border-color: rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.04);
+  transform: translateY(-1px);
+}
+.r-filter.active {
+  color: #fff;
+  border-color: transparent;
+  transform: translateY(-1px);
+}
+.r-filter.active .cnt { background: rgba(255,255,255,0.22); }
+
+.r-filter[data-filter="all"].active       { background: var(--blue);  box-shadow: 0 4px 22px rgba(37,99,235,0.45); }
+.r-filter[data-filter="algoritmo"].active { background: #1D4ED8;      box-shadow: 0 4px 22px rgba(29,78,216,0.45); }
+.r-filter[data-filter="matematica"].active{ background: #047857;      box-shadow: 0 4px 22px rgba(4,120,87,0.45); }
+.r-filter[data-filter="abierto"].active   { background: #0F766E;      box-shadow: 0 4px 22px rgba(15,118,110,0.45); }
+.r-filter[data-filter="demostracion"].active{ background: #92400E;    box-shadow: 0 4px 22px rgba(146,64,14,0.45); }
+.r-filter[data-filter="datos"].active     { background: #6D28D9;      box-shadow: 0 4px 22px rgba(109,40,217,0.45); }
+
+/* ============================================================
+   GRID
+   ============================================================ */
+.retos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.125rem;
+  align-items: start;
+  grid-auto-flow: dense;
+}
+@media (max-width: 1024px) { .retos-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px)  { .retos-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   CARD  (.rc)
+   ============================================================ */
+.rc {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.07);
+  /* Entrance: start invisible */
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.52s var(--ease-out),
+              transform 0.52s var(--ease-out),
+              box-shadow 0.4s var(--ease-out),
+              border-color 0.35s;
+}
+.rc.rc--visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Featured card */
+.rc.rc--featured {
+  grid-column: span 2;
+  height: 390px;
+}
+@media (max-width: 600px)  { .rc.rc--featured { grid-column: span 1; height: 300px; } }
+@media (max-width: 1024px) { .rc.rc--featured { height: 340px; } }
+
+/* Background photo */
+.rc__img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.65s var(--ease-out);
+  will-change: transform;
+}
+.rc:hover .rc__img { transform: scale(1.06); }
+
+/* Gradient overlay */
+.rc__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    170deg,
+    rgba(0,0,0,0.08) 0%,
+    rgba(0,0,0,0.2)  35%,
+    rgba(0,0,0,0.78) 68%,
+    rgba(0,0,0,0.97) 100%
+  );
+  transition: background 0.35s;
+}
+.rc:hover .rc__overlay {
+  background: linear-gradient(
+    170deg,
+    rgba(0,0,0,0.12) 0%,
+    rgba(0,0,0,0.28) 35%,
+    rgba(0,0,0,0.84) 68%,
+    rgba(0,0,0,0.98) 100%
+  );
+}
+
+/* Category color tint blob (top-right corner) */
+.rc__tint {
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 55%;
+  height: 60%;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.18;
+  transition: opacity 0.45s;
+  pointer-events: none;
+}
+.rc:hover .rc__tint { opacity: 0.3; }
+
+/* Large decorative symbol */
+.rc__sym {
+  position: absolute;
+  top: 0.75rem;
+  right: 1.25rem;
+  font-family: var(--f-display);
+  font-size: 4.5rem;
+  line-height: 1;
+  color: rgba(255,255,255,0.1);
+  pointer-events: none;
+  user-select: none;
+  transition: transform 0.6s var(--ease-out), opacity 0.45s;
+  font-weight: 300;
+}
+.rc--featured .rc__sym { font-size: 6rem; top: 1rem; }
+.rc:hover .rc__sym {
+  transform: scale(1.12) rotate(6deg);
+  opacity: 0.17;
+}
+
+/* Card body */
+.rc__body {
+  position: relative;
+  z-index: 2;
+  padding: 1.25rem 1.375rem 1.375rem;
+}
+
+/* Left accent bar */
+.rc__body::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 55%;
+  width: 2px;
+  border-radius: 999px;
+  transition: height 0.3s var(--ease-out);
+}
+.rc:hover .rc__body::before { height: 75%; }
+
+/* Meta row */
+.rc__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+
+/* Category badge */
+.rc__badge {
+  font-family: var(--f-mono);
+  font-size: 0.57rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.18rem 0.55rem;
+  border-radius: 4px;
+}
+
+/* Status */
+.rc__status {
+  display: flex;
+  align-items: center;
+  gap: 0.32rem;
+  font-family: var(--f-mono);
+  font-size: 0.58rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.04em;
+}
+.rc__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.rc__dot--solved {
+  background: var(--green);
+  animation: pulseSolved 2.5s ease-in-out infinite;
+}
+.rc__dot--open {
+  background: var(--yellow);
+  animation: pulseOpen 2.5s ease-in-out infinite;
+}
+@keyframes pulseSolved {
+  0%,100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+  50%     { box-shadow: 0 0 0 4px rgba(74,222,128,0.28); }
+}
+@keyframes pulseOpen {
+  0%,100% { box-shadow: 0 0 0 0 rgba(252,211,77,0); }
+  50%     { box-shadow: 0 0 0 4px rgba(252,211,77,0.28); }
+}
+
+/* Title */
+.rc__title {
+  font-family: var(--f-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 0.42rem;
+  letter-spacing: -0.01em;
+}
+.rc--featured .rc__title { font-size: 1.7rem; }
+
+/* Description */
+.rc__desc {
+  font-family: var(--f-sans);
+  font-size: 0.79rem;
+  color: rgba(255,255,255,0.52);
+  line-height: 1.65;
+  margin-bottom: 0.75rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.rc--featured .rc__desc { -webkit-line-clamp: 3; }
+
+/* Link */
+.rc__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--f-mono);
+  font-size: 0.67rem;
+  color: rgba(255,255,255,0.3);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.22s;
+}
+.rc__link:hover { color: rgba(255,255,255,0.8); }
+.rc__link-icon {
+  width: 10px;
+  height: 10px;
+  transition: transform 0.22s;
+  flex-shrink: 0;
+}
+.rc__link:hover .rc__link-icon { transform: translate(2px, -2px); }
+
+/* Hover glow border via ::after */
+.rc::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+.rc:hover::after { opacity: 1; }
+
+/* ============================================================
+   CATEGORY COLORS
+   ============================================================ */
+/* ALGORITMO — Blue */
+.rc[data-category="algoritmo"] .rc__tint          { background: #2563EB; }
+.rc[data-category="algoritmo"] .rc__badge         { background: rgba(37,99,235,0.25); color: #93C5FD; }
+.rc[data-category="algoritmo"] .rc__body::before  { background: var(--blue-l); }
+.rc[data-category="algoritmo"]::after             { box-shadow: inset 0 0 0 1px rgba(59,130,246,0.5), 0 8px 40px rgba(37,99,235,0.22); }
+
+/* MATEMATICA — Emerald */
+.rc[data-category="matematica"] .rc__tint         { background: #059669; }
+.rc[data-category="matematica"] .rc__badge        { background: rgba(5,150,105,0.25); color: #6EE7B7; }
+.rc[data-category="matematica"] .rc__body::before { background: #34D399; }
+.rc[data-category="matematica"]::after            { box-shadow: inset 0 0 0 1px rgba(52,211,153,0.45), 0 8px 40px rgba(5,150,105,0.2); }
+
+/* DEMOSTRACION — Amber */
+.rc[data-category="demostracion"] .rc__tint         { background: #B45309; }
+.rc[data-category="demostracion"] .rc__badge        { background: rgba(180,83,9,0.25); color: #FDE68A; }
+.rc[data-category="demostracion"] .rc__body::before { background: #F59E0B; }
+.rc[data-category="demostracion"]::after            { box-shadow: inset 0 0 0 1px rgba(245,158,11,0.45), 0 8px 40px rgba(180,83,9,0.22); }
+
+/* ABIERTO — Teal */
+.rc[data-category="abierto"] .rc__tint         { background: #0D9488; }
+.rc[data-category="abierto"] .rc__badge        { background: rgba(13,148,136,0.25); color: #5EEAD4; }
+.rc[data-category="abierto"] .rc__body::before { background: #14B8A6; }
+.rc[data-category="abierto"]::after            { box-shadow: inset 0 0 0 1px rgba(20,184,166,0.45), 0 8px 40px rgba(13,148,136,0.2); }
+
+/* DATOS — Violet */
+.rc[data-category="datos"] .rc__tint         { background: #7C3AED; }
+.rc[data-category="datos"] .rc__badge        { background: rgba(124,58,237,0.25); color: #C4B5FD; }
+.rc[data-category="datos"] .rc__body::before { background: var(--purple); }
+.rc[data-category="datos"]::after            { box-shadow: inset 0 0 0 1px rgba(167,139,250,0.45), 0 8px 40px rgba(124,58,237,0.22); }
+
+/* ============================================================
+   FILTER TRANSITION (hidden cards)
+   ============================================================ */
+.rc.rc--filtered {
+  opacity: 0 !important;
+  transform: scale(0.93) translateY(10px) !important;
+  pointer-events: none;
+}
+
+/* ============================================================
+   3D TILT (applied via JS inline style on hover)
+   ============================================================ */
+.rc { transform-style: preserve-3d; }
+
+/* ============================================================
+   CTA SECTION
+   ============================================================ */
+.retos-cta {
+  margin-top: 4rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ============================================================
+   CARD COUNT BADGE
+   ============================================================ */
+.retos-count-line {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  color: var(--t-4);
+  letter-spacing: 0.1em;
+  margin-bottom: 1.25rem;
+}
+.retos-count-line span { color: var(--t-2); }

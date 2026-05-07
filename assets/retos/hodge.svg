@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#0d1117"/>
+  <polygon points="200,60 280,180 120,180" fill="none" stroke="#06B6D4" stroke-width="2" opacity="0.3"/>
+  <polygon points="200,120 250,180 150,180" fill="none" stroke="#06B6D4" stroke-width="2" opacity="0.4"/>
+  <line x1="200" y1="90" x2="200" y2="180" stroke="#06B6D4" stroke-width="2" opacity="0.5"/>
+  <text x="200" y="220" font-family="Georgia, serif" font-size="30" fill="#06B6D4" text-anchor="middle" opacity="0.5">Hodge</text>
+  <text x="200" y="260" font-family="monospace" font-size="14" fill="#06B6D4" text-anchor="middle" opacity="0.4">H⁽ᵏ⁾(X)</text>
+</svg>

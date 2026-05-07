@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#030810"/>
+      <stop offset="100%" stop-color="#0A1428"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#22D3EE"/>
+    </linearGradient>
+    <!-- grid pattern -->
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Left accent border -->
+  <rect x="80" y="80" width="4" height="470" rx="2" fill="url(#accent)"/>
+
+  <!-- Tag line -->
+  <text x="112" y="140" font-family="'JetBrains Mono', monospace" font-size="16" fill="#2563EB" letter-spacing="3">
+    ~/data-science/security/dev
+  </text>
+
+  <!-- Main name -->
+  <text x="108" y="270" font-family="Georgia, serif" font-size="96" font-weight="600" fill="#EEF2FF">
+    Alfredo
+  </text>
+  <text x="108" y="375" font-family="Georgia, serif" font-size="96" font-weight="600" fill="none" stroke="#EEF2FF" stroke-width="2" stroke-opacity="0.5">
+    Ibáñez
+  </text>
+
+  <!-- Subtitle -->
+  <text x="112" y="440" font-family="'IBM Plex Sans', sans-serif" font-size="22" fill="rgba(238,242,255,0.5)">
+    Data Scientist · Security Researcher · Developer
+  </text>
+
+  <!-- University -->
+  <text x="112" y="490" font-family="'JetBrains Mono', monospace" font-size="15" fill="rgba(238,242,255,0.28)" letter-spacing="1">
+    ITAM · 8° Semestre · Gen. 2022 · Ciudad de México
+  </text>
+
+  <!-- Bottom accent line -->
+  <rect x="80" y="550" width="480" height="1" fill="url(#accent)" opacity="0.4"/>
+
+  <!-- Right: terminal card -->
+  <rect x="760" y="120" width="360" height="390" rx="10" fill="#060D1A" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+  <!-- chrome dots -->
+  <circle cx="793" cy="152" r="6" fill="#F87171"/>
+  <circle cx="813" cy="152" r="6" fill="#FCD34D"/>
+  <circle cx="833" cy="152" r="6" fill="#4ADE80"/>
+  <line x1="760" y1="168" x2="1120" y2="168" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <!-- terminal lines -->
+  <text x="785" y="205" font-family="'JetBrains Mono', monospace" font-size="13" fill="#2563EB">$ whoami</text>
+  <text x="785" y="228" font-family="'JetBrains Mono', monospace" font-size="13" fill="rgba(238,242,255,0.6)">alfredo-ibanez</text>
+  <text x="785" y="265" font-family="'JetBrains Mono', monospace" font-size="13" fill="#2563EB">$ pkgxray scan requests</text>
+  <text x="785" y="292" font-family="'JetBrains Mono', monospace" font-size="12" fill="rgba(238,242,255,0.4)">  Analizando AST...</text>
+  <text x="785" y="314" font-family="'JetBrains Mono', monospace" font-size="12" fill="#FCD34D">  ⚠ network_access detectado</text>
+  <text x="785" y="336" font-family="'JetBrains Mono', monospace" font-size="12" fill="#F87171">  Score: 55/100 — HIGH RISK</text>
+  <text x="785" y="370" font-family="'JetBrains Mono', monospace" font-size="13" fill="#4ADE80">✓ Reporte en 2.3s</text>
+  <!-- cursor -->
+  <rect x="785" y="393" width="8" height="16" rx="1" fill="#2563EB" opacity="0.8"/>
+</svg>

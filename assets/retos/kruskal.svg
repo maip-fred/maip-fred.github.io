@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#0d1117"/>
+  <circle cx="80" cy="150" r="25" fill="none" stroke="#84CC16" stroke-width="2" opacity="0.4"/>
+  <circle cx="180" cy="80" r="25" fill="none" stroke="#84CC16" stroke-width="2" opacity="0.4"/>
+  <circle cx="280" cy="80" r="25" fill="none" stroke="#84CC16" stroke-width="2" opacity="0.4"/>
+  <circle cx="380" cy="150" r="25" fill="none" stroke="#84CC16" stroke-width="2" opacity="0.4"/>
+  <circle cx="230" cy="220" r="25" fill="none" stroke="#84CC16" stroke-width="2" opacity="0.4"/>
+  <line x1="95" y1="140" x2="165" y2="95" stroke="#84CC16" stroke-width="2" opacity="0.5"/>
+  <line x1="215" y1="80" x2="245" y2="80" stroke="#84CC16" stroke-width="2" opacity="0.5"/>
+  <line x1="295" y1="80" x2="355" y2="135" stroke="#84CC16" stroke-width="2" opacity="0.5"/>
+  <line x1="200" y1="200" x2="215" y2="205" stroke="#84CC16" stroke-width="2" opacity="0.5"/>
+  <line x1="260" y1="200" x2="245" y2="205" stroke="#84CC16" stroke-width="2" opacity="0.5"/>
+  <text x="200" y="280" font-family="monospace" font-size="18" fill="#84CC16" text-anchor="middle" opacity="0.5">Kruskal</text>
+</svg>

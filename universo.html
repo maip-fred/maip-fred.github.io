@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="El universo personal de Alfredo Ibáñez — libros, podcasts, canales e intereses fuera del código." />
+  <title>Alfredo Ibáñez — Mi Universo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans:    ['"DM Sans"', 'Inter', 'sans-serif'],
+            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            mono:    ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="manifest" href="/assets/manifest.json" />
+  <meta name="theme-color" content="#030810" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://maip-fred.github.io/universo.html" />
+  <meta property="og:title"       content="Alfredo Ibáñez — Mi Universo" />
+  <meta property="og:description" content="Libros, podcasts, canales e intereses personales de Alfredo Ibáñez Vargas." />
+  <meta property="og:image"       content="https://maip-fred.github.io/assets/og-image.svg" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Alfredo Ibáñez — Mi Universo" />
+  <meta name="twitter:description" content="Libros, podcasts, canales e intereses personales." />
+  <meta name="twitter:image"       content="https://maip-fred.github.io/assets/og-image.svg" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/effects.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/about.css" />
+  <link rel="stylesheet" href="css/skills.css" />
+  <link rel="stylesheet" href="css/projects.css" />
+  <link rel="stylesheet" href="css/contact.css" />
+  <link rel="stylesheet" href="css/journey.css" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/chatbot.css" />
+  <style>
+    /* Dogs card — hover interactivo */
+    .dogs-photo-wrap { position:relative; width:100%; height:100%; overflow:hidden; cursor:pointer; }
+    .dogs-photo-wrap img.dogs-main { width:100%; height:100%; object-fit:cover; transition:transform .6s cubic-bezier(.16,1,.3,1); display:block; }
+    .dogs-photo-wrap:hover img.dogs-main { transform:scale(1.06); }
+    .dogs-hover-overlay { position:absolute; inset:0; background:rgba(0,0,0,.28); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .3s; z-index:4; }
+    .dogs-photo-wrap:hover .dogs-hover-overlay { opacity:1; }
+    .dogs-hover-btn { background:rgba(255,255,255,.92); backdrop-filter:blur(8px); border-radius:10px; padding:.6rem 1.3rem; display:flex; align-items:center; gap:.55rem; font-family:var(--f-mono); font-size:.7rem; font-weight:700; color:#0f0f0f; box-shadow:0 8px 32px rgba(0,0,0,.35); transform:translateY(6px); transition:transform .25s; }
+    .dogs-photo-wrap:hover .dogs-hover-btn { transform:translateY(0); }
+
+    /* Zoom en fotos reales de las otras cards */
+    .hobby-photo-real { overflow:hidden; }
+    .hobby-photo-real img { width:100%; height:100%; object-fit:cover; transition:transform .6s cubic-bezier(.16,1,.3,1); display:block; }
+    .hobby-card:hover .hobby-photo-real img { transform:scale(1.07); }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Ir al contenido</a>
+
+<div id="scroll-bar"></div>
+
+<!-- GRAIN OVERLAY -->
+<div id="grain-overlay" aria-hidden="true"></div>
+
+<!-- MATRIX OVERLAY -->
+<div id="matrix-overlay" role="dialog" aria-modal="true" aria-label="Matrix mode">
+  <canvas id="matrix-canvas"></canvas>
+  <p id="matrix-label">PROTOCOLO MATRIX · AIV</p>
+  <p id="matrix-exit-hint">[ ESC ] · CLICK PARA SALIR</p>
+</div>
+
+<aside class="social-sidebar" aria-label="Redes sociales">
+  <a href="https://github.com/maip-fred" target="_blank" rel="noopener" aria-label="GitHub"><i data-lucide="github" class="w-5 h-5"></i></a>
+  <a href="mailto:ibanez.alfredo.02.10@gmail.com" aria-label="Email"><i data-lucide="mail" class="w-5 h-5"></i></a>
+</aside>
+
+<header id="header">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" data-t>AIV</a>
+    <ul class="nav-links">
+      <li><a href="index.html"    class="nav-link" data-num="00" data-t>Inicio</a></li>
+      <li><a href="about.html"    class="nav-link" data-num="01" data-t>Sobre mí</a></li>
+      <li><a href="skills.html"   class="nav-link" data-num="02" data-t>Habilidades</a></li>
+      <li><a href="retos.html"    class="nav-link" data-num="03" data-t>Retos</a></li>
+      <li><a href="projects.html" class="nav-link" data-num="04" data-t>Proyectos</a></li>
+      <li><a href="contact.html"  class="nav-cta"  data-t>Contacto</a></li>
+    </ul>
+    <button id="hamburger" class="hamburger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div id="mobile-menu">
+    <ul class="mobile-links">
+      <li><a href="index.html"    data-t>Inicio</a></li>
+      <li><a href="about.html"    data-t>Sobre mí</a></li>
+      <li><a href="skills.html"   data-t>Habilidades</a></li>
+      <li><a href="retos.html"    data-t>Retos</a></li>
+      <li><a href="projects.html" data-t>Proyectos</a></li>
+      <li><a href="contact.html"  data-t>Contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<div id="main-content" class="page-header" style="padding-bottom:4rem;">
+  <span class="wm" aria-hidden="true" style="font-style:italic;opacity:.6;">∞</span>
+  <!-- Decorativos -->
+  <span aria-hidden="true" style="position:absolute;left:58%;top:3.5rem;font-family:'Georgia',serif;font-size:clamp(5rem,12vw,11rem);font-weight:300;font-style:italic;color:rgba(167,139,250,.06);pointer-events:none;user-select:none;line-height:1;letter-spacing:-.04em;">Ψ</span>
+  <span aria-hidden="true" style="position:absolute;left:73%;top:7rem;font-family:'Georgia',serif;font-size:clamp(2.5rem,5vw,5rem);font-weight:300;color:rgba(34,211,238,.05);pointer-events:none;user-select:none;line-height:1;">∑</span>
+  <p class="page-tag animate-fade-in" style="color:rgba(109,40,217,.8);">
+    <span style="display:inline-block;width:2rem;height:1px;background:rgba(109,40,217,.6);margin-right:.75rem;vertical-align:middle;"></span>
+    Mi universo
+  </p>
+  <h1 class="page-title animate-hero-name">
+    Más allá<br><span class="page-title-outline">del código.</span>
+  </h1>
+  <div class="section-rule animate-fade-in" style="animation-delay:.4s;background:linear-gradient(to right,rgba(167,139,250,.8),rgba(34,211,238,.6));"></div>
+  <p class="page-subtitle animate-slide-up" style="animation-delay:.5s;">
+    Las ideas, voces y experiencias que me han formado — libros que vuelvo a leer, podcasts que escucho en el gym y pasatiempos que existen muy lejos de cualquier terminal.
+  </p>
+
+  <!-- Breadcrumb / back link -->
+  <div style="margin-top:2.5rem;" class="animate-fade-in" style="animation-delay:.7s;">
+    <a href="about.html" style="display:inline-flex;align-items:center;gap:.5rem;font-family:var(--f-mono);font-size:.75rem;color:var(--lt-3);border:1px solid var(--bd-light);padding:.4rem 1rem;border-radius:999px;transition:color .2s,border-color .2s;" onmouseover="this.style.color='var(--lt-1)';this.style.borderColor='rgba(26,25,20,.25)'" onmouseout="this.style.color='var(--lt-3)';this.style.borderColor='var(--bd-light)'">
+      <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+      Volver a Sobre mí
+    </a>
+  </div>
+</div>
+
+<!-- ============================================================
+     INTERESES Y HOBBIES
+     ============================================================ -->
+<section class="hobbies-section" style="padding-top:7rem;padding-bottom:7rem;">
+  <div class="hobbies-header" data-aos="fade-up">
+    <p class="page-tag" style="margin-bottom:.75rem;">Fuera del código</p>
+    <h3 class="hobbies-big-title">
+      Intereses<br><em>&amp; hobbies.</em>
+    </h3>
+  </div>
+
+  <div class="hobbies-grid">
+
+    <!-- Mis perros -->
+    <div class="hobby-card hobby-card--featured" data-aos="fade-up" data-aos-delay="60">
+      <div class="hobby-photo dogs-photo-wrap" onclick="window.location.href='mascotas.html'">
+        <!-- Main photo -->
+        <img class="dogs-main" src="Fotos - Mi Universo/WhatsApp Image 2026-05-07 at 10.26.32 AM.jpeg" alt="Mis dos perros" loading="lazy">
+        <!-- Bottom gradient -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72) 0%,rgba(0,0,0,.18) 45%,transparent 100%);pointer-events:none;z-index:1;"></div>
+        <!-- Mini photo strip -->
+        <div style="position:absolute;bottom:1.1rem;left:1rem;right:1rem;display:flex;gap:.5rem;z-index:2;align-items:flex-end;">
+          <div style="width:50px;height:50px;border-radius:6px;overflow:hidden;border:2px solid rgba(255,255,255,.65);box-shadow:0 4px 14px rgba(0,0,0,.5);transform:rotate(-3.5deg);flex-shrink:0;">
+            <img src="Fotos - Mi Universo/WhatsApp Image 2026-05-07 at 10.22.54 AM.jpeg" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div style="width:50px;height:50px;border-radius:6px;overflow:hidden;border:2px solid rgba(255,255,255,.65);box-shadow:0 4px 14px rgba(0,0,0,.5);transform:rotate(2deg);flex-shrink:0;">
+            <img src="Fotos - Mi Universo/WhatsApp Image 2026-05-07 at 10.30.04 AM.jpeg" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div style="width:50px;height:50px;border-radius:6px;overflow:hidden;border:2px solid rgba(255,255,255,.65);box-shadow:0 4px 14px rgba(0,0,0,.5);transform:rotate(-1.2deg);flex-shrink:0;">
+            <img src="Fotos - Mi Universo/WhatsApp Image 2026-05-07 at 10.39.35 AM.jpeg" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div style="flex:1;"></div>
+          <span style="font-family:var(--f-mono);font-size:.58rem;color:rgba(255,255,255,.75);background:rgba(0,0,0,.45);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:.22rem .65rem;letter-spacing:.06em;white-space:nowrap;">22 fotos</span>
+        </div>
+        <!-- Hover overlay -->
+        <div class="dogs-hover-overlay" style="z-index:3;">
+          <div class="dogs-hover-btn">
+            <i data-lucide="camera" class="w-4 h-4"></i>
+            Ver galería
+          </div>
+        </div>
+      </div>
+      <div class="hobby-info">
+        <div class="hobby-icon"><i data-lucide="dog" class="w-4 h-4"></i></div>
+        <div class="hobby-name">Mis dos perros</div>
+        <p class="hobby-desc">El mejor motivo para hacer pausas. Caminatas largas como reset mental obligatorio.</p>
+        <a href="mascotas.html" style="margin-top:.9rem;display:inline-flex;align-items:center;gap:.45rem;font-family:var(--f-mono);font-size:.62rem;font-weight:600;color:var(--olive);background:rgba(107,140,82,.08);border:1px solid rgba(107,140,82,.2);border-radius:999px;padding:.35rem .9rem;text-decoration:none;transition:background .2s,border-color .2s;" onmouseover="this.style.background='rgba(107,140,82,.16)';this.style.borderColor='rgba(107,140,82,.4)'" onmouseout="this.style.background='rgba(107,140,82,.08)';this.style.borderColor='rgba(107,140,82,.2)'">
+          <i data-lucide="images" class="w-3 h-3"></i>
+          Ver todas las fotos
+        </a>
+      </div>
+    </div>
+
+    <!-- Tenis -->
+    <div class="hobby-card" data-aos="fade-up" data-aos-delay="80">
+      <div class="hobby-photo hobby-photo-real">
+        <img src="Fotos - Mi Universo/roland garros.jpg" alt="Roland Garros" loading="lazy">
+      </div>
+      <div class="hobby-info">
+        <div class="hobby-icon"><i data-lucide="activity" class="w-4 h-4"></i></div>
+        <div class="hobby-name">Tenis</div>
+        <p class="hobby-desc">Fines de semana. Concentración y puntería como metáforas de la vida.</p>
+      </div>
+    </div>
+
+    <!-- NFL -->
+    <div class="hobby-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="hobby-photo hobby-photo-real">
+        <img src="Fotos - Mi Universo/NFL.jpg" alt="NFL — Chicago Bears stadium" loading="lazy">
+      </div>
+      <div class="hobby-info">
+        <div class="hobby-icon"><i data-lucide="zap" class="w-4 h-4"></i></div>
+        <div class="hobby-name">NFL</div>
+        <p class="hobby-desc">Estrategia, datos y estadística en cada jugada. El deporte más analítico.</p>
+      </div>
+    </div>
+
+    <!-- Béisbol -->
+    <div class="hobby-card" data-aos="fade-up" data-aos-delay="120">
+      <div class="hobby-photo hobby-photo-real">
+        <img src="Fotos - Mi Universo/fenway park.jpg" alt="Fenway Park — Béisbol" loading="lazy">
+      </div>
+      <div class="hobby-info">
+        <div class="hobby-icon"><i data-lucide="trophy" class="w-4 h-4"></i></div>
+        <div class="hobby-name">Béisbol</div>
+        <p class="hobby-desc">Sabermetrics aplicada, antes de que se pusiera de moda. El deporte de los números.</p>
+      </div>
+    </div>
+
+    <!-- CLIs -->
+    <div class="hobby-card" data-aos="fade-up" data-aos-delay="140">
+      <div class="hobby-photo hobby-photo-real">
+        <img src="Fotos - Mi Universo/CLI.png" alt="CLIs &amp; Tools" loading="lazy">
+      </div>
+      <div class="hobby-info">
+        <div class="hobby-icon"><i data-lucide="terminal" class="w-4 h-4"></i></div>
+        <div class="hobby-name">CLIs &amp; Tools</div>
+        <p class="hobby-desc">Construir herramientas que otros usen — hacer lo invisible visible.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     STACK MENTAL — libros
+     ============================================================ -->
+<section class="stack-section">
+  <div class="stack-inner">
+    <div data-aos="fade-up">
+      <p class="page-tag" style="margin-bottom:.75rem;">Lo que me ha formado</p>
+      <h2 class="stack-title">
+        Mi <span style="color:var(--blue-xl);font-style:italic;">stack mental.</span>
+      </h2>
+      <p class="stack-sub">
+        Las herramientas técnicas pasan; las ideas se quedan. Esto es lo que vuelvo a leer, escuchar o ver cuando necesito reorientarme.
+      </p>
+    </div>
+
+    <!-- LIBROS -->
+    <div class="stack-block" data-aos="fade-up" data-aos-delay="80">
+      <h3 class="stack-block-h">
+        <i data-lucide="book-open" class="w-4 h-4"></i>
+        Libros que vuelvo a abrir
+      </h3>
+
+      <!-- Books grid — 3 cols with cover images -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem;">
+
+        <!-- DDIA -->
+        <a href="https://dataintensive.net/" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;color:inherit;border-radius:12px;overflow:hidden;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.04);transition:transform .25s,box-shadow .25s,border-color .25s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.09)';this.style.borderColor='rgba(37,99,235,.3)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 4px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+          <div style="height:5px;background:linear-gradient(90deg,#1e3a8a,#3b82f6);"></div>
+          <div style="padding:1.2rem 1.3rem 1.2rem;display:flex;gap:1rem;align-items:flex-start;">
+            <div style="flex-shrink:0;width:60px;height:90px;border-radius:6px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.2);background:linear-gradient(155deg,#1e3a8a,#0f172a);position:relative;">
+              <img src="https://covers.openlibrary.org/b/isbn/9781449373320-M.jpg" alt="DDIA cover" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+            </div>
+            <div style="min-width:0;flex:1;">
+              <p style="font-family:var(--f-mono);font-size:1.5rem;font-weight:700;color:#2563eb;letter-spacing:-.02em;line-height:1;margin-bottom:.35rem;">DDIA</p>
+              <p style="font-size:.83rem;font-weight:600;color:var(--lt-1);line-height:1.3;margin-bottom:.2rem;">Designing Data-Intensive Applications</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:rgba(37,99,235,.7);letter-spacing:.05em;margin-bottom:.55rem;text-transform:uppercase;">Kleppmann · 2017</p>
+              <p style="font-size:.75rem;color:var(--lt-2);line-height:1.5;font-style:italic;border-left:2px solid rgba(37,99,235,.2);padding-left:.6rem;margin-bottom:.7rem;">"El mapa para pensar en sistemas distribuidos."</p>
+              <div style="display:flex;gap:.35rem;flex-wrap:wrap;">
+                <span style="font-family:var(--f-mono);font-size:.55rem;padding:.17rem .5rem;border-radius:999px;background:rgba(37,99,235,.08);color:rgba(37,99,235,.8);border:1px solid rgba(37,99,235,.15);">Distributed</span>
+                <span style="font-family:var(--f-mono);font-size:.55rem;padding:.17rem .5rem;border-radius:999px;background:rgba(37,99,235,.08);color:rgba(37,99,235,.8);border:1px solid rgba(37,99,235,.15);">Databases</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- SICP -->
+        <a href="https://mitpress.mit.edu/9780262510875/" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;color:inherit;border-radius:12px;overflow:hidden;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.04);transition:transform .25s,box-shadow .25s,border-color .25s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.09)';this.style.borderColor='rgba(184,137,42,.35)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 4px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+          <div style="height:5px;background:linear-gradient(90deg,#92400e,#f59e0b);"></div>
+          <div style="padding:1.2rem 1.3rem 1.2rem;display:flex;gap:1rem;align-items:flex-start;">
+            <div style="flex-shrink:0;width:60px;height:90px;border-radius:6px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.2);background:linear-gradient(155deg,#92400e,#451a03);position:relative;">
+              <img src="https://covers.openlibrary.org/b/isbn/0262510871-M.jpg" alt="SICP cover" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+            </div>
+            <div style="min-width:0;flex:1;">
+              <p style="font-family:var(--f-mono);font-size:1.5rem;font-weight:700;color:#b45309;letter-spacing:-.02em;line-height:1;margin-bottom:.35rem;">SICP</p>
+              <p style="font-size:.83rem;font-weight:600;color:var(--lt-1);line-height:1.3;margin-bottom:.2rem;">Structure and Interpretation of Computer Programs</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:rgba(184,137,42,.8);letter-spacing:.05em;margin-bottom:.55rem;text-transform:uppercase;">Abelson &amp; Sussman · 1985</p>
+              <p style="font-size:.75rem;color:var(--lt-2);line-height:1.5;font-style:italic;border-left:2px solid rgba(184,137,42,.25);padding-left:.6rem;margin-bottom:.7rem;">"Aprendí qué es 'abstracción' leyendo este libro."</p>
+              <div style="display:flex;gap:.35rem;flex-wrap:wrap;">
+                <span style="font-family:var(--f-mono);font-size:.55rem;padding:.17rem .5rem;border-radius:999px;background:rgba(184,137,42,.08);color:rgba(184,137,42,.85);border:1px solid rgba(184,137,42,.18);">CS Fundamentos</span>
+                <span style="font-family:var(--f-mono);font-size:.55rem;padding:.17rem .5rem;border-radius:999px;background:rgba(184,137,42,.08);color:rgba(184,137,42,.85);border:1px solid rgba(184,137,42,.18);">Lisp</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- ESL -->
+        <a href="https://hastie.su.domains/ElemStatLearn/" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;color:inherit;border-radius:12px;overflow:hidden;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.04);transition:transform .25s,box-shadow .25s,border-color .25s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.09)';this.style.borderColor='rgba(34,197,94,.3)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 4px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+          <div style="height:5px;background:linear-gradient(90deg,#064e3b,#22c55e);"></div>
+          <div style="padding:1.2rem 1.3rem 1.2rem;display:flex;gap:1rem;align-items:flex-start;">
+            <div style="flex-shrink:0;width:60px;height:90px;border-radius:6px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.2);background:linear-gradient(155deg,#064e3b,#022c22);position:relative;">
+              <img src="https://covers.openlibrary.org/b/isbn/9780387848570-M.jpg" alt="ESL cover" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+            </div>
+            <div style="min-width:0;flex:1;">
+              <p style="font-family:var(--f-mono);font-size:1.5rem;font-weight:700;color:#15803d;letter-spacing:-.02em;line-height:1;margin-bottom:.35rem;">ESL</p>
+              <p style="font-size:.83rem;font-weight:600;color:var(--lt-1);line-height:1.3;margin-bottom:.2rem;">The Elements of Statistical Learning</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:rgba(34,197,94,.8);letter-spacing:.05em;margin-bottom:.55rem;text-transform:uppercase;">Hastie · Tibshirani · Friedman</p>
+              <p style="font-size:.75rem;color:var(--lt-2);line-height:1.5;font-style:italic;border-left:2px solid rgba(34,197,94,.25);padding-left:.6rem;margin-bottom:.7rem;">"Mi referencia para todo lo que es ML clásico."</p>
+              <div style="display:flex;gap:.35rem;flex-wrap:wrap;">
+                <span style="font-family:var(--f-mono);font-size:.55rem;padding:.17rem .5rem;border-radius:999px;background:rgba(34,197,94,.07);color:rgba(34,197,94,.85);border:1px solid rgba(34,197,94,.18);">Machine Learning</span>
+                <span style="font-family:var(--f-mono);font-size:.55rem;padding:.17rem .5rem;border-radius:999px;background:rgba(34,197,94,.07);color:rgba(34,197,94,.85);border:1px solid rgba(34,197,94,.18);">Estadística</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- OFD -->
+        <a href="https://www.amazon.com/Options-Futures-Other-Derivatives-John-Hull/dp/013447208X" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;color:inherit;border-radius:12px;overflow:hidden;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.04);transition:transform .25s,box-shadow .25s,border-color .25s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.09)';this.style.borderColor='rgba(167,139,250,.35)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 4px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'"
+>
+          <div style="height:5px;background:linear-gradient(90deg,#581c87,#a78bfa);"></div>
+          <div style="padding:1.2rem 1.3rem 1.2rem;display:flex;gap:1rem;align-items:flex-start;">
+            <div style="flex-shrink:0;width:60px;height:90px;border-radius:6px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.2);background:linear-gradient(155deg,#581c87,#1e1b4b);position:relative;">
+              <img src="https://covers.openlibrary.org/b/isbn/9780136015864-M.jpg" alt="OFD cover" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+            </div>
+            <div style="min-width:0;flex:1;">
+              <p style="font-family:var(--f-mono);font-size:1.5rem;font-weight:700;color:#7c3aed;letter-spacing:-.02em;line-height:1;margin-bottom:.35rem;">OFD</p>
+              <p style="font-size:.83rem;font-weight:600;color:var(--lt-1);line-height:1.3;margin-bottom:.2rem;">Options, Futures, and Other Derivatives</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:rgba(167,139,250,.8);letter-spacing:.05em;margin-bottom:.55rem;text-transform:uppercase;">John C. Hull</p>
+              <p style="font-size:.75rem;color:var(--lt-2);line-height:1.5;font-style:italic;border-left:2px solid rgba(167,139,250,.25);padding-left:.6rem;margin-bottom:.7rem;">"El biblión de finanzas cuantitativas. Black-Scholes en contexto."</p>
+              <div style="display:flex;gap:.35rem;flex-wrap:wrap;">
+                <span style="font-family:var(--f-mono);font-size:.55rem;padding:.17rem .5rem;border-radius:999px;background:rgba(167,139,250,.08);color:rgba(167,139,250,.85);border:1px solid rgba(167,139,250,.2);">Finanzas Quant</span>
+                <span style="font-family:var(--f-mono);font-size:.55rem;padding:.17rem .5rem;border-radius:999px;background:rgba(167,139,250,.08);color:rgba(167,139,250,.85);border:1px solid rgba(167,139,250,.2);">Derivados</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- CC -->
+        <a href="https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;color:inherit;border-radius:12px;overflow:hidden;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.04);transition:transform .25s,box-shadow .25s,border-color .25s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.09)';this.style.borderColor='rgba(239,68,68,.3)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 4px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+          <div style="height:5px;background:linear-gradient(90deg,#7f1d1d,#ef4444);"></div>
+          <div style="padding:1.2rem 1.3rem 1.2rem;display:flex;gap:1rem;align-items:flex-start;">
+            <div style="flex-shrink:0;width:60px;height:90px;border-radius:6px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.2);background:linear-gradient(155deg,#7f1d1d,#1c0a0a);position:relative;">
+              <img src="https://covers.openlibrary.org/b/isbn/9780132350884-M.jpg" alt="Clean Code cover" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+            </div>
+            <div style="min-width:0;flex:1;">
+              <p style="font-family:var(--f-mono);font-size:1.5rem;font-weight:700;color:#dc2626;letter-spacing:-.02em;line-height:1;margin-bottom:.35rem;">CC</p>
+              <p style="font-size:.83rem;font-weight:600;color:var(--lt-1);line-height:1.3;margin-bottom:.2rem;">Clean Code</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:rgba(239,68,68,.8);letter-spacing:.05em;margin-bottom:.55rem;text-transform:uppercase;">Robert C. Martin · 2008</p>
+              <p style="font-size:.75rem;color:var(--lt-2);line-height:1.5;font-style:italic;border-left:2px solid rgba(239,68,68,.22);padding-left:.6rem;margin-bottom:.7rem;">"Polémico pero indispensable. Me enseñó a leer código de otros."</p>
+              <div style="display:flex;gap:.35rem;flex-wrap:wrap;">
+                <span style="font-family:var(--f-mono);font-size:.55rem;padding:.17rem .5rem;border-radius:999px;background:rgba(239,68,68,.07);color:rgba(239,68,68,.8);border:1px solid rgba(239,68,68,.15);">Software Craft</span>
+                <span style="font-family:var(--f-mono);font-size:.55rem;padding:.17rem .5rem;border-radius:999px;background:rgba(239,68,68,.07);color:rgba(239,68,68,.8);border:1px solid rgba(239,68,68,.15);">Ingeniería</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- H&P -->
+        <a href="https://www.amazon.com/Hackers-Painters-Big-Ideas-Computer/dp/1449389554" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;color:inherit;border-radius:12px;overflow:hidden;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.04);transition:transform .25s,box-shadow .25s,border-color .25s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,.09)';this.style.borderColor='rgba(34,211,238,.3)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 4px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+          <div style="height:5px;background:linear-gradient(90deg,#0c4a6e,#22d3ee);"></div>
+          <div style="padding:1.2rem 1.3rem 1.2rem;display:flex;gap:1rem;align-items:flex-start;">
+            <div style="flex-shrink:0;width:60px;height:90px;border-radius:6px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.2);background:linear-gradient(155deg,#0c4a6e,#082f49);position:relative;">
+              <img src="https://covers.openlibrary.org/b/isbn/9781449389550-M.jpg" alt="Hackers & Painters cover" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+            </div>
+            <div style="min-width:0;flex:1;">
+              <p style="font-family:var(--f-mono);font-size:1.5rem;font-weight:700;color:#0e7490;letter-spacing:-.02em;line-height:1;margin-bottom:.35rem;">H&amp;P</p>
+              <p style="font-size:.83rem;font-weight:600;color:var(--lt-1);line-height:1.3;margin-bottom:.2rem;">Hackers &amp; Painters</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:rgba(34,211,238,.8);letter-spacing:.05em;margin-bottom:.55rem;text-transform:uppercase;">Paul Graham · Essays</p>
+              <p style="font-size:.75rem;color:var(--lt-2);line-height:1.5;font-style:italic;border-left:2px solid rgba(34,211,238,.25);padding-left:.6rem;margin-bottom:.7rem;">"Los buenos programadores piensan como artistas."</p>
+              <div style="display:flex;gap:.35rem;flex-wrap:wrap;">
+                <span style="font-family:var(--f-mono);font-size:.55rem;padding:.17rem .5rem;border-radius:999px;background:rgba(34,211,238,.07);color:rgba(34,211,238,.85);border:1px solid rgba(34,211,238,.18);">Ensayo</span>
+                <span style="font-family:var(--f-mono);font-size:.55rem;padding:.17rem .5rem;border-radius:999px;background:rgba(34,211,238,.07);color:rgba(34,211,238,.85);border:1px solid rgba(34,211,238,.18);">Startup</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- PODCASTS / CANALES -->
+    <div class="stack-block" data-aos="fade-up" data-aos-delay="160">
+      <h3 class="stack-block-h">
+        <i data-lucide="headphones" class="w-4 h-4"></i>
+        Podcasts &amp; canales
+      </h3>
+
+      <!-- Category: Audio -->
+      <div style="margin-top:1.75rem;">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+          <span style="font-family:var(--f-mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;color:var(--olive);display:flex;align-items:center;gap:.4rem;">
+            <i data-lucide="mic" class="w-3 h-3"></i> Audio
+          </span>
+          <div style="flex:1;height:1px;background:rgba(107,140,82,.18);"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.8rem;">
+
+          <a href="https://lexfridman.com/podcast" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(59,130,246,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.65rem;font-weight:700;color:#fff;letter-spacing:.03em;background:linear-gradient(135deg,#3b82f6,#1d4ed8);position:relative;overflow:hidden;">LF<img src="https://www.google.com/s2/favicons?domain=lexfridman.com&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">Lex Fridman</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">Podcast · Entrevistas</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">Ciencia, IA, filosofía. Entrevistas de 3+ horas.</p>
+            </div>
+          </a>
+
+          <a href="https://darknetdiaries.com" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(239,68,68,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.6rem;font-weight:700;color:#fff;letter-spacing:.03em;background:linear-gradient(135deg,#ef4444,#991b1b);position:relative;overflow:hidden;">DD<img src="https://www.google.com/s2/favicons?domain=darknetdiaries.com&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">Darknet Diaries</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">Podcast · Security</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">Historias reales de ciberseguridad. Muy bien narrado.</p>
+            </div>
+          </a>
+
+          <a href="https://acquired.fm" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(167,139,250,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.6rem;font-weight:700;color:#fff;letter-spacing:.03em;background:linear-gradient(135deg,#a855f7,#6d28d9);position:relative;overflow:hidden;">ACQ<img src="https://www.google.com/s2/favicons?domain=acquired.fm&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">Acquired</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">Podcast · Business</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">Historia profunda de grandes compañías. Nivel ensayo.</p>
+            </div>
+          </a>
+
+          <a href="https://hubermanlab.com" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(45,212,191,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.6rem;font-weight:700;color:#fff;letter-spacing:.03em;background:linear-gradient(135deg,#2dd4bf,#0d9488);position:relative;overflow:hidden;">HL<img src="https://www.google.com/s2/favicons?domain=hubermanlab.com&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">Huberman Lab</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">Podcast · Ciencia</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">Neurociencia aplicable: sueño, foco, rendimiento.</p>
+            </div>
+          </a>
+
+          <a href="https://mfmpod.com" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(74,222,128,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.55rem;font-weight:700;color:#fff;letter-spacing:.02em;background:linear-gradient(135deg,#4ade80,#16a34a);position:relative;overflow:hidden;">MFM<img src="https://www.google.com/s2/favicons?domain=mfmpod.com&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">My First Million</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">Podcast · Negocios</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">Ideas de negocio, startups y mentalidad emprendedora.</p>
+            </div>
+          </a>
+
+          <a href="https://allinpodcast.co" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(96,165,250,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.58rem;font-weight:700;color:#fff;letter-spacing:.03em;background:linear-gradient(135deg,#60a5fa,#2563eb);position:relative;overflow:hidden;">ALL<img src="https://www.google.com/s2/favicons?domain=allinpodcast.co&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">All-In</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">Podcast · Tech &amp; VC</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">Chamath, Sacks, Friedberg, Palihapitiya — sin filtros.</p>
+            </div>
+          </a>
+
+          <a href="https://changelog.com/podcast" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(16,185,129,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.6rem;font-weight:700;color:#fff;letter-spacing:.03em;background:linear-gradient(135deg,#10b981,#047857);position:relative;overflow:hidden;">CL<img src="https://www.google.com/s2/favicons?domain=changelog.com&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">The Changelog</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">Podcast · Dev</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">Open source y devs que construyen cosas reales.</p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Category: Video -->
+      <div style="margin-top:1.75rem;">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+          <span style="font-family:var(--f-mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;color:var(--olive);display:flex;align-items:center;gap:.4rem;">
+            <i data-lucide="youtube" class="w-3 h-3"></i> Video
+          </span>
+          <div style="flex:1;height:1px;background:rgba(107,140,82,.18);"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.8rem;">
+
+          <a href="https://www.youtube.com/@3blue1brown" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(245,158,11,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.55rem;font-weight:700;color:#fff;letter-spacing:.03em;background:linear-gradient(135deg,#f59e0b,#d97706);position:relative;overflow:hidden;">3B1B<img src="https://www.google.com/s2/favicons?domain=3blue1brown.com&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">3Blue1Brown</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">YouTube · Matemáticas</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">Visualizaciones que hacen bella el álgebra lineal.</p>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/@Fireship" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(249,115,22,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.6rem;font-weight:700;color:#fff;letter-spacing:.03em;background:linear-gradient(135deg,#f97316,#c2410c);position:relative;overflow:hidden;">FS<img src="https://www.google.com/s2/favicons?domain=fireship.io&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">Fireship</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">YouTube · Dev</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">100 segundos que explican tech mejor que horas de docs.</p>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/@LiveOverflow" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(34,197,94,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.6rem;font-weight:700;color:#fff;letter-spacing:.03em;background:linear-gradient(135deg,#22c55e,#15803d);position:relative;overflow:hidden;">LO<img src="https://www.google.com/s2/favicons?domain=liveoverflow.com&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">LiveOverflow</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">YouTube · Security</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">CTF, exploits, hacking ético. Aprende haciendo.</p>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/@Computerphile" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(99,102,241,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.55rem;font-weight:700;color:#fff;letter-spacing:.03em;background:linear-gradient(135deg,#6366f1,#4338ca);position:relative;overflow:hidden;">CPU<img src="https://www.google.com/s2/favicons?domain=computerphile.com&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">Computerphile</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">YouTube · CS</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">Conceptos fundamentales de CS explicados con rigor.</p>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/@NetworkChuck" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(251,146,60,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.6rem;font-weight:700;color:#fff;letter-spacing:.03em;background:linear-gradient(135deg,#fb923c,#ea580c);position:relative;overflow:hidden;">NC<img src="https://www.google.com/s2/favicons?domain=networkchuck.com&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">NetworkChuck</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">YouTube · Networking</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">Redes, Linux, hacking — explicado sin aburrirte.</p>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/@t3dotgg" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(167,139,250,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.6rem;font-weight:700;color:#fff;letter-spacing:.03em;background:linear-gradient(135deg,#a78bfa,#7c3aed);position:relative;overflow:hidden;">T3<img src="https://www.google.com/s2/favicons?domain=t3.gg&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">Theo — t3.gg</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">YouTube · Web Dev</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">Opiniones sin filtro sobre TypeScript y el ecosistema web.</p>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/@benawad" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(244,114,182,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.6rem;font-weight:700;color:#fff;letter-spacing:.03em;background:linear-gradient(135deg,#f472b6,#db2777);position:relative;overflow:hidden;">BA<img src="https://www.google.com/s2/favicons?domain=benawad.com&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">Ben Awad</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">YouTube · Full Stack</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">React, GraphQL y proyectos reales de principio a fin.</p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Category: Lectura -->
+      <div style="margin-top:1.75rem;">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+          <span style="font-family:var(--f-mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;color:var(--olive);display:flex;align-items:center;gap:.4rem;">
+            <i data-lucide="rss" class="w-3 h-3"></i> Lectura
+          </span>
+          <div style="flex:1;height:1px;background:rgba(107,140,82,.18);"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.8rem;">
+
+          <a href="https://news.ycombinator.com" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(251,191,36,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.62rem;font-weight:700;color:#fff;letter-spacing:.03em;background:linear-gradient(135deg,#fb923c,#ea580c);position:relative;overflow:hidden;">HN<img src="https://www.google.com/s2/favicons?domain=news.ycombinator.com&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">Hacker News</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">Feed · Tech</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">El pulso de la industria. Siempre abierto en otra pestaña.</p>
+            </div>
+          </a>
+
+          <a href="https://lobste.rs" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(167,139,250,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.55rem;font-weight:700;color:#fff;letter-spacing:.03em;background:linear-gradient(135deg,#c084fc,#7c3aed);position:relative;overflow:hidden;">LOB<img src="https://www.google.com/s2/favicons?domain=lobste.rs&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">Lobste.rs</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">Feed · Dev</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">HN pero más técnico y con mucho menos ruido.</p>
+            </div>
+          </a>
+
+          <a href="https://www.technologyreview.com" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(248,113,113,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.55rem;font-weight:700;color:#fff;letter-spacing:.02em;background:linear-gradient(135deg,#f87171,#b91c1c);position:relative;overflow:hidden;">MIT<img src="https://www.google.com/s2/favicons?domain=technologyreview.com&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">MIT Tech Review</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">Revista · Tecnología</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">Periodismo riguroso sobre ciencia y tecnología emergente.</p>
+            </div>
+          </a>
+
+          <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(148,163,184,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.55rem;font-weight:700;color:#fff;letter-spacing:.02em;background:linear-gradient(135deg,#94a3b8,#475569);position:relative;overflow:hidden;">arXv<img src="https://www.google.com/s2/favicons?domain=arxiv.org&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">ArXiv</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">Preprints · Investigación</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">Papers de ML, CS y matemáticas antes de que sean noticia.</p>
+            </div>
+          </a>
+
+          <a href="https://dev.to" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(129,140,248,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.55rem;font-weight:700;color:#fff;letter-spacing:.02em;background:linear-gradient(135deg,#818cf8,#4338ca);position:relative;overflow:hidden;">DEV<img src="https://www.google.com/s2/favicons?domain=dev.to&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">Dev.to</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">Comunidad · Dev</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">Artículos prácticos de la comunidad developer global.</p>
+            </div>
+          </a>
+
+          <a href="https://queue.acm.org" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1rem;border-radius:10px;border:1px solid rgba(26,25,20,.1);background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)';this.style.borderColor='rgba(56,189,248,.28)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(0,0,0,.04)';this.style.borderColor='rgba(26,25,20,.1)'">
+            <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.55rem;font-weight:700;color:#fff;letter-spacing:.02em;background:linear-gradient(135deg,#38bdf8,#0369a1);position:relative;overflow:hidden;">ACM<img src="https://www.google.com/s2/favicons?domain=queue.acm.org&sz=128" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div>
+            <div style="min-width:0;">
+              <p style="font-size:.86rem;font-weight:600;color:var(--lt-1);line-height:1.2;margin:0 0 .18rem;">ACM Queue</p>
+              <p style="font-family:var(--f-mono);font-size:.58rem;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .35rem;">Revista · CS Académico</p>
+              <p style="font-size:.72rem;color:var(--lt-3);line-height:1.4;margin:0;">Sistemas distribuidos, compiladores, arquitectura. Profundo.</p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Back to about CTA -->
+<div style="max-width:1200px;margin:0 auto;padding:0 2rem 6rem;display:flex;justify-content:center;" data-aos="fade-up">
+  <a href="about.html" class="btn btn-outline" data-t>
+    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+    Volver a Sobre mí
+  </a>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>© 2026 Alfredo Ibáñez Vargas</p>
+    <p style="font-style:italic;">~/universo</p>
+    <a href="https://github.com/maip-fred/maip-fred.github.io" target="_blank" rel="noopener">
+      <i data-lucide="github" class="w-3.5 h-3.5 inline-block mr-1"></i>Ver código
+    </a>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+<script src="js/sound.js" defer></script>
+<script src="js/cmdk.js" defer></script>
+<script src="js/easter-egg.js" defer></script>
+<script src="js/cursor.js" defer></script>
+<script src="js/core.js" defer></script>
+<script src="js/chatbot.js" defer></script>
+<script src="js/dock.js" defer></script>
+<script src="js/magnetic.js" defer></script>
+<script src="js/scramble.js" defer></script>
+<script src="js/matrix.js" defer></script>
+</body>
+</html>

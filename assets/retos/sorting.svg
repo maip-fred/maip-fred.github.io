@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#0d1117"/>
+  <rect x="60" y="100" width="40" height="100" fill="#FCD34D" opacity="0.2"/>
+  <rect x="120" y="80" width="40" height="140" fill="#FCD34D" opacity="0.3"/>
+  <rect x="180" y="60" width="40" height="180" fill="#FCD34D" opacity="0.4"/>
+  <rect x="240" y="90" width="40" height="120" fill="#FCD34D" opacity="0.3"/>
+  <rect x="300" y="110" width="40" height="80" fill="#FCD34D" opacity="0.2"/>
+  <path d="M80 100 L320 100" stroke="#FCD34D" stroke-width="2" opacity="0.5"/>
+  <text x="200" y="280" font-family="monospace" font-size="16" fill="#FCD34D" text-anchor="middle" opacity="0.5">O(n)</text>
+</svg>

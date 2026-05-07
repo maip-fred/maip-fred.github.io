@@ -1,0 +1,152 @@
+/* ============================================================
+   GALAXY OVERLAY — Interactive 3D intro, index.html only
+   ============================================================ */
+
+#galaxy-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #010409;
+  overflow: hidden;
+  touch-action: none;
+}
+
+#galaxy-overlay canvas {
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+#galaxy-fade {
+  position: absolute;
+  inset: 0;
+  background: #010409;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 20;
+  transition: opacity .5s ease;
+}
+
+#galaxy-title {
+  position: absolute;
+  top: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--f-mono);
+  font-size: .55rem;
+  letter-spacing: .42em;
+  color: rgba(255,255,255,.14);
+  text-transform: uppercase;
+  z-index: 5;
+  user-select: none;
+  white-space: nowrap;
+  opacity: 0;
+  animation: glxFadeIn 1.5s ease 1.5s forwards;
+  pointer-events: none;
+}
+
+/* ── Node labels ──────────────────────────────────────────── */
+.galaxy-label {
+  position: absolute;
+  transform: translate(-50%, 0);
+  pointer-events: none;
+  z-index: 5;
+  text-align: center;
+  transition: opacity .3s ease;
+}
+
+.gl-name {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: .64rem;
+  letter-spacing: .14em;
+  color: #fff;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.gl-desc {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: .49rem;
+  letter-spacing: .06em;
+  color: rgba(255,255,255,.32);
+  white-space: nowrap;
+  margin-top: .16rem;
+}
+
+.galaxy-label.center-label .gl-name {
+  font-family: var(--f-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  color: #60a5fa;
+  text-shadow: 0 0 28px rgba(59,130,246,.45);
+}
+
+.galaxy-label.center-label .gl-desc {
+  color: rgba(96,165,250,.38);
+  font-size: .49rem;
+}
+
+/* ── Enter button ─────────────────────────────────────────── */
+#galaxy-enter {
+  position: absolute;
+  bottom: 2.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--f-mono);
+  font-size: .62rem;
+  letter-spacing: .28em;
+  color: rgba(255,255,255,.22);
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.07);
+  padding: .6rem 2rem;
+  cursor: pointer;
+  z-index: 5;
+  text-transform: uppercase;
+  transition: color .3s, border-color .3s, background .3s;
+  opacity: 0;
+  animation: glxFadeIn 1.5s ease 2.8s forwards;
+  white-space: nowrap;
+}
+
+#galaxy-enter:hover {
+  color: rgba(255,255,255,.75);
+  border-color: rgba(255,255,255,.22);
+  background: rgba(255,255,255,.025);
+}
+
+/* ── Instruction hint ─────────────────────────────────────── */
+#galaxy-hint {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--f-mono);
+  font-size: .45rem;
+  letter-spacing: .22em;
+  color: rgba(255,255,255,.09);
+  z-index: 5;
+  user-select: none;
+  white-space: nowrap;
+  opacity: 0;
+  animation: glxFadeIn 1.5s ease 3.5s forwards;
+  pointer-events: none;
+}
+
+/* ── Keyframes ────────────────────────────────────────────── */
+@keyframes glxFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Mobile ───────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .gl-desc       { display: none; }
+  .gl-name       { font-size: .58rem; }
+  #galaxy-hint   { display: none; }
+  #galaxy-enter  { font-size: .58rem; padding: .5rem 1.5rem; bottom: 2rem; }
+  #galaxy-title  { font-size: .46rem; letter-spacing: .24em; }
+}
+

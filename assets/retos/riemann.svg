@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#0d1117"/>
+  <text x="200" y="160" font-family="Georgia, serif" font-size="100" fill="#22D3EE" text-anchor="middle" opacity="0.3">ζ(s)</text>
+  <path d="M50 250 Q100 200 150 220 T250 180 T350 200" fill="none" stroke="#22D3EE" stroke-width="2" opacity="0.3"/>
+  <text x="200" y="280" font-family="monospace" font-size="16" fill="#22D3EE" text-anchor="middle" opacity="0.4">Re(s) = 1/2</text>
+</svg>

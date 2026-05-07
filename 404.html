@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="404 — segmentation fault. La ruta solicitada no existe." />
+  <title>404 — Segmentation fault · Alfredo Ibáñez</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="manifest" href="/assets/manifest.json" />
+  <meta name="theme-color" content="#030810" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/effects.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/about.css" />
+  <link rel="stylesheet" href="css/skills.css" />
+  <link rel="stylesheet" href="css/projects.css" />
+  <link rel="stylesheet" href="css/contact.css" />
+  <link rel="stylesheet" href="css/journey.css" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/chatbot.css" />
+
+  <style>
+    .err-page {
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 1.5rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .err-page::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(248,113,113,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(248,113,113,.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .err-page::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(248,113,113,.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .err-inner {
+      max-width: 760px;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+    }
+    .err-glitch {
+      font-family: var(--f-display);
+      font-size: clamp(6rem, 22vw, 14rem);
+      font-weight: 700;
+      line-height: 0.85;
+      color: var(--red);
+      letter-spacing: -0.04em;
+      position: relative;
+      display: inline-block;
+      animation: glitch 2.4s infinite;
+    }
+    .err-glitch::before, .err-glitch::after {
+      content: '404';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      opacity: 0.7;
+    }
+    .err-glitch::before { color: var(--cyan);  animation: glitchA 2.6s infinite; }
+    .err-glitch::after  { color: var(--blue);  animation: glitchB 2.2s infinite; }
+    @keyframes glitch  { 0%,100% { transform: none; } 92% { transform: translate(-2px, 1px); } 94% { transform: translate(3px, -1px); } }
+    @keyframes glitchA { 0%,100% { transform: none; opacity: 0; } 88%,96% { transform: translate(-3px, 0); opacity: .7; } }
+    @keyframes glitchB { 0%,100% { transform: none; opacity: 0; } 90%,94% { transform: translate(3px, 0); opacity: .7; } }
+
+    .err-tag {
+      font-family: var(--f-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .err-tag::before {
+      content: '';
+      width: 2rem; height: 1px;
+      background: var(--red);
+    }
+    .err-stack {
+      background: var(--bg-0);
+      border: 1px solid rgba(248,113,113,.2);
+      border-left: 3px solid var(--red);
+      border-radius: var(--r-md);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--f-mono);
+      font-size: 0.78rem;
+      line-height: 1.85;
+      color: var(--t-2);
+      margin: 2rem 0;
+      overflow-x: auto;
+    }
+    .err-stack .sk-err  { color: var(--red); font-weight: 700; }
+    .err-stack .sk-file { color: var(--cyan); }
+    .err-stack .sk-fn   { color: var(--blue-xl); }
+    .err-stack .sk-cmt  { color: var(--t-3); }
+    .err-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Ir al contenido</a>
+
+<div id="scroll-bar"></div>
+
+<aside class="social-sidebar" aria-label="Redes sociales">
+  <a href="https://github.com/maip-fred" target="_blank" rel="noopener" aria-label="GitHub"><i data-lucide="github" class="w-5 h-5"></i></a>
+  <a href="mailto:ibanez.alfredo.02.10@gmail.com" aria-label="Email"><i data-lucide="mail" class="w-5 h-5"></i></a>
+</aside>
+
+<header id="header">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" data-t>AIV</a>
+    <ul class="nav-links">
+      <li><a href="index.html"    class="nav-link" data-num="00" data-t>Inicio</a></li>
+      <li><a href="about.html"    class="nav-link" data-num="01" data-t>Sobre mí</a></li>
+      <li><a href="skills.html"   class="nav-link" data-num="02" data-t>Habilidades</a></li>
+      <li><a href="retos.html"    class="nav-link" data-num="03" data-t>Retos</a></li>
+      <li><a href="projects.html" class="nav-link" data-num="04" data-t>Proyectos</a></li>
+      <li><a href="contact.html"  class="nav-cta"  data-t>Contacto</a></li>
+    </ul>
+    <button id="hamburger" class="hamburger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div id="mobile-menu">
+    <ul class="mobile-links">
+      <li><a href="index.html"    data-t>Inicio</a></li>
+      <li><a href="about.html"    data-t>Sobre mí</a></li>
+      <li><a href="skills.html"   data-t>Habilidades</a></li>
+      <li><a href="retos.html"    data-t>Retos</a></li>
+      <li><a href="projects.html" data-t>Proyectos</a></li>
+      <li><a href="contact.html"  data-t>Contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<div id="main-content" class="err-page">
+  <div class="err-inner">
+
+    <p class="err-tag">Error · Página no encontrada</p>
+
+    <div class="err-glitch" aria-label="404">404</div>
+
+    <h1 style="font-family:var(--f-display);font-size:clamp(2rem,5vw,3.5rem);font-weight:600;color:var(--t-1);line-height:1.1;margin:1.5rem 0 1rem;">
+      Segmentation fault <span style="color:var(--t-3);font-style:italic;">(core dumped)</span>
+    </h1>
+
+    <p style="font-size:1rem;color:var(--t-2);max-width:50ch;line-height:1.7;">
+      La ruta solicitada no existe en este servidor — o probablemente nunca existió.
+      Bug, link roto o curiosidad bien intencionada: aquí estamos.
+    </p>
+
+    <pre class="err-stack">
+<span class="sk-cmt"># Traceback (most recent call last):</span>
+  File "<span class="sk-file">router.py</span>", line <span style="color:var(--yellow);">42</span>, in <span class="sk-fn">resolve_path</span>
+    return self.routes[<span style="color:var(--green);">path</span>]
+KeyError: <span class="sk-err">'<span id="err-path">/desconocido</span>'</span>
+
+<span class="sk-cmt"># During handling of the above exception, another exception occurred:</span>
+
+  File "<span class="sk-file">portfolio.py</span>", line <span style="color:var(--yellow);">404</span>, in <span class="sk-fn">render</span>
+    raise <span class="sk-err">PageNotFound</span>(<span style="color:var(--green);">"esa ruta no está en el sitemap"</span>)
+<span class="sk-err">portfolio.exceptions.PageNotFound</span>: esa ruta no está en el sitemap
+
+<span class="sk-cmt"># Sugerencia: usa los links de abajo o ⌘K para buscar.</span>
+    </pre>
+
+    <div class="err-actions">
+      <a href="index.html" class="btn btn-primary" data-t>
+        <i data-lucide="home" class="w-4 h-4"></i>
+        Volver al inicio
+      </a>
+      <a href="projects.html" class="btn btn-outline" data-t>
+        <i data-lucide="folder-open" class="w-4 h-4"></i>
+        Ver proyectos
+      </a>
+      <button class="btn btn-ghost" onclick="history.back()">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Atrás
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>© 2026 Alfredo Ibáñez Vargas</p>
+    <p style="font-style:italic;">~/dev/null</p>
+    <a href="https://github.com/maip-fred/maip-fred.github.io" target="_blank" rel="noopener">
+      <i data-lucide="github" class="w-3.5 h-3.5 inline-block mr-1"></i>Ver código
+    </a>
+  </div>
+</footer>
+
+<script>
+  // Show the actual requested path inside the stack trace
+  document.addEventListener('DOMContentLoaded', function () {
+    var pathEl = document.getElementById('err-path');
+    if (pathEl) {
+      var p = location.pathname || '/';
+      if (p.length > 60) p = p.slice(0, 57) + '...';
+      pathEl.textContent = p;
+    }
+  });
+</script>
+<script src="js/sound.js" defer></script>
+<script src="js/cmdk.js" defer></script>
+<script src="js/easter-egg.js" defer></script>
+<script src="js/cursor.js" defer></script>
+<script src="js/core.js" defer></script>
+<script src="js/chatbot.js" defer></script>
+</body>
+</html>

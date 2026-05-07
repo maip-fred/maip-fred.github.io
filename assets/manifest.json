@@ -1,0 +1,20 @@
+{
+  "name": "Alfredo Ibáñez — Portfolio",
+  "short_name": "AIV",
+  "description": "Portfolio de Alfredo Ibáñez Vargas — Data Science · Security · Dev. ITAM, CDMX.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030810",
+  "theme_color": "#030810",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [],
+  "categories": ["portfolio", "developer"]
+}

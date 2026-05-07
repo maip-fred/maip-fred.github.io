@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Habilidades técnicas de Alfredo Ibáñez — Python, SQL, Data Science, Docker y más." />
+  <title>Alfredo Ibáñez — Habilidades</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans:    ['"DM Sans"', 'Inter', 'sans-serif'],
+            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            mono:    ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="manifest" href="/assets/manifest.json" />
+  <meta name="theme-color" content="#030810" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://maip-fred.github.io/skills.html" />
+  <meta property="og:title"       content="Alfredo Ibáñez — Habilidades" />
+  <meta property="og:description" content="Stack técnico: Python, SQL, Docker, scikit-learn, MongoDB y más. 4 años de carrera y proyectos propios." />
+  <meta property="og:image"       content="https://maip-fred.github.io/assets/og-image.svg" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Alfredo Ibáñez — Habilidades" />
+  <meta name="twitter:description" content="Stack técnico: Python, SQL, Docker, scikit-learn, MongoDB y más." />
+  <meta name="twitter:image"       content="https://maip-fred.github.io/assets/og-image.svg" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/effects.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/about.css" />
+  <link rel="stylesheet" href="css/skills.css" />
+  <link rel="stylesheet" href="css/projects.css" />
+  <link rel="stylesheet" href="css/contact.css" />
+  <link rel="stylesheet" href="css/journey.css" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/chatbot.css" />
+</head>
+<body>
+<a href="#main-content" class="skip-link">Ir al contenido</a>
+
+<div id="scroll-bar"></div>
+
+<!-- GRAIN OVERLAY -->
+<div id="grain-overlay" aria-hidden="true"></div>
+
+<!-- MATRIX OVERLAY -->
+<div id="matrix-overlay" role="dialog" aria-modal="true" aria-label="Matrix mode">
+  <canvas id="matrix-canvas"></canvas>
+  <p id="matrix-label">PROTOCOLO MATRIX · AIV</p>
+  <p id="matrix-exit-hint">[ ESC ] · CLICK PARA SALIR</p>
+</div>
+
+<aside class="social-sidebar">
+  <a href="https://github.com/maip-fred" target="_blank" rel="noopener" aria-label="GitHub"><i data-lucide="github" class="w-5 h-5"></i></a>
+  <a href="mailto:ibanez.alfredo.02.10@gmail.com" aria-label="Email"><i data-lucide="mail" class="w-5 h-5"></i></a>
+</aside>
+
+<header id="header">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" data-t>AIV</a>
+    <ul class="nav-links">
+      <li><a href="index.html"    class="nav-link" data-num="00" data-t>Inicio</a></li>
+      <li><a href="about.html"    class="nav-link" data-num="01" data-t>Sobre mí</a></li>
+      <li><a href="skills.html"   class="nav-link" data-num="02" data-t>Habilidades</a></li>
+      <li><a href="retos.html"    class="nav-link" data-num="03" data-t>Retos</a></li>
+      <li><a href="projects.html" class="nav-link" data-num="04" data-t>Proyectos</a></li>
+      <li><a href="contact.html"  class="nav-cta"  data-t>Contacto</a></li>
+    </ul>
+    <button id="hamburger" class="hamburger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div id="mobile-menu">
+    <ul class="mobile-links">
+      <li><a href="index.html"    data-t>Inicio</a></li>
+      <li><a href="about.html"    data-t>Sobre mí</a></li>
+      <li><a href="skills.html"   data-t>Habilidades</a></li>
+      <li><a href="retos.html"    data-t>Retos</a></li>
+      <li><a href="projects.html" data-t>Proyectos</a></li>
+      <li><a href="contact.html"  data-t>Contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<div id="main-content" class="page-header">
+  <span class="wm" aria-hidden="true">02</span>
+  <span aria-hidden="true" style="position:absolute;left:58%;top:3.5rem;font-family:'Georgia',serif;font-size:clamp(6rem,13vw,12rem);font-weight:300;font-style:italic;color:rgba(107,140,82,.05);pointer-events:none;user-select:none;line-height:1;">∫</span>
+  <span aria-hidden="true" style="position:absolute;left:74%;top:7rem;font-family:'Georgia',serif;font-size:clamp(2.5rem,5vw,5rem);font-weight:300;color:rgba(184,137,42,.04);pointer-events:none;user-select:none;line-height:1;">σ</span>
+  <p class="page-tag animate-fade-in" style="color:var(--olive-l);">
+    <span style="display:inline-block;width:2rem;height:1px;background:var(--olive-l);margin-right:.75rem;vertical-align:middle;"></span>
+    02 — Habilidades
+  </p>
+  <h1 class="page-title animate-hero-name">
+    Lo que<br><span class="page-title-outline">sé hacer.</span>
+  </h1>
+  <div class="section-rule animate-fade-in" style="animation-delay:.4s;background:linear-gradient(to right,var(--olive),var(--gold-l));"></div>
+  <p class="page-subtitle animate-slide-up" style="animation-delay:.5s;">
+    Stack técnico construido a lo largo de 4 años de carrera y proyectos propios — desde análisis de datos hasta seguridad de software.
+  </p>
+</div>
+
+<!-- RADAR CHART -->
+<section class="radar-section">
+  <div class="radar-inner">
+    <div class="radar-grid-layout">
+      <div data-aos="fade-right">
+        <p class="page-tag" style="margin-bottom:.75rem;">Vista panorámica</p>
+        <h2 class="radar-title">
+          <span data-scramble>Mi stack en</span><br><span style="color:var(--blue-xl);font-style:italic;" data-scramble data-scramble-delay="250">una sola figura.</span>
+        </h2>
+        <p class="radar-sub">
+          Las barras de la sección siguiente cuentan el detalle. Este radar muestra el balance — dónde soy fuerte, dónde estoy creciendo, y por qué busco las prácticas que busco.
+        </p>
+        <ul class="radar-legend">
+          <li><span class="rl-dot" style="background:var(--blue);"></span> <strong>Data Science</strong> — análisis, ML, viz</li>
+          <li><span class="rl-dot" style="background:var(--olive);"></span> <strong>DataViz &amp; Geo</strong> — Leaflet, igraph, sf</li>
+          <li><span class="rl-dot" style="background:var(--green);"></span> <strong>Security</strong> — análisis estático, AST</li>
+          <li><span class="rl-dot" style="background:var(--yellow);"></span> <strong>Frontend</strong> — HTML/CSS/JS</li>
+          <li><span class="rl-dot" style="background:var(--orange);"></span> <strong>DevOps</strong> — Docker, CI/CD</li>
+        </ul>
+      </div>
+
+      <div class="radar-stage" data-aos="fade-left" data-aos-delay="120">
+        <svg id="skills-radar" viewBox="-200 -200 400 400" aria-label="Gráfico radar de habilidades">
+          <!-- Grid -->
+          <g class="radar-grid">
+            <polygon points="" data-rings="1"></polygon>
+            <polygon points="" data-rings="0.75"></polygon>
+            <polygon points="" data-rings="0.5"></polygon>
+            <polygon points="" data-rings="0.25"></polygon>
+          </g>
+          <!-- Axes lines -->
+          <g class="radar-axes"></g>
+          <!-- Labels -->
+          <g class="radar-labels"></g>
+          <!-- Data polygon -->
+          <polygon class="radar-poly" points="" />
+          <!-- Data points -->
+          <g class="radar-points"></g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNICAL SKILLS — grid de múltiples columnas -->
+  <div style="margin:4rem auto;max-width:1200px;padding:0 1.5rem;">
+
+    <div style="margin-bottom:2.5rem;" data-aos="fade-up">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem;">
+        <i data-lucide="terminal" class="w-5 h-5" style="color:var(--olive);"></i>
+        <p style="font-family:var(--f-mono);font-size:.72rem;font-weight:600;color:var(--olive);letter-spacing:.08em;text-transform:uppercase;">Stack técnico</p>
+      </div>
+      <h2 style="font-family:var(--f-display);font-size:clamp(1.8rem,4vw,2.5rem);font-weight:500;color:var(--lt-1);line-height:1.3;">
+        <span style="color:var(--blue);">Herramientas</span> y lenguajes que uso a diario
+      </h2>
+    </div>
+
+    <!-- Grid de 3 columnas para tablas de skills -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;align-items:start;">
+
+      <!-- COLUMNA 1: Lenguajes · Data Science · Visualización -->
+      <div style="display:flex;flex-direction:column;gap:1.5rem;">
+
+        <div class="skill-group" data-aos="fade-up" data-aos-duration="700">
+          <p class="skill-group-title">
+            <i data-lucide="code-2" class="w-4 h-4 flex-shrink-0"></i>
+            Lenguajes principales
+          </p>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="15" height="15" alt="" loading="lazy">Python
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:92%"></div></div><span class="skill-level">Avanzado</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="15" height="15" alt="" loading="lazy">SQL
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div><span class="skill-level">Avanzado</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" width="15" height="15" alt="" loading="lazy">R
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:72%"></div></div><span class="skill-level">Intermedio</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" width="15" height="15" alt="" loading="lazy">Java
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div><span class="skill-level">Intermedio</span>
+          </div>
+        </div>
+
+        <div class="skill-group" data-aos="fade-up" data-aos-delay="80" data-aos-duration="700">
+          <p class="skill-group-title">
+            <i data-lucide="bar-chart-2" class="w-4 h-4 flex-shrink-0"></i>
+            Data Science &amp; ML
+          </p>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" width="15" height="15" alt="" loading="lazy">Pandas / NumPy
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:87%"></div></div><span class="skill-level">Avanzado</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" width="15" height="15" alt="" loading="lazy">Scikit-learn
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div><span class="skill-level">Intermedio</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" width="15" height="15" alt="" loading="lazy">Matplotlib
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:74%"></div></div><span class="skill-level">Intermedio</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" width="15" height="15" alt="" loading="lazy">Jupyter
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div><span class="skill-level">Avanzado</span>
+          </div>
+        </div>
+
+        <div class="skill-group" data-aos="fade-up" data-aos-delay="160" data-aos-duration="700">
+          <p class="skill-group-title">
+            <i data-lucide="bar-chart-3" class="w-4 h-4 flex-shrink-0" style="color:var(--olive);"></i>
+            <span style="color:var(--olive);">Visualización</span>
+          </p>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" width="15" height="15" alt="" loading="lazy">ggplot2
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%;background:var(--olive);"></div></div><span class="skill-level">Intermedio</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5" style="color:rgba(26,25,20,.5);flex-shrink:0;"></i>Leaflet
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:72%;background:var(--olive);"></div></div><span class="skill-level">Intermedio</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <i data-lucide="activity" class="w-3.5 h-3.5" style="color:rgba(26,25,20,.5);flex-shrink:0;"></i>D3.js
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:52%;background:var(--olive);"></div></div><span class="skill-level">Básico</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <i data-lucide="bar-chart-2" class="w-3.5 h-3.5" style="color:rgba(26,25,20,.5);flex-shrink:0;"></i>Tableau
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:60%;background:var(--olive);"></div></div><span class="skill-level">Básico–Interm.</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- COLUMNA 2: Web/Frontend · Testing · Geo & Redes -->
+      <div style="display:flex;flex-direction:column;gap:1.5rem;">
+
+        <div class="skill-group" data-aos="fade-up" data-aos-delay="80" data-aos-duration="700">
+          <p class="skill-group-title">
+            <i data-lucide="globe" class="w-4 h-4 flex-shrink-0"></i>
+            Web &amp; Frontend
+          </p>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="15" height="15" alt="" loading="lazy">HTML / CSS
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div><span class="skill-level">Avanzado</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="15" height="15" alt="" loading="lazy">JavaScript
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:68%"></div></div><span class="skill-level">Intermedio</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" width="15" height="15" alt="" loading="lazy">Tailwind CSS
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:73%"></div></div><span class="skill-level">Intermedio</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" width="15" height="15" alt="" loading="lazy">FastAPI
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:62%"></div></div><span class="skill-level">Intermedio</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <i data-lucide="monitor" class="w-3.5 h-3.5" style="color:rgba(26,25,20,.5);flex-shrink:0;"></i>Canvas API
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div><span class="skill-level">Intermedio</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <i data-lucide="music" class="w-3.5 h-3.5" style="color:rgba(26,25,20,.5);flex-shrink:0;"></i>Web Audio API
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div><span class="skill-level">Intermedio</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <i data-lucide="pen-tool" class="w-3.5 h-3.5" style="color:rgba(26,25,20,.5);flex-shrink:0;"></i>SVG / Inline
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div><span class="skill-level">Intermedio</span>
+          </div>
+        </div>
+
+        <div class="skill-group" data-aos="fade-up" data-aos-delay="160" data-aos-duration="700">
+          <p class="skill-group-title">
+            <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0"></i>
+            Testing &amp; QA
+          </p>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytest/pytest-original.svg" width="15" height="15" alt="" loading="lazy">pytest
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:72%"></div></div><span class="skill-level">Intermedio</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg" width="15" height="15" alt="" loading="lazy">Selenium
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div><span class="skill-level">Intermedio</span>
+          </div>
+        </div>
+
+        <div class="skill-group" data-aos="fade-up" data-aos-delay="240" data-aos-duration="700">
+          <p class="skill-group-title">
+            <i data-lucide="network" class="w-4 h-4 flex-shrink-0" style="color:var(--cyan);"></i>
+            <span style="color:var(--cyan);">Geo &amp; Redes</span>
+          </p>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <i data-lucide="layers" class="w-3.5 h-3.5" style="color:rgba(26,25,20,.5);flex-shrink:0;"></i>sf / sp
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:65%;background:var(--cyan);"></div></div><span class="skill-level">Básico–Interm.</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <i data-lucide="git-branch" class="w-3.5 h-3.5" style="color:rgba(26,25,20,.5);flex-shrink:0;"></i>igraph
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:68%;background:var(--cyan);"></div></div><span class="skill-level">Intermedio</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <i data-lucide="share-2" class="w-3.5 h-3.5" style="color:rgba(26,25,20,.5);flex-shrink:0;"></i>Gephi
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:58%;background:var(--cyan);"></div></div><span class="skill-level">Básico–Interm.</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <i data-lucide="zap" class="w-3.5 h-3.5" style="color:rgba(26,25,20,.5);flex-shrink:0;"></i>R Shiny
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:56%;background:var(--cyan);"></div></div><span class="skill-level">Básico–Interm.</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- COLUMNA 3: DevOps · Otros -->
+      <div style="display:flex;flex-direction:column;gap:1.5rem;">
+
+        <div class="skill-group" data-aos="fade-up" data-aos-delay="160" data-aos-duration="700">
+          <p class="skill-group-title">
+            <i data-lucide="server" class="w-4 h-4 flex-shrink-0"></i>
+            DevOps &amp; BD
+          </p>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="15" height="15" alt="" loading="lazy">Git / GitHub
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div><span class="skill-level">Avanzado</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="15" height="15" alt="" loading="lazy">Docker
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div><span class="skill-level">Intermedio</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" width="15" height="15" alt="" loading="lazy">MongoDB
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div><span class="skill-level">Intermedio</span>
+          </div>
+        </div>
+
+        <div class="skill-group" data-aos="fade-up" data-aos-delay="240" data-aos-duration="700">
+          <p class="skill-group-title">
+            <i data-lucide="wrench" class="w-4 h-4 flex-shrink-0"></i>
+            Otros
+          </p>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <i data-lucide="table" class="w-3.5 h-3.5" style="color:rgba(26,25,20,.5);flex-shrink:0;"></i>Excel
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div><span class="skill-level">Avanzado</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/latex/latex-original.svg" width="15" height="15" alt="" loading="lazy">LaTeX
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:68%"></div></div><span class="skill-level">Intermedio</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name" style="display:flex;align-items:center;gap:.4rem;">
+              <i data-lucide="cloud" class="w-3.5 h-3.5" style="color:rgba(26,25,20,.5);flex-shrink:0;"></i>AWS basics
+            </span><div class="skill-bar"><div class="skill-bar-fill" style="width:55%"></div></div><span class="skill-level">Básico</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  <!-- CTA -->
+  <div style="margin-top:3.5rem;padding-top:2.5rem;border-top:1px solid var(--bd);display:flex;flex-wrap:wrap;gap:1rem;" data-aos="fade-up">
+    <a href="projects.html" class="btn btn-primary" data-t>
+      <i data-lucide="folder-open" class="w-4 h-4"></i>
+      Ver proyectos
+    </a>
+    <a href="dataviz.html" class="btn btn-ghost" data-t>
+      <i data-lucide="map" class="w-4 h-4"></i>
+      Viz de datos
+    </a>
+    <a href="contact.html" class="btn btn-ghost" data-t>
+      <i data-lucide="mail" class="w-4 h-4"></i>
+      Contactar
+    </a>
+  </div>
+</div>
+
+<!-- SOFT SKILLS — Cards originales -->
+  <div style="margin:4rem auto;max-width:1200px;padding:0 1.5rem;">
+    <div style="margin-bottom:2.5rem;" data-aos="fade-up">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem;">
+        <i data-lucide="sparkles" class="w-5 h-5" style="color:var(--cyan);"></i>
+        <p style="font-family:var(--f-mono);font-size:.72rem;font-weight:600;color:var(--cyan);letter-spacing:.08em;text-transform:uppercase;">Lo que me diferencia</p>
+      </div>
+      <h2 style="font-family:var(--f-display);font-size:clamp(1.8rem,4vw,2.5rem);font-weight:500;color:var(--lt-1);line-height:1.3;">
+        <span style="color:var(--blue);">Soft skills</span> — habilidades que no aparecen en un <code style="font-family:var(--f-mono);font-size:.85em;background:rgba(37,99,235,.1);padding:.15rem .4rem;border-radius:4px;color:var(--blue);">pip install</code>
+      </h2>
+      <p style="font-family:var(--f-sans);font-size:.95rem;color:var(--lt-3);margin-top:.75rem;max-width:52ch;line-height:1.7;">Pero que hacen funcionar a un equipo. Estas competencias son el pegamento entre el código y la colaboración.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;">
+
+      <div style="padding:1.5rem 1.5rem 1.5rem 2rem;border:1px solid rgba(26,25,20,.1);border-radius:16px;background:#f8f7f4;overflow:hidden;transition:transform .3s,box-shadow .3s;"
+        data-aos="fade-up" data-aos-delay="0"
+        onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 48px rgba(37,99,235,.12)'"
+        onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem;">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.25);display:flex;align-items:center;justify-content:center;">
+            <i data-lucide="brain" style="width:18px;height:18px;color:var(--blue);"></i>
+          </div>
+          <span style="font-family:var(--f-sans);font-size:1rem;font-weight:600;color:#1a1914;">Pensamiento analítico</span>
+        </div>
+        <p style="font-family:var(--f-sans);font-size:.85rem;color:#4a453a;line-height:1.7;">Descompongo problemas complejos en partes manejables antes de escribir una línea de código.</p>
+      </div>
+
+      <div style="padding:1.5rem 1.5rem 1.5rem 2rem;border:1px solid rgba(26,25,20,.1);border-radius:16px;background:#f8f7f4;overflow:hidden;transition:transform .3s,box-shadow .3s;"
+        data-aos="fade-up" data-aos-delay="40"
+        onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 48px rgba(107,140,82,.12)'"
+        onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem;">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(107,140,82,.12);border:1px solid rgba(107,140,82,.25);display:flex;align-items:center;justify-content:center;">
+            <i data-lucide="puzzle" style="width:18px;height:18px;color:var(--olive);"></i>
+          </div>
+          <span style="font-family:var(--f-sans);font-size:1rem;font-weight:600;color:#1a1914;">Resolución de problemas</span>
+        </div>
+        <p style="font-family:var(--f-sans);font-size:.85rem;color:#4a453a;line-height:1.7;">Encuentro la raíz, no el síntoma. Método sobre intuición — cada bug tiene una historia.</p>
+      </div>
+
+      <div style="padding:1.5rem 1.5rem 1.5rem 2rem;border:1px solid rgba(26,25,20,.1);border-radius:16px;background:#f8f7f4;overflow:hidden;transition:transform .3s,box-shadow .3s;"
+        data-aos="fade-up" data-aos-delay="80"
+        onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 48px rgba(167,139,250,.12)'"
+        onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem;">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.25);display:flex;align-items:center;justify-content:center;">
+            <i data-lucide="users" style="width:18px;height:18px;color:var(--purple);"></i>
+          </div>
+          <span style="font-family:var(--f-sans);font-size:1rem;font-weight:600;color:#1a1914;">Trabajo en equipo</span>
+        </div>
+        <p style="font-family:var(--f-sans);font-size:.85rem;color:#4a453a;line-height:1.7;">PRs limpios, commits coherentes. El contexto compartido es parte del trabajo bien hecho.</p>
+      </div>
+
+      <div style="padding:1.5rem 1.5rem 1.5rem 2rem;border:1px solid rgba(26,25,20,.1);border-radius:16px;background:#f8f7f4;overflow:hidden;transition:transform .3s,box-shadow .3s;"
+        data-aos="fade-up" data-aos-delay="120"
+        onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 48px rgba(184,137,42,.12)'"
+        onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem;">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(184,137,42,.12);border:1px solid rgba(184,137,42,.25);display:flex;align-items:center;justify-content:center;">
+            <i data-lucide="message-square" style="width:18px;height:18px;color:var(--gold);"></i>
+          </div>
+          <span style="font-family:var(--f-sans);font-size:1rem;font-weight:600;color:#1a1914;">Comunicación efectiva</span>
+        </div>
+        <p style="font-family:var(--f-sans);font-size:.85rem;color:#4a453a;line-height:1.7;">Explico código y decisiones con la claridad que el siguiente dev necesita para entender.</p>
+      </div>
+
+      <div style="padding:1.5rem 1.5rem 1.5rem 2rem;border:1px solid rgba(26,25,20,.1);border-radius:16px;background:#f8f7f4;overflow:hidden;transition:transform .3s,box-shadow .3s;"
+        data-aos="fade-up" data-aos-delay="160"
+        onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 48px rgba(239,68,68,.12)'"
+        onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem;">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);display:flex;align-items:center;justify-content:center;">
+            <i data-lucide="search" style="width:18px;height:18px;color:var(--red);"></i>
+          </div>
+          <span style="font-family:var(--f-sans);font-size:1rem;font-weight:600;color:#1a1914;">Atención al detalle</span>
+        </div>
+        <p style="font-family:var(--f-sans);font-size:.85rem;color:#4a453a;line-height:1.7;">El edge case que otros omiten es el que me obsesiona hasta resolverlo completamente.</p>
+      </div>
+
+      <div style="padding:1.5rem 1.5rem 1.5rem 2rem;border:1px solid rgba(26,25,20,.1);border-radius:16px;background:#f8f7f4;overflow:hidden;transition:transform .3s,box-shadow .3s;"
+        data-aos="fade-up" data-aos-delay="200"
+        onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 48px rgba(34,211,238,.12)'"
+        onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem;">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.25);display:flex;align-items:center;justify-content:center;">
+            <i data-lucide="trending-up" style="width:18px;height:18px;color:var(--cyan);"></i>
+          </div>
+          <span style="font-family:var(--f-sans);font-size:1rem;font-weight:600;color:#1a1914;">Aprendizaje continuo</span>
+        </div>
+        <p style="font-family:var(--f-sans);font-size:.85rem;color:#4a453a;line-height:1.7;">Rust, Finanzas I, papers de supply-chain — todo en paralelo, sin disculpas, siempre.</p>
+      </div>
+
+      <div style="padding:1.5rem 1.5rem 1.5rem 2rem;border:1px solid rgba(26,25,20,.1);border-radius:16px;background:#f8f7f4;overflow:hidden;transition:transform .3s,box-shadow .3s;"
+        data-aos="fade-up" data-aos-delay="240"
+        onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 48px rgba(251,191,36,.12)'"
+        onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem;">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.25);display:flex;align-items:center;justify-content:center;">
+            <i data-lucide="clock" style="width:18px;height:18px;color:var(--yellow);"></i>
+          </div>
+          <span style="font-family:var(--f-sans);font-size:1rem;font-weight:600;color:#1a1914;">Gestión del tiempo</span>
+        </div>
+        <p style="font-family:var(--f-sans);font-size:.85rem;color:#4a453a;line-height:1.7;">8° semestre + proyectos propios + portfolio. Aprendo a priorizar haciendo.</p>
+      </div>
+
+      <div style="padding:1.5rem 1.5rem 1.5rem 2rem;border:1px solid rgba(26,25,20,.1);border-radius:16px;background:#f8f7f4;overflow:hidden;transition:transform .3s,box-shadow .3s;"
+        data-aos="fade-up" data-aos-delay="280"
+        onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 48px rgba(52,211,153,.12)'"
+        onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem;">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);display:flex;align-items:center;justify-content:center;">
+            <i data-lucide="flask-conical" style="width:18px;height:18px;color:var(--green);"></i>
+          </div>
+          <span style="font-family:var(--f-sans);font-size:1rem;font-weight:600;color:#1a1914;">Pensamiento crítico</span>
+        </div>
+        <p style="font-family:var(--f-sans);font-size:.85rem;color:#4a453a;line-height:1.7;">Cuestiono los supuestos, incluyendo los míos. La duda metodológica como herramienta.</p>
+      </div>
+
+    </div>
+  </div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>© 2026 Alfredo Ibáñez Vargas</p>
+    <p style="font-style:italic;">~/skills</p>
+    <a href="https://github.com/maip-fred/maip-fred.github.io" target="_blank" rel="noopener">
+      <i data-lucide="github" class="w-3.5 h-3.5 inline-block mr-1"></i>Ver código
+    </a>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+<script src="js/sound.js" defer></script>
+<script src="js/cmdk.js" defer></script>
+<script src="js/easter-egg.js" defer></script>
+<script src="js/cursor.js" defer></script>
+<script src="js/core.js" defer></script>
+<script src="js/chatbot.js" defer></script>
+<script src="js/radar.js" defer></script>
+<script src="js/dock.js" defer></script>
+<script src="js/magnetic.js" defer></script>
+<script src="js/scramble.js" defer></script>
+<script src="js/matrix.js" defer></script>
+</body>
+</html>

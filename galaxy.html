@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Galaxia interactiva — Portfolio de Alfredo Ibáñez Vargas" />
+  <title>Alfredo Ibáñez — Galaxia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <meta name="theme-color" content="#010409" />
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/galaxy.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; background: #010409; }
+  </style>
+</head>
+<body>
+
+<div id="galaxy-overlay" role="application" aria-label="Navegador de galaxia interactivo — Portfolio de Alfredo Ibáñez">
+  <div id="galaxy-fade" aria-hidden="true"></div>
+  <p id="galaxy-title" aria-hidden="true">ALFREDO IBÁÑEZ · PORTFOLIO</p>
+  <p id="galaxy-hint"  aria-hidden="true">ARRASTRA · CLICK EN NODO · ← → ↑ ↓  PILOTA LA NAVE</p>
+  <button id="galaxy-enter">ENTRAR AL SITIO →</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
+<script src="js/galaxy.js"></script>
+</body>
+</html>

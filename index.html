@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<!--
+   ┌─────────────────────────────────────────────────┐
+   │                                                 │
+   │     █████╗ ██╗██╗   ██╗                         │
+   │    ██╔══██╗██║██║   ██║                         │
+   │    ███████║██║██║   ██║                         │
+   │    ██╔══██║██║╚██╗ ██╔╝                         │
+   │    ██║  ██║██║ ╚████╔╝                          │
+   │    ╚═╝  ╚═╝╚═╝  ╚═══╝                           │
+   │                                                 │
+   │    Alfredo Ibáñez Vargas — ITAM 8° sem          │
+   │    ~/data-science/security/dev                  │
+   │                                                 │
+   │    ¿Inspeccionando el HTML? Eso me hace sonar.  │
+   │    Si llegaste hasta aquí, probablemente eres   │
+   │    de los míos. Prueba ⌘K o el código Konami.   │
+   │                                                 │
+   │    git: github.com/maip-fred                    │
+   │    @  : ibanez.alfredo.02.10@gmail.com          │
+   │                                                 │
+   └─────────────────────────────────────────────────┘
+-->
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CV personal de Alfredo Ibáñez Vargas — Data Scientist, Security Researcher y Developer. ITAM 8° semestre." />
+  <meta name="author" content="Alfredo Ibáñez Vargas" />
+  <title>Alfredo Ibáñez — Home</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'bg0': '#030810', 'bg1': '#060D1A', 'bg2': '#0A1428',
+            'bg3': '#0F1D38', 'bg4': '#152548',
+          },
+          fontFamily: {
+            sans:    ['"DM Sans"', 'Inter', 'sans-serif'],
+            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            mono:    ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="manifest" href="/assets/manifest.json" />
+  <meta name="theme-color" content="#030810" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://maip-fred.github.io/" />
+  <meta property="og:title"       content="Alfredo Ibáñez — Data Scientist & Developer" />
+  <meta property="og:description" content="Portfolio de Alfredo Ibáñez Vargas — Data Scientist, Security Researcher y Developer. ITAM 8° semestre, CDMX." />
+  <meta property="og:image"       content="https://maip-fred.github.io/assets/og-image.svg" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Alfredo Ibáñez — Data Scientist & Developer" />
+  <meta name="twitter:description" content="Portfolio de Alfredo Ibáñez Vargas — Data Scientist, Security Researcher y Developer." />
+  <meta name="twitter:image"       content="https://maip-fred.github.io/assets/og-image.svg" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/effects.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/about.css" />
+  <link rel="stylesheet" href="css/skills.css" />
+  <link rel="stylesheet" href="css/projects.css" />
+  <link rel="stylesheet" href="css/contact.css" />
+  <link rel="stylesheet" href="css/journey.css" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/chatbot.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Alfredo Ibáñez Vargas",
+    "jobTitle": "Data Scientist · Security Researcher · Developer",
+    "affiliation": { "@type": "EducationalOrganization", "name": "ITAM" },
+    "url": "https://maip-fred.github.io/",
+    "email": "ibanez.alfredo.02.10@gmail.com",
+    "sameAs": ["https://github.com/maip-fred"],
+    "knowsAbout": ["Data Science", "Cybersecurity", "Python", "JavaScript", "Machine Learning"]
+  }
+  </script>
+</head>
+<body class="page-home">
+<script>
+  /* Siempre redirige a galaxy.html, excepto cuando galaxy.html ya navegó aquí */
+  if (new URLSearchParams(window.location.search).get('from') !== 'galaxy') {
+    location.replace('galaxy.html');
+  }
+</script>
+<a href="#main-content" class="skip-link">Ir al contenido</a>
+
+<div id="scroll-bar"></div>
+
+<!-- GRAIN OVERLAY -->
+<div id="grain-overlay" aria-hidden="true"></div>
+
+<!-- MATRIX OVERLAY -->
+<div id="matrix-overlay" role="dialog" aria-modal="true" aria-label="Matrix mode">
+  <canvas id="matrix-canvas"></canvas>
+  <p id="matrix-label">PROTOCOLO MATRIX · AIV</p>
+  <p id="matrix-exit-hint">[ ESC ] · CLICK PARA SALIR</p>
+</div>
+
+<!-- LOADING SCREEN -->
+<div id="loader">
+  <div class="loader-inner">
+    <p style="font-family:var(--f-mono);font-size:.65rem;letter-spacing:.2em;color:var(--t-4);margin-bottom:1rem;">ALFREDO IBÁÑEZ · PORTFOLIO v1.0</p>
+    <div id="loader-lines"></div>
+    <div class="loader-bar-track" style="margin-top:1.25rem;">
+      <div class="loader-bar-fill" id="loader-bar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Sidebar social -->
+<aside class="social-sidebar" aria-label="Redes sociales">
+  <a href="https://github.com/maip-fred" target="_blank" rel="noopener" aria-label="GitHub">
+    <i data-lucide="github" class="w-5 h-5"></i>
+  </a>
+  <a href="mailto:ibanez.alfredo.02.10@gmail.com" aria-label="Email">
+    <i data-lucide="mail" class="w-5 h-5"></i>
+  </a>
+</aside>
+
+<!-- NAV -->
+<header id="header">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" data-t>AIV</a>
+    <ul class="nav-links">
+      <li><a href="index.html"    class="nav-link" data-num="00" data-t>Inicio</a></li>
+      <li><a href="about.html"    class="nav-link" data-num="01" data-t>Sobre mí</a></li>
+      <li><a href="skills.html"   class="nav-link" data-num="02" data-t>Habilidades</a></li>
+      <li><a href="retos.html"    class="nav-link" data-num="03" data-t>Retos</a></li>
+      <li><a href="projects.html" class="nav-link" data-num="04" data-t>Proyectos</a></li>
+      <li><a href="contact.html"  class="nav-cta"  data-t>Contacto</a></li>
+    </ul>
+    <button id="hamburger" class="hamburger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div id="mobile-menu">
+    <ul class="mobile-links">
+      <li><a href="index.html"    data-t>Inicio</a></li>
+      <li><a href="about.html"    data-t>Sobre mí</a></li>
+      <li><a href="skills.html"   data-t>Habilidades</a></li>
+      <li><a href="retos.html"    data-t>Retos</a></li>
+      <li><a href="projects.html" data-t>Proyectos</a></li>
+      <li><a href="contact.html"  data-t>Contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="main-content" class="hero">
+<canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+<!-- Mesh gradient background blobs -->
+<div class="hero-mesh" aria-hidden="true">
+  <div class="mesh-blob mesh-blob-1"></div>
+  <div class="mesh-blob mesh-blob-2"></div>
+  <div class="mesh-blob mesh-blob-3"></div>
+</div>
+
+<!-- Decorative giant typography -->
+<span class="deco-word" aria-hidden="true" style="bottom:-2rem;right:-2rem;">DATA</span>
+
+  <!-- Floating code decorations -->
+  <pre class="hero-code-deco top-left animate-fade-in" style="animation-delay:1.2s;" aria-hidden="true">import pkgxray
+from ast import parse
+scanner = Scanner()
+scanner.run("requests")</pre>
+  <pre class="hero-code-deco bot-right animate-fade-in" style="animation-delay:1.5s;" aria-hidden="true">SELECT u.name, s.score
+FROM students u
+JOIN scores s ON u.id = s.uid
+WHERE s.semester = 8
+ORDER BY s.gpa DESC;</pre>
+
+  <div class="hero-inner">
+    <div class="hero-grid">
+
+      <!-- Left: typography -->
+      <div>
+        <p class="hero-eyebrow animate-fade-in" style="animation-delay:.1s;">
+          Data Scientist · ITAM · 2026
+        </p>
+
+        <h1 class="hero-name animate-hero-name">
+          Alfredo<br>
+          <span class="hero-name-stroke" data-text="Ibáñez">Ibáñez</span>
+        </h1>
+
+        <div class="hero-divider animate-fade-in" style="animation-delay:.4s;">
+          <div class="hero-divider-line"></div>
+          <span class="hero-role">~/data-science/security/dev</span>
+        </div>
+
+        <p class="hero-bio animate-slide-up" style="animation-delay:.5s;">
+          Construyo soluciones que van del análisis de datos a la seguridad del software — con código limpio, pensamiento matemático y compromiso con la excelencia.
+        </p>
+
+        <div class="hero-actions animate-slide-up" style="animation-delay:.65s;">
+          <a href="about.html" class="btn btn-primary" data-t>
+            <i data-lucide="user" class="w-4 h-4"></i>
+            Sobre mí
+          </a>
+          <a href="projects.html" class="btn btn-outline" data-t>
+            <i data-lucide="folder-open" class="w-4 h-4"></i>
+            Proyectos
+          </a>
+          <a href="assets/docs/cv-alfredo-ibanez.pdf" target="_blank" rel="noopener" class="btn btn-ghost">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            CV PDF
+          </a>
+        </div>
+
+        <!-- Stat cards -->
+        <div class="hero-stats animate-slide-up" style="animation-delay:.8s;">
+          <div class="stat-card">
+            <div class="stat-val">ITAM</div>
+            <div class="stat-label">Universidad</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val">8°</div>
+            <div class="stat-label">Semestre</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val">CDMX</div>
+            <div class="stat-label">Ciudad</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: terminal -->
+      <div data-aos="fade-left" data-aos-delay="400" data-aos-duration="800">
+        <div class="terminal-win animate-glow">
+          <div class="terminal-chrome">
+            <span class="t-dot red"></span>
+            <span class="t-dot yellow"></span>
+            <span class="t-dot green"></span>
+            <span class="terminal-title">bash — ~/alfredo-ibanez</span>
+          </div>
+          <div class="terminal-body" id="hero-term-body">
+          </div>
+        </div>
+        <p class="term-hint" aria-label="Atajos del terminal">
+          <kbd>↑</kbd> <kbd>↓</kbd> historial &nbsp;·&nbsp;
+          <kbd>Tab</kbd> autocompletar &nbsp;·&nbsp;
+          escribe <code>help</code>
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="mt-20 hidden md:flex items-center gap-3 text-xs uppercase tracking-widest animate-fade-in"
+         style="color:rgba(238,242,255,.18);animation-delay:1.4s;">
+      <div class="scroll-indicator w-px h-12" style="background:rgba(238,242,255,.2);"></div>
+      <span style="font-family:var(--f-mono);font-size:.65rem;letter-spacing:.2em;">scroll</span>
+    </div>
+  </div>
+</section>
+
+<!-- PORTAL EDITORIAL — Site navigation reimagined -->
+<style>
+/* ── Portal editorial — paleta clara ─────────────── */
+.portal-section {
+  background: var(--bg-cream);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(26,25,20,.06);
+}
+.portal-noise {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(26,25,20,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,25,20,.03) 1px, transparent 1px);
+  background-size: 72px 72px;
+  pointer-events: none;
+}
+
+/* 3D globe canvas — full-section background */
+#portal-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ── Inner wrapper ── */
+.portal-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8rem 2rem 6rem;
+  position: relative;
+}
+
+/* ── Header ── */
+.portal-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 3rem;
+  margin-bottom: 5rem;
+  flex-wrap: wrap;
+}
+.portal-eyebrow {
+  font-family: var(--f-mono);
+  font-size: .6rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--lt-3);
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: 1.5rem;
+}
+.portal-eyebrow::before {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  background: var(--lt-3);
+  flex-shrink: 0;
+}
+.portal-title {
+  font-family: var(--f-display);
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  font-weight: 600;
+  line-height: .9;
+  letter-spacing: -.04em;
+  color: var(--lt-1);
+}
+.portal-title em {
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(26,25,20,.14);
+}
+.portal-subtitle {
+  font-family: var(--f-sans);
+  font-size: .9rem;
+  color: var(--lt-2);
+  line-height: 1.75;
+  max-width: 28ch;
+  align-self: flex-end;
+}
+
+/* ── Two-column grid ── */
+.portal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.portal-col { min-width: 0; }
+.portal-col:first-child {
+  border-right: 1px solid rgba(26,25,20,.08);
+  padding-right: 3.5rem;
+}
+.portal-col:last-child { padding-left: 3.5rem; }
+
+/* ── Navigation rows ── */
+.portal-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.75rem 0;
+  border-top: 1px solid rgba(26,25,20,.07);
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  transition: padding-left .5s cubic-bezier(.23,1,.32,1), background .35s;
+}
+.portal-col .portal-row:last-child { border-bottom: 1px solid rgba(26,25,20,.07); }
+
+/* Left accent bar */
+.portal-row::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--rc, rgba(26,25,20,.2));
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform .45s cubic-bezier(.23,1,.32,1);
+}
+.portal-row:hover {
+  padding-left: 1.25rem;
+  background: rgba(26,25,20,.018);
+}
+.portal-row:hover::before { transform: scaleY(1); }
+
+/* Number */
+.portal-num {
+  font-family: var(--f-mono);
+  font-size: .58rem;
+  letter-spacing: .18em;
+  color: var(--lt-4);
+  min-width: 2.25rem;
+  flex-shrink: 0;
+  transition: color .3s;
+  user-select: none;
+}
+.portal-row:hover .portal-num { color: var(--rc, var(--lt-3)); }
+
+/* Body */
+.portal-body { flex: 1; min-width: 0; }
+
+.portal-name {
+  font-family: var(--f-display);
+  font-size: clamp(1.9rem, 3vw, 3.4rem);
+  font-weight: 600;
+  color: var(--lt-1);
+  line-height: 1;
+  letter-spacing: -.03em;
+  display: block;
+  transition: transform .45s cubic-bezier(.23,1,.32,1);
+}
+.portal-row:hover .portal-name { transform: translateX(6px); }
+
+.portal-desc {
+  font-family: var(--f-mono);
+  font-size: .55rem;
+  color: var(--lt-3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-top: .4rem;
+  display: block;
+}
+
+.portal-intro {
+  font-family: var(--f-sans);
+  font-size: .78rem;
+  color: var(--lt-2);
+  line-height: 1.65;
+  margin-top: .55rem;
+  max-width: 44ch;
+}
+
+/* Pill tag */
+.portal-tag {
+  font-family: var(--f-mono);
+  font-size: .52rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: .22rem .6rem;
+  border-radius: 100px;
+  border: 1px solid var(--rc, rgba(26,25,20,.18));
+  color: var(--rc, var(--lt-3));
+  opacity: 0;
+  transform: translateY(3px);
+  transition: opacity .3s .08s, transform .3s .08s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.portal-row:hover .portal-tag { opacity: 1; transform: none; }
+
+/* Arrow */
+.portal-arrow {
+  font-family: var(--f-display);
+  font-size: 2rem;
+  line-height: 1;
+  color: rgba(26,25,20,.1);
+  flex-shrink: 0;
+  transform: translateX(-10px);
+  transition: color .35s, transform .45s cubic-bezier(.23,1,.32,1);
+}
+.portal-row:hover .portal-arrow {
+  color: var(--rc, var(--lt-2));
+  transform: translateX(0);
+}
+
+/* Footer note */
+.portal-foot {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(26,25,20,.06);
+  flex-wrap: wrap;
+}
+.portal-foot span {
+  font-family: var(--f-mono);
+  font-size: .6rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--lt-3);
+}
+.portal-foot kbd {
+  font-family: var(--f-mono);
+  font-size: .6rem;
+  padding: .2rem .55rem;
+  border: 1px solid rgba(26,25,20,.12);
+  border-radius: 5px;
+  color: var(--lt-2);
+  background: rgba(26,25,20,.04);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .portal-col:first-child { padding-right: 2rem; }
+  .portal-col:last-child  { padding-left: 2rem; }
+}
+@media (max-width: 768px) {
+  .portal-grid { grid-template-columns: 1fr; }
+  .portal-col:first-child {
+    border-right: none;
+    padding-right: 0;
+    padding-bottom: 0;
+    border-bottom: 1px solid rgba(26,25,20,.07);
+  }
+  .portal-col:last-child { padding-left: 0; }
+  .portal-col .portal-row:last-child { border-bottom: none; }
+  .portal-col:last-child .portal-row:last-child { border-bottom: 1px solid rgba(26,25,20,.07); }
+}
+@media (max-width: 640px) {
+  .portal-tag  { display: none; }
+  .portal-row  { gap: 1rem; align-items: flex-start; }
+  .portal-intro { font-size: .73rem; }
+}
+@media (max-width: 480px) {
+  .portal-name  { font-size: clamp(1.65rem, 9vw, 2.6rem); }
+  .portal-inner { padding: 6rem 1.25rem 5rem; }
+  .portal-title { font-size: clamp(3rem, 13vw, 5rem); }
+  .portal-intro { display: none; }
+}
+</style>
+
+<section class="portal-section" aria-label="Explora el sitio">
+
+  <!-- Subtle grid on cream -->
+  <div class="portal-noise" aria-hidden="true"></div>
+
+  <!-- 3D wireframe globe — slowly rotating background animation -->
+  <canvas id="portal-canvas" aria-hidden="true"></canvas>
+
+  <div class="portal-inner">
+
+    <!-- Section header -->
+    <div class="portal-header" data-aos="fade-up">
+      <div>
+        <p class="portal-eyebrow">Sitio · v1.0</p>
+        <h2 class="portal-title">Explora<br><em>el sitio.</em></h2>
+      </div>
+      <p class="portal-subtitle">Seis secciones, una historia. Desde la formación hasta los proyectos en producción.</p>
+    </div>
+
+    <!-- Two-column navigation -->
+    <nav data-aos="fade-up" data-aos-delay="60">
+      <div class="portal-grid">
+
+        <!-- LEFT COLUMN: 01–03 -->
+        <div class="portal-col">
+
+          <a href="about.html" class="portal-row" style="--rc:#B8892A;" data-t>
+            <span class="portal-num">01</span>
+            <div class="portal-body">
+              <span class="portal-name">Sobre mí</span>
+              <span class="portal-desc">Perfil · ITAM · trayectoria</span>
+              <p class="portal-intro">Mi formación en ITAM, el camino que me llevó de las matemáticas al código, y los proyectos que definen quién soy como profesional.</p>
+            </div>
+            <span class="portal-tag">Perfil</span>
+            <span class="portal-arrow">→</span>
+          </a>
+
+          <a href="skills.html" class="portal-row" style="--rc:#2563EB;" data-t>
+            <span class="portal-num">02</span>
+            <div class="portal-body">
+              <span class="portal-name">Habilidades</span>
+              <span class="portal-desc">Python · ML · Seguridad · Stack técnico</span>
+              <p class="portal-intro">El radar completo de competencias: Python, R, ML, Docker y las áreas donde me muevo — data science, ciberseguridad y finanzas cuantitativas.</p>
+            </div>
+            <span class="portal-tag">Stack</span>
+            <span class="portal-arrow">→</span>
+          </a>
+
+          <a href="projects.html" class="portal-row" style="--rc:#6B8C52;" data-t>
+            <span class="portal-num">03</span>
+            <div class="portal-body">
+              <span class="portal-name">Proyectos</span>
+              <span class="portal-desc">pkgxray · Planck · demos en PyPI</span>
+              <p class="portal-intro">pkgxray publicado en PyPI, Planck bajo NDA, y demos que combinan análisis estático AST con diseño de sistemas reales.</p>
+            </div>
+            <span class="portal-tag">Open Source</span>
+            <span class="portal-arrow">→</span>
+          </a>
+
+        </div><!-- /portal-col left -->
+
+        <!-- RIGHT COLUMN: 04–06 -->
+        <div class="portal-col">
+
+          <a href="contact.html" class="portal-row" style="--rc:#7C3AED;" data-t>
+            <span class="portal-num">04</span>
+            <div class="portal-body">
+              <span class="portal-name">Contacto</span>
+              <span class="portal-desc">Prácticas · colaboraciones · proyectos</span>
+              <p class="portal-intro">¿Tienes un proyecto interesante, una práctica en data science o ciberseguridad, o simplemente quieres conectar? Estoy disponible.</p>
+            </div>
+            <span class="portal-tag">Disponible</span>
+            <span class="portal-arrow">→</span>
+          </a>
+
+          <a href="universo.html" class="portal-row" style="--rc:#0891B2;" data-t>
+            <span class="portal-num" style="font-size:1rem;letter-spacing:0;">∞</span>
+            <div class="portal-body">
+              <span class="portal-name">Mi universo</span>
+              <span class="portal-desc">Libros · podcasts · hobbies · intereses</span>
+              <p class="portal-intro">Los libros y podcasts que me formaron, los intereses que van más allá del código, y la perspectiva que traigo fuera de la pantalla.</p>
+            </div>
+            <span class="portal-tag">Personal</span>
+            <span class="portal-arrow">→</span>
+          </a>
+
+          <a href="build.html" class="portal-row" style="--rc:#C2410C;" data-t>
+            <span class="portal-num">06</span>
+            <div class="portal-body">
+              <span class="portal-name">Build log</span>
+              <span class="portal-desc">Stack · arquitectura · decisiones técnicas</span>
+              <p class="portal-intro">El stack completo, las decisiones de arquitectura y el proceso creativo detrás de este sitio — desde los tokens CSS hasta los easter eggs.</p>
+            </div>
+            <span class="portal-tag">Meta</span>
+            <span class="portal-arrow">→</span>
+          </a>
+
+        </div><!-- /portal-col right -->
+
+      </div>
+    </nav>
+
+    <!-- Footer shortcut hint -->
+    <div class="portal-foot" data-aos="fade-up" data-aos-delay="120">
+      <span>Acceso rápido</span>
+      <kbd>⌘ K</kbd>
+      <span>para saltar a cualquier sección desde cualquier página</span>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  var canvas = document.getElementById('portal-canvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var section = canvas.closest('.portal-section');
+  var angle = 0;
+  var raf   = null;
+  var TILT  = 0.48; /* axial tilt ~27° — like Earth */
+
+  function resize() {
+    canvas.width  = section.offsetWidth;
+    canvas.height = section.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', function () { resize(); }, { passive: true });
+
+  /* Project a sphere point with axial tilt + perspective */
+  function spherePt(lat, lon, R, cx, cy, FOV) {
+    var x0 = R * Math.cos(lat) * Math.cos(lon + angle);
+    var y0 = R * Math.sin(lat);
+    var z0 = R * Math.cos(lat) * Math.sin(lon + angle);
+    /* rotate around X axis by TILT */
+    var y1 = y0 * Math.cos(TILT) - z0 * Math.sin(TILT);
+    var z1 = y0 * Math.sin(TILT) + z0 * Math.cos(TILT);
+    var s  = FOV / (FOV + z1 + R);
+    return { sx: cx + x0 * s, sy: cy + y1 * s, z: z1 };
+  }
+
+  /* Draw one segment with depth-based opacity */
+  function seg(p1, p2, R, frontC, backC) {
+    var d = ((p1.z + p2.z) / 2 + R) / (2 * R); /* 0 = back, 1 = front */
+    ctx.beginPath();
+    ctx.moveTo(p1.sx, p1.sy);
+    ctx.lineTo(p2.sx, p2.sy);
+    if (d >= 0.5) {
+      var a = (d - 0.5) * 2;
+      ctx.strokeStyle = frontC.replace('$a', (a * 0.17).toFixed(3));
+      ctx.lineWidth   = 0.6 + a * 0.25;
+    } else {
+      var a = (0.5 - d) * 2;
+      ctx.strokeStyle = backC.replace('$a', Math.max(0, 0.022 - a * 0.018).toFixed(3));
+      ctx.lineWidth   = 0.35;
+    }
+    ctx.stroke();
+  }
+
+  function draw() {
+    var W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+
+    var R   = Math.min(W, H) * 0.35;
+    var cx  = W * 0.76;
+    var cy  = H * 0.52;
+    var FOV = 900;
+    var LAT = 9, LON = 12, SEG = 72;
+
+    /* Latitude rings — warm dark */
+    for (var i = 0; i <= LAT; i++) {
+      var lat = (i / LAT) * Math.PI - Math.PI / 2;
+      for (var j = 0; j < SEG; j++) {
+        var l1 = (j / SEG) * Math.PI * 2;
+        var l2 = ((j + 1) / SEG) * Math.PI * 2;
+        seg(
+          spherePt(lat, l1, R, cx, cy, FOV),
+          spherePt(lat, l2, R, cx, cy, FOV),
+          R,
+          'rgba(26,25,20,$a)',
+          'rgba(26,25,20,$a)'
+        );
+      }
+    }
+
+    /* Meridians — blue accent */
+    for (var j2 = 0; j2 < LON; j2++) {
+      var lon = (j2 / LON) * Math.PI * 2;
+      for (var i2 = 0; i2 < SEG; i2++) {
+        var la1 = (i2 / SEG) * Math.PI - Math.PI / 2;
+        var la2 = ((i2 + 1) / SEG) * Math.PI - Math.PI / 2;
+        seg(
+          spherePt(la1, lon, R, cx, cy, FOV),
+          spherePt(la2, lon, R, cx, cy, FOV),
+          R,
+          'rgba(37,99,235,$a)',
+          'rgba(37,99,235,$a)'
+        );
+      }
+    }
+
+    /* Glowing dots at front-hemisphere lattice intersections */
+    for (var ii = 0; ii <= LAT; ii += 3) {
+      for (var jj = 0; jj < LON; jj += 3) {
+        var p = spherePt(
+          (ii / LAT) * Math.PI - Math.PI / 2,
+          (jj / LON) * Math.PI * 2,
+          R, cx, cy, FOV
+        );
+        var depth = (p.z + R) / (2 * R);
+        if (depth > 0.55) {
+          var a = (depth - 0.55) / 0.45;
+          ctx.beginPath();
+          ctx.arc(p.sx, p.sy, 1.2 + a * 1.2, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(37,99,235,' + (a * 0.42).toFixed(3) + ')';
+          ctx.fill();
+        }
+      }
+    }
+
+    /* Subtle equatorial glow ring on front hemisphere */
+    var eqPts = [];
+    for (var e = 0; e <= 72; e++) {
+      eqPts.push(spherePt(0, (e / 72) * Math.PI * 2, R, cx, cy, FOV));
+    }
+    ctx.beginPath();
+    eqPts.forEach(function (p, idx) {
+      idx === 0 ? ctx.moveTo(p.sx, p.sy) : ctx.lineTo(p.sx, p.sy);
+    });
+    ctx.strokeStyle = 'rgba(184,137,42,0.07)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    angle += 0.0022;
+    raf = requestAnimationFrame(draw);
+  }
+
+  /* Pause when section is off-screen — saves battery */
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { if (!raf) draw(); }
+        else { cancelAnimationFrame(raf); raf = null; }
+      });
+    }, { rootMargin: '200px' });
+    io.observe(section);
+  } else {
+    draw();
+  }
+})();
+</script>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>© 2026 Alfredo Ibáñez Vargas</p>
+    <p style="font-style:italic;">~/data-science/security/dev</p>
+    <div style="display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;justify-content:center;">
+      <a href="build.html" data-t style="font-family:var(--f-mono);font-size:.65rem;color:var(--t-4);letter-spacing:.08em;transition:color .2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--t-4)'">
+        <i data-lucide="cpu" class="w-3 h-3 inline-block mr-1"></i>
+        Cómo se construyó
+      </a>
+      <a href="https://github.com/maip-fred/maip-fred.github.io" target="_blank" rel="noopener">
+        <i data-lucide="github" class="w-3.5 h-3.5 inline-block mr-1"></i>
+        Ver código fuente
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+<script src="js/sound.js" defer></script>
+<script src="js/cmdk.js" defer></script>
+<script src="js/easter-egg.js" defer></script>
+<script src="js/cursor.js" defer></script>
+<script src="js/core.js" defer></script>
+<script src="js/chatbot.js" defer></script>
+<script src="js/loader.js" defer></script>
+<script src="js/particles.js" defer></script>
+<script src="js/terminal.js" defer></script>
+<script src="js/guide.js" defer></script>
+<script src="js/dock.js" defer></script>
+<script src="js/magnetic.js" defer></script>
+<script src="js/scramble.js" defer></script>
+<script src="js/matrix.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+/* ============================================================
+   tokens.css — Design Tokens
+   Source: styles.css lines 1–72
+   ============================================================ */
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  /* Backgrounds — paleta desaturada, sin azul marino dominante */
+  --bg-0:  #09090B;   /* near-black neutro */
+  --bg-1:  #0E0E12;   /* charcoal oscuro */
+  --bg-2:  #161618;   /* gris carbón */
+  --bg-3:  #1E1E22;   /* gris medio */
+  --bg-4:  #272729;   /* gris más claro */
+
+  /* Fondos por sección */
+  --bg-ink:        #080809;   /* negro casi puro */
+  --bg-char:       #111113;   /* carbón neutro */
+  --bg-olive-dark: #0C0F09;   /* olivo oscuro militar */
+  --bg-warm-dark:  #100F0C;   /* cálido oscuro */
+  --bg-cream:      #F0EBE1;   /* crema editorial / papel */
+  --bg-fog:        #1A1A1E;   /* gris niebla */
+
+  /* Texto para secciones claras (cream) */
+  --lt-1: #1A1914;
+  --lt-2: rgba(26,25,20,.68);
+  --lt-3: rgba(26,25,20,.42);
+  --lt-4: rgba(26,25,20,.22);
+
+  --bd:        rgba(255,255,255,.07);
+  --bd-hi:     rgba(255,255,255,.14);
+  --bd-accent: rgba(37,99,235,.28);
+  --bd-light:  rgba(26,25,20,.1);   /* bordes en sección crema */
+
+  --t-1: #EDEAE4;   /* blanco cálido, no frío-azulado */
+  --t-2: rgba(237,234,228,.62);
+  --t-3: rgba(237,234,228,.34);
+  --t-4: rgba(237,234,228,.14);
+
+  --blue:    #2563EB;
+  --blue-l:  #3B82F6;
+  --blue-xl: #93C5FD;
+  --green:   #4ADE80;
+  --cyan:    #22D3EE;
+  --purple:  #A78BFA;
+  --yellow:  #FCD34D;
+  --orange:  #FB923C;
+  --red:     #F87171;
+
+  /* Paleta expandida — olive, gold, warm */
+  --olive:    #6B8C52;
+  --olive-l:  #96C174;
+  --olive-xl: #BADA9E;
+  --gold:     #B8892A;
+  --gold-l:   #D4AA58;
+  --gold-xl:  #E8C87E;
+  --warm-gray: #8D9DAD;
+
+  --f-display: 'Cormorant Garamond', Georgia, serif;
+  --f-sans:    'DM Sans', 'Inter', system-ui, sans-serif;
+  --f-mono:    'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in:    cubic-bezier(0.4, 0, 1, 1);
+  --ease:       cubic-bezier(0.4, 0, 0.2, 1);
+
+  --shadow-sm:   0 1px 4px rgba(0,0,0,.5);
+  --shadow-md:   0 4px 24px rgba(0,0,0,.55);
+  --shadow-lg:   0 20px 60px rgba(0,0,0,.65);
+  --shadow-blue: 0 0 0 1px rgba(37,99,235,.4), 0 8px 40px rgba(37,99,235,.3);
+  --shadow-glow: 0 0 60px rgba(37,99,235,.18);
+
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
+}

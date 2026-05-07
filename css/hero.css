@@ -1,0 +1,420 @@
+/* ============================================================
+   hero.css — Hero Section + Identity Board
+   Source: styles.css lines 523–687 and 2694–2944
+   ============================================================ */
+
+/* ============================================================
+   INDEX — HERO
+   ============================================================ */
+.hero {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 2rem 4rem;
+  position: relative;
+  overflow: hidden;
+  /* Hero — charcoal profundo, sin azul marino */
+  background: linear-gradient(160deg, #0D0D10 0%, #111116 40%, #0E0F0C 100%);
+}
+/* Grid texture — neutral */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  pointer-events: none;
+}
+/* Radial glow — olive muy sutil */
+.hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(107,140,82,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+@media (min-width: 1024px) {
+  .hero-grid { grid-template-columns: 1fr 1fr; gap: 6rem; }
+}
+
+/* Giant typography */
+.hero-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 2rem; height: 1px;
+  background: var(--green);
+}
+.hero-name {
+  font-family: var(--f-display);
+  font-size: clamp(5rem, 14vw, 12rem);
+  font-weight: 600;
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+  color: var(--t-1);
+  margin-bottom: 1rem;
+}
+.hero-name-stroke {
+  display: block;
+  -webkit-text-stroke: 1px rgba(238,242,255,.2);
+  color: transparent;
+  font-style: italic;
+}
+.hero-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.hero-divider-line {
+  flex: 1;
+  max-width: 4rem;
+  height: 1px;
+  background: linear-gradient(to right, var(--blue), var(--cyan));
+}
+.hero-role {
+  font-family: var(--f-mono);
+  font-size: 0.8rem;
+  color: var(--blue-xl);
+  letter-spacing: 0.12em;
+}
+.hero-bio {
+  font-size: 1rem;
+  color: var(--t-2);
+  max-width: 28rem;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+/* Floating code decoration */
+.hero-code-deco {
+  position: absolute;
+  font-family: var(--f-mono);
+  font-size: 0.68rem;
+  line-height: 1.7;
+  color: rgba(74,222,128,.12);
+  pointer-events: none;
+  white-space: pre;
+  user-select: none;
+}
+.hero-code-deco.top-left  { top: 6rem; left: -1rem; }
+.hero-code-deco.bot-right { bottom: 4rem; right: 0; text-align: right; }
+
+/* Stats */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.stat-card {
+  background: var(--bg-3);
+  border: 1px solid var(--bd);
+  border-top: 2px solid var(--blue);
+  border-radius: var(--r-md);
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  transition: border-color 0.2s, background 0.2s, transform 0.35s var(--ease-out), box-shadow 0.35s;
+  cursor: default;
+}
+.stat-card:hover {
+  border-top-color: var(--cyan);
+  background: var(--bg-4);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-blue);
+}
+.stat-val {
+  font-family: var(--f-display);
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: var(--t-1);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.stat-label {
+  font-family: var(--f-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue-xl);
+}
+
+/* ============================================================
+   IDENTITY BOARD — index.html (reemplaza stats-counters)
+   ============================================================ */
+.identity-board {
+  background: var(--bg-0);
+  border-top: 1px solid var(--bd);
+  border-bottom: 1px solid var(--bd);
+  padding: 5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.identity-board::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(37,99,235,.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.identity-board-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.id-eyebrow {
+  font-family: var(--f-mono);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--t-4);
+  margin-bottom: 2rem;
+}
+.id-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 640px) {
+  .id-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 1024px) {
+  .id-grid {
+    grid-template-columns: 7fr 5fr;
+    grid-template-areas:
+      "intersection pkg"
+      "intersection school"
+      "intersection available";
+  }
+  .id-card--intersection { grid-area: intersection; }
+  .id-card--pkg          { grid-area: pkg; }
+  .id-card--school       { grid-area: school; }
+  .id-card--available    { grid-area: available; }
+}
+
+.id-card {
+  background: var(--bg-2);
+  border: 1px solid var(--bd);
+  border-radius: var(--r-lg);
+  padding: 2.25rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .3s, transform .35s var(--ease-out), box-shadow .35s;
+}
+.id-card:hover {
+  border-color: rgba(37,99,235,.3);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.id-card-kicker {
+  font-family: var(--f-mono);
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--blue-xl);
+  display: block;
+  margin-bottom: 1.5rem;
+  animation: trackIn .8s var(--ease-out) both;
+}
+
+/* — Intersection card — */
+.id-card--intersection {
+  border-top: 2px solid var(--blue);
+  background: linear-gradient(155deg, var(--bg-2) 0%, rgba(37,99,235,.06) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.id-card--intersection::after {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37,99,235,.14) 0%, transparent 70%);
+  pointer-events: none;
+}
+.id-intersection-text {
+  font-family: var(--f-display);
+  font-size: clamp(3rem, 5vw, 5.5rem);
+  font-weight: 700;
+  line-height: .9;
+  letter-spacing: -.03em;
+  color: var(--t-1);
+  margin-bottom: 2rem;
+}
+.id-x {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--blue-xl);
+  font-size: 1.05em;
+  margin-right: .1em;
+}
+.id-intersection-sub {
+  font-family: var(--f-sans);
+  font-size: .92rem;
+  color: var(--t-2);
+  line-height: 1.75;
+  max-width: 34ch;
+  border-top: 1px solid var(--bd);
+  padding-top: 1.5rem;
+  margin-top: auto;
+}
+
+/* — pkgxray card — */
+.id-card--pkg {
+  border-top: 2px solid var(--green);
+}
+.id-pkg-name {
+  font-family: var(--f-display);
+  font-size: clamp(2.2rem, 4vw, 3.25rem);
+  font-weight: 700;
+  color: var(--t-1);
+  letter-spacing: -.03em;
+  line-height: 1;
+  margin-bottom: .25rem;
+}
+.id-pkg-ver {
+  font-family: var(--f-mono);
+  font-size: .68rem;
+  color: var(--green);
+  letter-spacing: .1em;
+  margin-bottom: 1rem;
+}
+.id-pkg-desc {
+  font-size: .84rem;
+  color: var(--t-2);
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+.id-pkg-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: var(--f-mono);
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--green);
+  border: 1px solid rgba(74,222,128,.22);
+  padding: .3rem .85rem;
+  border-radius: 999px;
+  background: rgba(74,222,128,.06);
+}
+
+/* — ITAM card — */
+.id-card--school {
+  border-top: 2px solid var(--cyan);
+}
+.id-school-name {
+  font-family: var(--f-display);
+  font-size: clamp(2.5rem, 3.5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--t-1);
+  letter-spacing: -.03em;
+  line-height: 1;
+  margin-bottom: .4rem;
+}
+.id-school-degree {
+  font-family: var(--f-display);
+  font-size: 1.05rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--t-2);
+  line-height: 1.45;
+  margin-bottom: .75rem;
+}
+.id-school-meta {
+  font-family: var(--f-mono);
+  font-size: .64rem;
+  color: var(--t-3);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+/* — Available CTA card — */
+.id-card--available {
+  border: 1px solid var(--bd-accent);
+  background: linear-gradient(155deg, var(--bg-3) 0%, rgba(37,99,235,.07) 100%);
+}
+.id-card--available:hover { border-color: rgba(37,99,235,.5); }
+.id-avail-pulse {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-family: var(--f-mono);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 1rem;
+}
+.id-avail-heading {
+  font-family: var(--f-display);
+  font-size: clamp(1.6rem, 2.5vw, 2.25rem);
+  font-weight: 600;
+  color: var(--t-1);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  margin-bottom: .6rem;
+}
+.id-avail-areas {
+  font-family: var(--f-mono);
+  font-size: .7rem;
+  color: var(--blue-xl);
+  letter-spacing: .06em;
+  margin-bottom: 1.5rem;
+  line-height: 1.9;
+}
+.id-avail-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: var(--f-mono);
+  font-size: .78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--blue);
+  padding: .6rem 1.35rem;
+  border-radius: var(--r-sm);
+  letter-spacing: .04em;
+  transition: background .2s, transform .2s, box-shadow .2s;
+}
+.id-avail-cta:hover {
+  background: #1D4ED8;
+  transform: translateX(5px);
+  box-shadow: var(--shadow-blue);
+}

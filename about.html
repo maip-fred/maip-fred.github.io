@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sobre Alfredo Ibáñez Vargas — Estudiante de Ciencia de Datos y Matemáticas Aplicadas en el ITAM." />
+  <title>Alfredo Ibáñez — Sobre mí</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans:    ['"DM Sans"', 'Inter', 'sans-serif'],
+            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            mono:    ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="manifest" href="/assets/manifest.json" />
+  <meta name="theme-color" content="#030810" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://maip-fred.github.io/about.html" />
+  <meta property="og:title"       content="Alfredo Ibáñez — Sobre mí" />
+  <meta property="og:description" content="Estudiante de Ciencia de Datos y Matemáticas Aplicadas en el ITAM. 8° semestre, CDMX. Autor de pkgxray." />
+  <meta property="og:image"       content="https://maip-fred.github.io/assets/og-image.svg" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Alfredo Ibáñez — Sobre mí" />
+  <meta name="twitter:description" content="Estudiante de Ciencia de Datos y Matemáticas Aplicadas en el ITAM." />
+  <meta name="twitter:image"       content="https://maip-fred.github.io/assets/og-image.svg" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/effects.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/about.css" />
+  <link rel="stylesheet" href="css/skills.css" />
+  <link rel="stylesheet" href="css/projects.css" />
+  <link rel="stylesheet" href="css/contact.css" />
+  <link rel="stylesheet" href="css/journey.css" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/chatbot.css" />
+</head>
+<body>
+<a href="#main-content" class="skip-link">Ir al contenido</a>
+
+<div id="scroll-bar"></div>
+
+<!-- GRAIN OVERLAY -->
+<div id="grain-overlay" aria-hidden="true"></div>
+
+<!-- MATRIX OVERLAY -->
+<div id="matrix-overlay" role="dialog" aria-modal="true" aria-label="Matrix mode">
+  <canvas id="matrix-canvas"></canvas>
+  <p id="matrix-label">PROTOCOLO MATRIX · AIV</p>
+  <p id="matrix-exit-hint">[ ESC ] · CLICK PARA SALIR</p>
+</div>
+
+<aside class="social-sidebar" aria-label="Redes sociales">
+  <a href="https://github.com/maip-fred" target="_blank" rel="noopener" aria-label="GitHub"><i data-lucide="github" class="w-5 h-5"></i></a>
+  <a href="mailto:ibanez.alfredo.02.10@gmail.com" aria-label="Email"><i data-lucide="mail" class="w-5 h-5"></i></a>
+</aside>
+
+<header id="header">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" data-t>AIV</a>
+    <ul class="nav-links">
+      <li><a href="index.html"    class="nav-link" data-num="00" data-t>Inicio</a></li>
+      <li><a href="about.html"    class="nav-link" data-num="01" data-t>Sobre mí</a></li>
+      <li><a href="skills.html"   class="nav-link" data-num="02" data-t>Habilidades</a></li>
+      <li><a href="retos.html"    class="nav-link" data-num="03" data-t>Retos</a></li>
+      <li><a href="projects.html" class="nav-link" data-num="04" data-t>Proyectos</a></li>
+      <li><a href="contact.html"  class="nav-cta"  data-t>Contacto</a></li>
+    </ul>
+    <button id="hamburger" class="hamburger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div id="mobile-menu">
+    <ul class="mobile-links">
+      <li><a href="index.html"    data-t>Inicio</a></li>
+      <li><a href="about.html"    data-t>Sobre mí</a></li>
+      <li><a href="skills.html"   data-t>Habilidades</a></li>
+      <li><a href="retos.html"    data-t>Retos</a></li>
+      <li><a href="projects.html" data-t>Proyectos</a></li>
+      <li><a href="contact.html"  data-t>Contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<div id="main-content" class="page-header">
+  <span class="wm" aria-hidden="true">01</span>
+  <span aria-hidden="true" style="position:absolute;left:40%;top:0;font-family:'Georgia',serif;font-size:clamp(9rem,20vw,18rem);font-weight:300;font-style:italic;color:rgba(184,137,42,.032);pointer-events:none;user-select:none;line-height:1;letter-spacing:-.04em;">∂</span>
+  <span aria-hidden="true" style="position:absolute;right:4%;bottom:1.5rem;font-family:'Georgia',serif;font-size:clamp(2rem,4vw,4rem);font-weight:300;color:rgba(107,140,82,.05);pointer-events:none;user-select:none;">λ</span>
+  <span aria-hidden="true" style="position:absolute;right:20%;top:2.5rem;font-family:'Georgia',serif;font-size:clamp(1.2rem,2.5vw,2rem);font-weight:300;color:rgba(37,99,235,.04);pointer-events:none;user-select:none;">π</span>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1;">
+    <div>
+      <p class="page-tag animate-fade-in">01 — Sobre mí</p>
+      <h1 class="page-title animate-hero-name">
+        <span data-scramble data-scramble-delay="900">Quién</span><br><span class="page-title-outline" data-scramble data-scramble-delay="1150">soy.</span>
+      </h1>
+      <div class="section-rule animate-fade-in" style="animation-delay:.4s;background:linear-gradient(to right,var(--gold),var(--olive-l));"></div>
+      <p class="page-subtitle animate-slide-up" style="animation-delay:.5s;">
+        Estudiante, desarrollador y entusiasta de los datos — con una curiosidad insaciable por entender cómo funcionan los sistemas por dentro.
+      </p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:.8rem;padding-top:2rem;" data-aos="fade-left" data-aos-delay="250">
+      <div style="display:flex;align-items:center;gap:.85rem;padding:.9rem 1.2rem;background:rgba(184,137,42,.04);border:1px solid rgba(184,137,42,.14);border-radius:12px;">
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(184,137,42,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i data-lucide="graduation-cap" style="width:16px;height:16px;color:var(--gold);"></i>
+        </div>
+        <div>
+          <div style="font-family:var(--f-mono);font-size:.57rem;text-transform:uppercase;letter-spacing:.14em;color:var(--lt-3);margin-bottom:.18rem;">Formación</div>
+          <div style="font-family:var(--f-sans);font-size:.88rem;font-weight:600;color:var(--lt-1);">ITAM · 8° Semestre · Gen. 2022</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:.85rem;padding:.9rem 1.2rem;background:rgba(37,99,235,.04);border:1px solid rgba(37,99,235,.14);border-radius:12px;">
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(37,99,235,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i data-lucide="package" style="width:16px;height:16px;color:var(--blue);"></i>
+        </div>
+        <div>
+          <div style="font-family:var(--f-mono);font-size:.57rem;text-transform:uppercase;letter-spacing:.14em;color:var(--lt-3);margin-bottom:.18rem;">Open source</div>
+          <div style="font-family:var(--f-sans);font-size:.88rem;font-weight:600;color:var(--lt-1);">pkgxray v0.2.2 · PyPI</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:.85rem;padding:.9rem 1.2rem;background:rgba(107,140,82,.04);border:1px solid rgba(107,140,82,.14);border-radius:12px;">
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(107,140,82,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i data-lucide="map-pin" style="width:16px;height:16px;color:var(--olive);"></i>
+        </div>
+        <div>
+          <div style="font-family:var(--f-mono);font-size:.57rem;text-transform:uppercase;letter-spacing:.14em;color:var(--lt-3);margin-bottom:.18rem;">Ubicación</div>
+          <div style="font-family:var(--f-sans);font-size:.88rem;font-weight:600;color:var(--lt-1);">Ciudad de México · CDMX</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:.85rem;padding:.9rem 1.2rem;background:rgba(74,222,128,.04);border:1px solid rgba(74,222,128,.18);border-radius:12px;">
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(74,222,128,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <span style="width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:glowPulse 2s ease-in-out infinite;"></span>
+        </div>
+        <div>
+          <div style="font-family:var(--f-mono);font-size:.57rem;text-transform:uppercase;letter-spacing:.14em;color:var(--lt-3);margin-bottom:.18rem;">Estado</div>
+          <div style="font-family:var(--f-sans);font-size:.88rem;font-weight:600;color:var(--lt-1);">Buscando prácticas · 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT SPLIT -->
+<div class="about-split" style="padding-top:4rem;padding-bottom:9rem;">
+
+  <!-- Photo / Visual -->
+  <div data-aos="fade-right" data-aos-duration="800">
+    <div class="profile-frame" style="position:relative;">
+
+      <!-- Foto de perfil — placeholder con espacio reservado -->
+      <div class="profile-img" style="min-height:22rem;position:relative;overflow:hidden;border-radius:var(--r-lg);">
+        <!-- Dejar aquí foto personal cuando esté disponible -->
+        <img src="assets/img/foto-perfil.jpg" alt="Alfredo Ibáñez" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;display:none;" onerror="this.style.display='none'" onload="this.style.display='block'">
+
+        <!-- Arte generativo de fondo — visible mientras no hay foto -->
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0C1220 0%,#091929 60%,#0A1428 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;">
+
+          <!-- Círculos concéntricos decorativos -->
+          <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.18;" viewBox="0 0 320 340" fill="none" aria-hidden="true">
+            <circle cx="160" cy="170" r="140" stroke="rgba(37,99,235,.6)" stroke-width="1"/>
+            <circle cx="160" cy="170" r="110" stroke="rgba(37,99,235,.4)" stroke-width="1" stroke-dasharray="6 4"/>
+            <circle cx="160" cy="170" r="80" stroke="rgba(107,140,82,.5)" stroke-width="1"/>
+            <circle cx="160" cy="170" r="50" fill="rgba(37,99,235,.05)" stroke="rgba(37,99,235,.3)" stroke-width="1"/>
+            <line x1="0" y1="170" x2="320" y2="170" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+            <line x1="160" y1="0" x2="160" y2="340" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+            <circle cx="160" cy="30" r="4" fill="rgba(37,99,235,.4)"/>
+            <circle cx="300" cy="170" r="4" fill="rgba(107,140,82,.4)"/>
+            <circle cx="20" cy="170" r="4" fill="rgba(184,137,42,.4)"/>
+            <circle cx="160" cy="310" r="4" fill="rgba(37,99,235,.4)"/>
+          </svg>
+
+          <!-- Contenido central placeholder -->
+          <div style="position:relative;z-index:1;text-align:center;">
+            <div style="width:72px;height:72px;border-radius:50%;border:2px dashed rgba(37,99,235,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+              <i data-lucide="user" class="w-8 h-8" style="color:rgba(37,99,235,.4);"></i>
+            </div>
+            <p style="font-family:var(--f-mono);font-size:.68rem;color:rgba(237,234,228,.2);letter-spacing:.1em;">foto próximamente</p>
+          </div>
+
+          <!-- Fragmento de código flotante - decorativo -->
+          <div style="position:absolute;top:1.25rem;left:1.25rem;font-family:var(--f-mono);font-size:.58rem;color:rgba(37,99,235,.4);line-height:1.7;pointer-events:none;">
+            <div><span style="color:rgba(167,139,250,.5);">import</span> pkgxray</div>
+            <div><span style="color:rgba(167,139,250,.5);">from</span> ast <span style="color:rgba(167,139,250,.5);">import</span> parse</div>
+          </div>
+
+          <!-- Coordenadas decorativas -->
+          <div style="position:absolute;bottom:1.25rem;right:1.25rem;font-family:var(--f-mono);font-size:.55rem;color:rgba(237,234,228,.12);text-align:right;pointer-events:none;">
+            <div>CDMX · 2026</div>
+            <div>ITAM · DS · Security</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Badge "foto próximamente" en esquina -->
+      <div style="position:absolute;top:-.75rem;right:-.75rem;background:#F9F8F6;border:1px solid var(--bd-light);border-radius:999px;padding:.3rem .75rem;font-family:var(--f-mono);font-size:.6rem;color:var(--lt-3);white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.08);">
+        <i data-lucide="camera" style="display:inline;width:10px;height:10px;vertical-align:middle;margin-right:4px;"></i>
+        espacio para foto
+      </div>
+    </div>
+
+    <!-- Info table -->
+    <table class="info-table" style="margin-top:2.5rem;" data-aos="fade-up" data-aos-delay="200">
+      <tbody>
+        <tr>
+          <td class="td-icon"><i data-lucide="map-pin" class="w-4 h-4"></i></td>
+          <td class="td-label">Ubicación</td>
+          <td class="td-value">Ciudad de México</td>
+        </tr>
+        <tr>
+          <td class="td-icon"><i data-lucide="graduation-cap" class="w-4 h-4"></i></td>
+          <td class="td-label">ITAM</td>
+          <td class="td-value">8° Semestre · Gen. 2022</td>
+        </tr>
+        <tr>
+          <td class="td-icon"><i data-lucide="languages" class="w-4 h-4"></i></td>
+          <td class="td-label">Idiomas</td>
+          <td class="td-value">ES · EN avanzado · FR básico</td>
+        </tr>
+        <tr>
+          <td class="td-icon"><i data-lucide="github" class="w-4 h-4"></i></td>
+          <td class="td-label">GitHub</td>
+          <td class="td-value"><a href="https://github.com/maip-fred" target="_blank" rel="noopener">maip-fred</a></td>
+        </tr>
+        <tr>
+          <td class="td-icon"><i data-lucide="mail" class="w-4 h-4"></i></td>
+          <td class="td-label">Email</td>
+          <td class="td-value"><a href="mailto:ibanez.alfredo.02.10@gmail.com">ibanez.alfredo…</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bio -->
+  <div data-aos="fade-left" data-aos-delay="150" data-aos-duration="800">
+    <p class="about-bio-lead">
+      Soy estudiante de 8° semestre en el ITAM, donde combino matemáticas aplicadas, estadística y programación para construir soluciones con impacto real.
+    </p>
+    <p class="about-bio-body">
+      Me apasionan los modelos financieros cuantitativos, la ciberseguridad y el desarrollo de software a la medida. Disfruto tanto el análisis de datos como construir las herramientas que lo hacen posible — desde el backend hasta el frontend.
+    </p>
+    <p class="about-bio-body">
+      En 2024 publiqué pkgxray en PyPI (v0.2.2), una librería de análisis estático de paquetes Python con AST que detecta comportamiento malicioso antes de instalar. Trabajé con Docker, APIs REST y Click/Rich para construir una CLI completa.
+    </p>
+    <p class="about-bio-body" style="margin-bottom:2.5rem;">
+      Busco oportunidades de prácticas y proyectos de colaboración donde pueda aportar valor y seguir creciendo — en datos, seguridad, finanzas o desarrollo de software.
+    </p>
+
+    <blockquote style="border-left:2px solid var(--blue);padding:1.25rem 1.75rem;background:rgba(37,99,235,.04);border-radius:0 var(--r-md) var(--r-md) 0;margin-bottom:2.5rem;" data-aos="fade-up">
+      <p style="font-family:var(--f-display);font-size:1.25rem;font-style:italic;color:var(--lt-1);line-height:1.6;">
+        "Comprometido con la excelencia, una línea de código a la vez."
+      </p>
+    </blockquote>
+
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;">
+      <a href="skills.html" class="btn btn-primary" data-t>
+        <i data-lucide="code-2" class="w-4 h-4"></i>
+        Ver mis habilidades
+      </a>
+      <a href="projects.html" class="btn btn-outline" data-t>
+        <i data-lucide="folder-open" class="w-4 h-4"></i>
+        Ver proyectos
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     JOURNEY — Cómo llegué hasta aquí (rediseñado)
+     ============================================================ -->
+<section class="journey-section">
+  <div class="journey-inner">
+
+    <!-- Header -->
+    <div class="journey-head" data-aos="fade-up">
+      <p class="page-tag" style="margin-bottom:.75rem;">Trayectoria</p>
+      <h2 class="journey-title">
+        Cómo llegué<br><em>hasta aquí.</em>
+      </h2>
+      <div class="section-rule" style="margin-top:1.25rem;"></div>
+      <p class="journey-sub">
+        Un recorrido entre código, modelos y curiosidad — que todavía no termina.
+      </p>
+    </div>
+
+    <div class="journey-grid">
+
+      <!-- ── 2022 ORIGEN — full row ── -->
+      <div class="jcard jcard--origin" data-aos="fade-up" data-aos-delay="60">
+        <div class="jcard-bg-year" aria-hidden="true">2022</div>
+        <div class="jcard-deco jcard-deco--hex" aria-hidden="true"></div>
+        <div class="jcard-inner">
+          <div class="jcard-tag-row">
+            <span class="jcard-tag jtg-gold">ITAM</span>
+            <span class="jcard-tag jtg-warm">Gen. 2022</span>
+            <span class="jcard-tag jtg-olive">Inicio</span>
+          </div>
+          <h3 class="jcard-title">Ingreso a Ciencia de Datos &amp; Matemáticas Aplicadas</h3>
+          <p class="jcard-body">
+            Inicio de la licenciatura en el ITAM, una de las mejores escuelas de ciencias exactas de México. Primeros semestres: Cálculo, Álgebra Lineal, Estadística y los fundamentos reales de la programación.
+          </p>
+          <div class="jcard-tech-row">
+            <span class="jtech">Python</span>
+            <span class="jtech">R</span>
+            <span class="jtech">LaTeX</span>
+            <span class="jtech">Estadística</span>
+            <span class="jtech">Álgebra Lineal</span>
+          </div>
+        </div>
+        <div class="jcard-status">Punto de partida</div>
+      </div>
+
+      <!-- Connector 1 -->
+      <div class="jconn" aria-hidden="true">
+        <svg viewBox="0 0 32 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="5" r="3" fill="currentColor" opacity=".5"/>
+          <line x1="16" y1="8" x2="16" y2="36" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <path d="M9 30 L16 41 L23 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+
+      <!-- ── Par 2023 + 2024 pkgxray ── -->
+      <div class="journey-pair">
+
+        <div class="jcard" data-aos="fade-right" data-aos-delay="80">
+          <div class="jcard-bg-year" aria-hidden="true">2023</div>
+          <div class="jcard-deco jcard-deco--tri" aria-hidden="true"></div>
+          <div class="jcard-inner">
+            <div class="jcard-tag-row">
+              <span class="jcard-tag jtg-olive">ML</span>
+              <span class="jcard-tag jtg-blue">SQL</span>
+              <span class="jcard-tag jtg-warm">MongoDB</span>
+            </div>
+            <h3 class="jcard-title">Materias avanzadas — ML, BD, Estructuras</h3>
+            <p class="jcard-body">
+              Machine Learning, Bases de Datos Relacionales y No Relacionales, Estructuras de Datos Avanzadas y Cálculo Numérico — el stack teórico que sostiene todo lo demás.
+            </p>
+            <div class="jcard-tech-row">
+              <span class="jtech">Scikit-learn</span>
+              <span class="jtech">Pandas</span>
+              <span class="jtech">NumPy</span>
+              <span class="jtech">SQL</span>
+              <span class="jtech">MongoDB</span>
+            </div>
+          </div>
+          <div class="jcard-status">ITAM</div>
+        </div>
+
+        <div class="jcard jcard--featured" data-aos="fade-left" data-aos-delay="130">
+          <div class="jcard-bg-year" aria-hidden="true">2024</div>
+          <div class="jcard-deco jcard-deco--diamond" aria-hidden="true"></div>
+          <div class="jcard-inner">
+            <div class="jcard-tag-row">
+              <span class="jcard-tag jtg-olive">PyPI</span>
+              <span class="jcard-tag jtg-purple">Open Source</span>
+              <span class="jcard-tag jtg-red">Security</span>
+            </div>
+            <h3 class="jcard-title">pkgxray v0.2.2 — primer open source real</h3>
+            <p class="jcard-body">
+              Librería de seguridad para análisis estático de paquetes Python con AST. CLI con Click + Rich, Docker y pytest. Detecta exfiltración de datos, comandos en background y base64 ofuscado.
+            </p>
+            <div class="jcard-tech-row">
+              <span class="jtech">AST</span>
+              <span class="jtech">Click</span>
+              <span class="jtech">Rich</span>
+              <span class="jtech">Docker</span>
+              <span class="jtech">pytest</span>
+              <span class="jtech">REST APIs</span>
+            </div>
+          </div>
+          <div class="jcard-status">v0.2.2</div>
+        </div>
+
+      </div><!-- /journey-pair -->
+
+      <!-- Connector 2 -->
+      <div class="jconn" aria-hidden="true">
+        <svg viewBox="0 0 32 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="5" r="3" fill="currentColor" opacity=".5"/>
+          <line x1="16" y1="8" x2="16" y2="36" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <path d="M9 30 L16 41 L23 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+
+      <!-- ── Par 2024 Planck + 2026 Actual ── -->
+      <div class="journey-pair">
+
+        <div class="jcard" data-aos="fade-right" data-aos-delay="80">
+          <div class="jcard-bg-year" aria-hidden="true">2024</div>
+          <div class="jcard-deco jcard-deco--ring" aria-hidden="true"></div>
+          <div class="jcard-inner">
+            <div class="jcard-tag-row">
+              <span class="jcard-tag jtg-warm">HTML · CSS · JS</span>
+              <span class="jcard-tag jtg-gold">i18n</span>
+              <span class="jcard-tag jtg-olive">Frontend</span>
+            </div>
+            <h3 class="jcard-title">Planck — sitio corporativo de lujo</h3>
+            <p class="jcard-body">
+              Sitio para empresa constructora: tres propuestas de diseño, multiidioma ES/EN, galería slider, FAQ interactivo. Primera vez llevando un proyecto frontend a producción para un cliente real.
+            </p>
+            <div class="jcard-tech-row">
+              <span class="jtech">HTML5</span>
+              <span class="jtech">CSS3</span>
+              <span class="jtech">JavaScript</span>
+              <span class="jtech">i18n</span>
+              <span class="jtech">Diseño responsivo</span>
+            </div>
+          </div>
+          <div class="jcard-status">Cliente privado</div>
+        </div>
+
+        <div class="jcard jcard--current" data-aos="fade-left" data-aos-delay="130">
+          <div class="jcard-bg-year" aria-hidden="true">2026</div>
+          <div class="jcard-deco jcard-deco--star" aria-hidden="true"></div>
+          <div class="jcard-inner">
+            <div class="jcard-tag-row">
+              <span class="jcard-tag jtg-gold">ITAM</span>
+              <span class="jcard-tag jtg-olive">Finanzas</span>
+              <span class="jcard-tag jtg-blue">Data Science</span>
+            </div>
+            <h3 class="jcard-title">Cursando 8° semestre — construyendo en paralelo</h3>
+            <p class="jcard-body">
+              Finanzas I y Fuentes de Datos. Modelos cuantitativos, SQL avanzado para series temporales financieras y este portfolio construido de cero con Tailwind, AOS y animaciones CSS.
+            </p>
+            <div class="jcard-tech-row">
+              <span class="jtech">Tailwind</span>
+              <span class="jtech">AOS</span>
+              <span class="jtech">SVG animations</span>
+              <span class="jtech">GitHub Pages</span>
+              <span class="jtech">Rust (básico)</span>
+            </div>
+          </div>
+          <div class="jcard-status jcard-status--live">
+            <span class="now-pulse" style="width:6px;height:6px;box-shadow:0 0 5px #16a34a;flex-shrink:0;"></span>
+            En curso · abril 2026
+          </div>
+        </div>
+
+      </div><!-- /journey-pair -->
+
+    </div><!-- /journey-grid -->
+
+  </div>
+</section>
+
+<!-- ============================================================
+     UNIVERSO CTA — enlace a mi universo personal
+     ============================================================ -->
+<div class="universo-cta-wrap">
+  <div class="universo-cta-card" data-aos="fade-up">
+    <div class="universo-cta-deco" aria-hidden="true"></div>
+    <div class="universo-cta-layout">
+
+      <div>
+        <p class="page-tag" style="margin-bottom:.75rem;color:rgba(109,40,217,.75);">
+          <span style="display:inline-block;width:2rem;height:1px;background:rgba(109,40,217,.6);margin-right:.75rem;vertical-align:middle;"></span>
+          Más sobre mí
+        </p>
+        <h2 class="universo-cta-title">
+          El lado<br><em>humano.</em>
+        </h2>
+        <p class="universo-cta-body">
+          Libros que vuelvo a abrir, podcasts que me han formado y los pasatiempos que me mantienen cuerdo. Todo lo que existe más allá del código.
+        </p>
+        <a href="universo.html" class="universo-cta-btn" data-t>
+          <i data-lucide="compass" class="w-4 h-4"></i>
+          Explorar mi universo
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <div class="universo-preview">
+        <div class="universo-preview-item">
+          <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+          Stack mental — libros
+        </div>
+        <div class="universo-preview-item">
+          <i data-lucide="headphones" class="w-3.5 h-3.5"></i>
+          Podcasts &amp; canales
+        </div>
+        <div class="universo-preview-item">
+          <i data-lucide="activity" class="w-3.5 h-3.5"></i>
+          Intereses &amp; hobbies
+        </div>
+        <div class="universo-preview-item">
+          <i data-lucide="dog" class="w-3.5 h-3.5"></i>
+          Mis dos perros
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>© 2026 Alfredo Ibáñez Vargas</p>
+    <p style="font-style:italic;">~/about</p>
+    <a href="https://github.com/maip-fred/maip-fred.github.io" target="_blank" rel="noopener">
+      <i data-lucide="github" class="w-3.5 h-3.5 inline-block mr-1"></i>Ver código
+    </a>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+<script src="js/sound.js" defer></script>
+<script src="js/cmdk.js" defer></script>
+<script src="js/easter-egg.js" defer></script>
+<script src="js/cursor.js" defer></script>
+<script src="js/core.js" defer></script>
+<script src="js/chatbot.js" defer></script>
+<script src="js/dock.js" defer></script>
+<script src="js/magnetic.js" defer></script>
+<script src="js/scramble.js" defer></script>
+<script src="js/matrix.js" defer></script>
+</body>
+</html>

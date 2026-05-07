@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#0d1117"/>
+  <rect x="80" y="80" width="120" height="60" rx="5" fill="none" stroke="#3B82F6" stroke-width="2" opacity="0.4"/>
+  <text x="140" y="115" font-family="monospace" font-size="14" fill="#3B82F6" text-anchor="middle" opacity="0.6">programa</text>
+  <polygon points="200,60 220,90 180,90" fill="#3B82F6" opacity="0.4"/>
+  <text x="200" y="105" font-family="monospace" font-size="12" fill="#3B82F6" text-anchor="middle" opacity="0.5">-halting?-</text>
+  <rect x="150" y="180" width="100" height="60" rx="5" fill="none" stroke="#EF4444" stroke-width="2" opacity="0.4"/>
+  <text x="200" y="215" font-family="monospace" font-size="14" fill="#EF4444" text-anchor="middle" opacity="0.6">∞ loop</text>
+  <text x="200" y="270" font-family="Georgia, serif" font-size="20" fill="#3B82F6" text-anchor="middle" opacity="0.5">1936 • Turing</text>
+</svg>

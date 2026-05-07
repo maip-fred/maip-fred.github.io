@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Retos de programación y matemáticas — problemas famous, demostraciones, teoremas y desafíos algorítmicos." />
+  <title>Alfredo Ibáñez — Retos</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans:    ['"DM Sans"', 'Inter', 'sans-serif'],
+            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            mono:    ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="manifest" href="/assets/manifest.json" />
+  <meta name="theme-color" content="#030810" />
+  <link rel="dns-prefetch" href="https://unpkg" />
+  <link rel="dns-prefetch" href="https://images.unsplash.com" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://maip-fred.github.io/retos.html" />
+  <meta property="og:title"       content="Alfredo Ibáñez — Retos" />
+  <meta property="og:description" content="Retos de programación y matemáticas — problemas clásicos, demostraciones y teoremas por resolver." />
+  <meta property="og:image"       content="https://maip-fred.github.io/assets/og-image.svg" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Alfredo Ibáñez — Retos" />
+  <meta name="twitter:description" content="Retos de programación y matemáticas." />
+  <meta name="twitter:image"       content="https://maip-fred.github.io/assets/og-image.svg" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/effects.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/about.css" />
+  <link rel="stylesheet" href="css/skills.css" />
+  <link rel="stylesheet" href="css/projects.css" />
+  <link rel="stylesheet" href="css/contact.css" />
+  <link rel="stylesheet" href="css/journey.css" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/chatbot.css" />
+  <link rel="stylesheet" href="css/retos.css" />
+</head>
+<body class="page-retos">
+
+<!-- Ambient floating math symbols -->
+<div class="math-bg" aria-hidden="true" id="mathBg"></div>
+
+<a href="#main-content" class="skip-link">Ir al contenido</a>
+<div id="scroll-bar"></div>
+<div id="grain-overlay" aria-hidden="true"></div>
+
+<div id="matrix-overlay" role="dialog" aria-modal="true" aria-label="Matrix mode">
+  <canvas id="matrix-canvas"></canvas>
+  <p id="matrix-label">PROTOCOLO MATRIX · AIV</p>
+  <p id="matrix-exit-hint">[ ESC ] · CLICK PARA SALIR</p>
+</div>
+
+<aside class="social-sidebar">
+  <a href="https://github.com/maip-fred" target="_blank" rel="noopener" aria-label="GitHub"><i data-lucide="github" class="w-5 h-5"></i></a>
+  <a href="mailto:ibanez.alfredo.02.10@gmail.com" aria-label="Email"><i data-lucide="mail" class="w-5 h-5"></i></a>
+</aside>
+
+<header id="header">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" data-t>AIV</a>
+    <ul class="nav-links">
+      <li><a href="index.html"    class="nav-link" data-num="00" data-t>Inicio</a></li>
+      <li><a href="about.html"    class="nav-link" data-num="01" data-t>Sobre mí</a></li>
+      <li><a href="skills.html"   class="nav-link" data-num="02" data-t>Habilidades</a></li>
+      <li><a href="retos.html"    class="nav-link" data-num="03" data-t>Retos</a></li>
+      <li><a href="projects.html" class="nav-link" data-num="04" data-t>Proyectos</a></li>
+      <li><a href="contact.html"  class="nav-cta"  data-t>Contacto</a></li>
+    </ul>
+    <button id="hamburger" class="hamburger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div id="mobile-menu">
+    <ul class="mobile-links">
+      <li><a href="index.html"    data-t>Inicio</a></li>
+      <li><a href="about.html"    data-t>Sobre mí</a></li>
+      <li><a href="skills.html"   data-t>Habilidades</a></li>
+      <li><a href="retos.html"    data-t>Retos</a></li>
+      <li><a href="projects.html" data-t>Proyectos</a></li>
+      <li><a href="contact.html"  data-t>Contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ===================== PAGE HEADER ===================== -->
+<div id="main-content" class="page-header">
+  <span class="wm" aria-hidden="true">03</span>
+  <span aria-hidden="true" style="position:absolute;left:52%;top:3.5rem;font-family:'Georgia',serif;font-size:clamp(5rem,11vw,10rem);font-weight:300;color:rgba(37,99,235,.04);pointer-events:none;user-select:none;line-height:1;">λ</span>
+  <span aria-hidden="true" style="position:absolute;left:76%;top:7rem;font-family:'Georgia',serif;font-size:clamp(2rem,4vw,4rem);font-weight:300;color:rgba(34,211,238,.04);pointer-events:none;user-select:none;line-height:1;">∑</span>
+  <p class="page-tag animate-fade-in" style="color:var(--blue-l);">
+    03 — Retos
+  </p>
+  <h1 class="page-title animate-hero-name">
+    Desafíos<br><span class="page-title-outline">por resolver.</span>
+  </h1>
+  <div class="section-rule animate-fade-in" style="animation-delay:.4s;background:linear-gradient(to right,var(--blue),var(--cyan));"></div>
+  <p class="page-subtitle animate-slide-up" style="animation-delay:.5s;">
+    Problemas famosos de programación, matemáticas y teoremas — el tipo de retos que me mantienen despierto.
+  </p>
+
+  <!-- Stats counter -->
+  <div class="retos-stats animate-slide-up" style="animation-delay:.7s;">
+    <div class="retos-stat">
+      <span class="stat-num" id="stat-total" data-target="27">0</span>
+      <span class="stat-label">Total retos</span>
+    </div>
+    <div class="retos-stat">
+      <span class="stat-num clr-green" id="stat-solved" data-target="15">0</span>
+      <span class="stat-label">Resueltos</span>
+    </div>
+    <div class="retos-stat">
+      <span class="stat-num clr-yellow" id="stat-open" data-target="12">0</span>
+      <span class="stat-label">Abiertos</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== RETOS CONTENT ===================== -->
+<div class="retos-section">
+
+  <!-- Intro -->
+  <div class="retos-intro">
+    <p>
+      <span class="accent">//</span> Esta sección reúne problemas que han marcado la historia de la computación y las matemáticas.
+      Algunos tienen solución, otros son <span class="highlight">abiertos</span>. Todos merecen atención.
+    </p>
+  </div>
+
+  <!-- FILTROS -->
+  <div class="retos-filters" role="group" aria-label="Filtrar retos">
+    <button class="r-filter active" data-filter="all">
+      Todos <span class="cnt">27</span>
+    </button>
+    <button class="r-filter" data-filter="algoritmo">
+      Algoritmos <span class="cnt">10</span>
+    </button>
+    <button class="r-filter" data-filter="matematica">
+      Matemáticas <span class="cnt">6</span>
+    </button>
+    <button class="r-filter" data-filter="abierto">
+      Abiertos <span class="cnt">2</span>
+    </button>
+    <button class="r-filter" data-filter="demostracion">
+      Demostraciones <span class="cnt">2</span>
+    </button>
+    <button class="r-filter" data-filter="datos">
+      Ciencia de Datos <span class="cnt">7</span>
+    </button>
+  </div>
+
+  <!-- Count display -->
+  <p class="retos-count-line" id="countLine">Mostrando <span id="countNum">27</span> retos</p>
+
+  <!-- ===================== GRID ===================== -->
+  <div class="retos-grid" id="retosGrid">
+
+    <!-- 01 — P vs NP (FEATURED) -->
+    <div class="rc rc--featured" data-category="algoritmo">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">P≠NP</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Algoritmo</span>
+          <span class="rc__status">
+            <span class="rc__dot rc__dot--open"></span>Abierto
+          </span>
+        </div>
+        <h3 class="rc__title">Problema P vs NP</h3>
+        <p class="rc__desc">¿Pueden los problemas cuya solución se verifica en tiempo polinomial también resolverse en tiempo polinomial? El problema del millón de dólares del Clay Math Institute.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/P_vs_NP" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 02 — Goldbach -->
+    <div class="rc" data-category="matematica">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">∑</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Matemática</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--open"></span>Abierto</span>
+        </div>
+        <h3 class="rc__title">Conjetura de Goldbach</h3>
+        <p class="rc__desc">Todo número par mayor que 2 puede expresarse como suma de dos primos. Propuesta en 1742, sin demostración hasta hoy.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Goldbach%27s_conjecture" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 03 — TSP -->
+    <div class="rc" data-category="algoritmo">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">↺</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Algoritmo</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--solved"></span>NP-Completo</span>
+        </div>
+        <h3 class="rc__title">Problema del vendedor</h3>
+        <p class="rc__desc">Encontrar la ruta más corta que pasa por todas las ciudades exactamente una vez. NP-completo, pero con aproximaciones prácticas.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Travelling_salesman_problem" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 04 — Fermat -->
+    <div class="rc" data-category="demostracion">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">xⁿ</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Demostración</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--solved"></span>Resuelto · 1994</span>
+        </div>
+        <h3 class="rc__title">Último Teorema de Fermat</h3>
+        <p class="rc__desc">xⁿ+yⁿ=zⁿ no tiene soluciones enteras para n&gt;2. Fermat decía tener una prueba; Wiles la encontró 358 años después.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 05 — Königsberg -->
+    <div class="rc" data-category="algoritmo">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1548263594-a71ea65a8598?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">⊗</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Algoritmo</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--solved"></span>Resuelto · 1736</span>
+        </div>
+        <h3 class="rc__title">Puentes de Königsberg</h3>
+        <p class="rc__desc">¿Se pueden cruzar los 7 puentes de Königsberg sin repetir ninguno? Euler lo resolvió, fundando la teoría de grafos.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 06 — Riemann (FEATURED row 2) -->
+    <div class="rc rc--featured" data-category="matematica">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1200&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">ζ</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Matemática</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--open"></span>Abierto · $1M</span>
+        </div>
+        <h3 class="rc__title">Hipótesis de Riemann</h3>
+        <p class="rc__desc">Los ceros no triviales de la función zeta de Riemann tienen parte real 1/2. Uno de los 7 Problemas del Milenio, con premio de un millón de dólares por resolverlo.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Riemann_hypothesis" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 07 — Sorting -->
+    <div class="rc" data-category="algoritmo">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">⇅</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Algoritmo</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--solved"></span>Resuelto</span>
+        </div>
+        <h3 class="rc__title">Ordenamiento en O(n)</h3>
+        <p class="rc__desc">¿Puede ordenarse un array en tiempo lineal? Counting sort y radix sort lo logran bajo condiciones específicas.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Counting_sort" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 08 — Collatz -->
+    <div class="rc" data-category="matematica">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">3n+1</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Matemática</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--open"></span>Abierto</span>
+        </div>
+        <h3 class="rc__title">Conjetura de Collatz</h3>
+        <p class="rc__desc">Si n es par: n÷2. Si impar: 3n+1. Siempre llega a 1. Simple de enunciar, imposible de demostrar.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Collatz_conjecture" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 09 — Factorization -->
+    <div class="rc" data-category="algoritmo">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">p·q</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Algoritmo</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--open"></span>Abierto</span>
+        </div>
+        <h3 class="rc__title">Factorización de enteros</h3>
+        <p class="rc__desc">¿Existe algoritmo en tiempo polinómico para factorizar números grandes? Base de RSA. No está probado que sea NP-completo.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Integer_factorization" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 10 — Four Color -->
+    <div class="rc" data-category="demostracion">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">4</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Demostración</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--solved"></span>Resuelto · 1976</span>
+        </div>
+        <h3 class="rc__title">Teorema de los cuatro colores</h3>
+        <p class="rc__desc">Todo mapa plano puede colorearse con solo 4 colores sin que regiones adyacentes compartan color. Demostrado por computadora.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Four_color_theorem" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 11 — Twin Primes -->
+    <div class="rc" data-category="matematica">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">p, p+2</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Matemática</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--open"></span>Abierto</span>
+        </div>
+        <h3 class="rc__title">Conjetura de los primos gemelos</h3>
+        <p class="rc__desc">Existen infinitos pares de primos que difieren en 2 (3,5 · 11,13 · 17,19…). Uno de los problemas más antiguos de la teoría de números.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Twin_prime_conjecture" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 12 — Halting (FEATURED row 4) -->
+    <div class="rc rc--featured" data-category="algoritmo">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">⏹</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Algoritmo</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--solved"></span>Indecidible · 1936</span>
+        </div>
+        <h3 class="rc__title">Problema de la parada</h3>
+        <p class="rc__desc">No existe un algoritmo general que pueda determinar si cualquier programa arbitrario termina o corre infinitamente. Turing lo demostró en 1936, sentando las bases de la computabilidad.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Halting_problem" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 13 — Navier-Stokes -->
+    <div class="rc" data-category="matematica">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">∇</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Matemática</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--open"></span>Abierto · $1M</span>
+        </div>
+        <h3 class="rc__title">Ecuaciones de Navier-Stokes</h3>
+        <p class="rc__desc">¿Siempre existen soluciones suaves para las ecuaciones del flujo de fluidos? Problema del Milenio. Sin solución.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_existence_and_smoothness" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 14 — Dijkstra -->
+    <div class="rc" data-category="algoritmo">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">⬡</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Algoritmo</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--solved"></span>Resuelto</span>
+        </div>
+        <h3 class="rc__title">Algoritmo de Dijkstra</h3>
+        <p class="rc__desc">Camino más corto en grafos con pesos no negativos. Fundamental en routers, GPS y sistemas de navegación.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 15 — Birch & Swinnerton-Dyer -->
+    <div class="rc" data-category="abierto">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">∮</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Abierto</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--open"></span>Sin resolver · $1M</span>
+        </div>
+        <h3 class="rc__title">Conjetura de Birch–Swinnerton-Dyer</h3>
+        <p class="rc__desc">Relaciona puntos racionales de curvas elípticas con su función L. Problema del Milenio en geometría aritmética.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Birch_and_Swinnerton-Dyer_conjecture" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 16 — Graph Isomorphism -->
+    <div class="rc" data-category="algoritmo">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">G≅H</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Algoritmo</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--open"></span>Abierto</span>
+        </div>
+        <h3 class="rc__title">Isomorfismo de grafos</h3>
+        <p class="rc__desc">¿Dos grafos pueden transformarse uno en otro renombrando vértices? No se sabe si es NP-completo ni si está en P.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Graph_isomorphism_problem" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 17 — Gödel -->
+    <div class="rc" data-category="matematica">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">⊬</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Matemática</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--solved"></span>Demostrado · 1931</span>
+        </div>
+        <h3 class="rc__title">Teoremas de Incompletitud de Gödel</h3>
+        <p class="rc__desc">Todo sistema formal suficientemente potente es incompleto: hay verdades que no pueden probarse dentro del sistema.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 18 — Kruskal -->
+    <div class="rc" data-category="algoritmo">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">T</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Algoritmo</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--solved"></span>Resuelto</span>
+        </div>
+        <h3 class="rc__title">Algoritmo de Kruskal</h3>
+        <p class="rc__desc">Árbol de expansión mínima en grafos ponderados. Usa Union-Find y enfoque greedy. Fundamental en redes.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Kruskal%27s_algorithm" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 19 — Hodge -->
+    <div class="rc" data-category="abierto">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1545987796-200677ee1011?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">H</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Abierto</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--open"></span>Sin resolver · $1M</span>
+        </div>
+        <h3 class="rc__title">Conjetura de Hodge</h3>
+        <p class="rc__desc">Cada ciclo algebraico es combinación lineal de clases de Hodge. Problema del Milenio en geometría algebraica.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Hodge_conjecture" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 20 — PageRank -->
+    <div class="rc" data-category="algoritmo">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">PR</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Algoritmo</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--solved"></span>Resuelto</span>
+        </div>
+        <h3 class="rc__title">Algoritmo de PageRank</h3>
+        <p class="rc__desc">Clasifica páginas web por importancia basándose en la estructura de enlaces. El eigenvector que fundó Google.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/PageRank" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 21 — Redes Neuronales (FEATURED ciencia datos) -->
+    <div class="rc rc--featured" data-category="datos">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=1200&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">⊛</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Ciencia de Datos</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--solved"></span>Resuelto</span>
+        </div>
+        <h3 class="rc__title">Redes Neuronales Profundas</h3>
+        <p class="rc__desc">Aprendizaje automático con múltiples capas ocultas. Backpropagation y gradient descent son las claves. Base del deep learning moderno que impulsa LLMs, visión y mucho más.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Deep_learning" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 22 — PCA -->
+    <div class="rc" data-category="datos">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">λ</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Ciencia de Datos</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--solved"></span>Resuelto</span>
+        </div>
+        <h3 class="rc__title">Análisis de Componentes Principales</h3>
+        <p class="rc__desc">Reducción de dimensionalidad con eigenvalues. Maximizar varianza explicada con menos variables.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Principal_component_analysis" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 23 — Overfitting -->
+    <div class="rc" data-category="datos">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">∼</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Ciencia de Datos</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--open"></span>Abierto</span>
+        </div>
+        <h3 class="rc__title">El problema del Overfitting</h3>
+        <p class="rc__desc">¿Cómo balancear sesgo y varianza? L1, L2, cross-validation y early stopping. El eterno tradeoff en ML.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Overfitting" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 24 — K-Means -->
+    <div class="rc" data-category="datos">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">k</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Ciencia de Datos</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--solved"></span>Resuelto</span>
+        </div>
+        <h3 class="rc__title">K-Means Clustering</h3>
+        <p class="rc__desc">Agrupamiento no supervisado. Lloyd's algorithm converge a mínimo local. El reto: ¿cómo encontrar k óptimo?</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/K-means_clustering" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 25 — Naive Bayes -->
+    <div class="rc" data-category="datos">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">P(A|B)</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Ciencia de Datos</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--solved"></span>Resuelto</span>
+        </div>
+        <h3 class="rc__title">Clasificador Naive Bayes</h3>
+        <p class="rc__desc">Probabilidad condicional con independencia naive. Teorema de Bayes aplicado a clasificación. Simple pero sorprendentemente efectivo.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 26 — Gradient Descent -->
+    <div class="rc" data-category="datos">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1465447142348-e9952c393450?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">∇</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Ciencia de Datos</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--solved"></span>Resuelto</span>
+        </div>
+        <h3 class="rc__title">Descenso de Gradiente</h3>
+        <p class="rc__desc">Optimización iterativa: learning rate, momentum, Adam. El algoritmo fundamental que entrena casi todo en ML moderno.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Gradient_descent" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 27 — Series Temporales -->
+    <div class="rc" data-category="datos">
+      <div class="rc__img" style="background-image:url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="rc__overlay"></div>
+      <div class="rc__tint"></div>
+      <span class="rc__sym" aria-hidden="true">⟲</span>
+      <div class="rc__body">
+        <div class="rc__meta">
+          <span class="rc__badge">Ciencia de Datos</span>
+          <span class="rc__status"><span class="rc__dot rc__dot--open"></span>Abierto</span>
+        </div>
+        <h3 class="rc__title">Predicción de Series Temporales</h3>
+        <p class="rc__desc">ARIMA, LSTM, Prophet. ¿Cómo capturar seasonality y trends simultáneamente? El forecasting sigue siendo un arte.</p>
+        <a class="rc__link" href="https://en.wikipedia.org/wiki/Time_series" target="_blank" rel="noopener">
+          Wikipedia
+          <svg class="rc__link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div><!-- end .retos-grid -->
+
+  <!-- CTA -->
+  <div class="retos-cta">
+    <a href="projects.html" class="btn btn-primary" data-t>
+      <i data-lucide="folder-open" class="w-4 h-4"></i>
+      Ver proyectos
+    </a>
+    <a href="contact.html" class="btn btn-ghost" data-t>
+      <i data-lucide="mail" class="w-4 h-4"></i>
+      Contactar
+    </a>
+  </div>
+
+</div><!-- end .retos-section -->
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>© 2026 Alfredo Ibáñez Vargas</p>
+    <p style="font-style:italic;">~/retos</p>
+    <a href="https://github.com/maip-fred/maip-fred.github.io" target="_blank" rel="noopener">
+      <i data-lucide="github" class="w-3.5 h-3.5 inline-block mr-1"></i>Ver código
+    </a>
+  </div>
+</footer>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script>
+(function() {
+  /* ---- Floating math symbols ---- */
+  const syms = ['∑','∫','∂','λ','∞','π','ζ','∇','⊗','≡','∀','∃','∈','⊂','⊕','∮','≠','∝','φ','Δ','Γ','Ω','α','β','γ','δ','ε','θ','μ','σ'];
+  const bg = document.getElementById('mathBg');
+  for (let i = 0; i < 22; i++) {
+    const s = document.createElement('span');
+    s.textContent = syms[i % syms.length];
+    const size = 1.5 + Math.random() * 5;
+    const dur  = 18 + Math.random() * 28;
+    const left = Math.random() * 100;
+    const delay= -(Math.random() * dur);
+    s.style.cssText = `left:${left}%;font-size:${size}rem;animation-duration:${dur}s;animation-delay:${delay}s;`;
+    bg.appendChild(s);
+  }
+
+  /* ---- Counter animation ---- */
+  function animCounter(el, target, duration) {
+    let start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      const progress = Math.min((ts - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(ease * target);
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target;
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* Trigger counters once hero is visible */
+  const statEls = document.querySelectorAll('.stat-num[data-target]');
+  const countersStarted = { done: false };
+  const heroObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !countersStarted.done) {
+        countersStarted.done = true;
+        setTimeout(() => {
+          statEls.forEach((el, i) => {
+            setTimeout(() => animCounter(el, +el.dataset.target, 1400), i * 180);
+          });
+        }, 600);
+        heroObs.disconnect();
+      }
+    });
+  }, { threshold: 0.4 });
+  const statsEl = document.querySelector('.retos-stats');
+  if (statsEl) heroObs.observe(statsEl);
+
+  /* ---- Card entrance via IntersectionObserver ---- */
+  const cards = document.querySelectorAll('.rc');
+  const cardObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('rc--visible');
+        cardObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  cards.forEach((card, i) => {
+    card.style.transitionDelay = `${(i % 3) * 75}ms`;
+    cardObs.observe(card);
+  });
+
+  /* ---- 3D tilt on hover ---- */
+  cards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = e.clientX - r.left;
+      const y = e.clientY - r.top;
+      const cx = r.width / 2;
+      const cy = r.height / 2;
+      const rx = -(y - cy) / 22;
+      const ry =  (x - cx) / 22;
+      card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.025)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+  /* ---- Filter logic ---- */
+  const filterBtns = document.querySelectorAll('.r-filter');
+  const countNum   = document.getElementById('countNum');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      let visible = 0;
+
+      cards.forEach((card, i) => {
+        const matches = filter === 'all' || card.dataset.category === filter;
+        if (matches) {
+          visible++;
+          /* Re-show hidden card with entrance animation */
+          if (card.style.display === 'none' || card.classList.contains('rc--filtered')) {
+            card.style.display = 'flex';
+            card.classList.remove('rc--filtered');
+            card.classList.remove('rc--visible');
+            /* stagger by position in visible set */
+            const delay = (visible - 1) % 3 * 60;
+            setTimeout(() => card.classList.add('rc--visible'), delay + 10);
+          } else {
+            card.classList.remove('rc--filtered');
+          }
+        } else {
+          card.classList.remove('rc--visible');
+          card.classList.add('rc--filtered');
+          const ref = card;
+          setTimeout(() => {
+            if (ref.classList.contains('rc--filtered')) ref.style.display = 'none';
+          }, 400);
+        }
+      });
+
+      if (countNum) countNum.textContent = visible;
+    });
+  });
+
+})();
+</script>
+
+<script src="js/sound.js" defer></script>
+<script src="js/cmdk.js" defer></script>
+<script src="js/easter-egg.js" defer></script>
+<script src="js/cursor.js" defer></script>
+<script src="js/core.js" defer></script>
+<script src="js/chatbot.js" defer></script>
+<script src="js/dock.js" defer></script>
+<script src="js/magnetic.js" defer></script>
+<script src="js/scramble.js" defer></script>
+<script src="js/matrix.js" defer></script>
+</body>
+</html>

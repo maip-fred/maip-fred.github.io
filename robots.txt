@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://maip-fred.github.io/sitemap.xml

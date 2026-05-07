@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Visualización de datos — Prácticas ITAM 2026: Leaflet, igraph, Shiny, ggplot2, sf y Gephi. Mapas interactivos de México y análisis de redes sociales." />
+  <meta name="author" content="Alfredo Ibáñez Vargas" />
+  <title>Visualización de Datos — Alfredo Ibáñez</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Leaflet CSS — must be in head -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily: {
+        sans:    ['"DM Sans"', 'Inter', 'sans-serif'],
+        display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        mono:    ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+      } } },
+    };
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="manifest" href="/assets/manifest.json" />
+  <meta name="theme-color" content="#030810" />
+
+  <meta property="og:type"        content="article" />
+  <meta property="og:url"         content="https://maip-fred.github.io/dataviz.html" />
+  <meta property="og:title"       content="Visualización de Datos — Alfredo Ibáñez" />
+  <meta property="og:description" content="Mapas interactivos de México con Leaflet, análisis de redes con igraph, dashboards reactivos con Shiny. ITAM 2026." />
+  <meta property="og:image"       content="https://maip-fred.github.io/assets/og-image.svg" />
+
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/effects.css" />
+  <link rel="stylesheet" href="css/projects.css" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/chatbot.css" />
+
+  <style>
+    /* ═══════════════════════════════════════════════════
+       DataViz Case Study — page-specific styles
+    ═══════════════════════════════════════════════════ */
+
+    /* ── Layout wrapper ── */
+    .dv-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Back link ── */
+    .dv-back {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-family: var(--f-mono); font-size: .72rem; color: var(--lt-3);
+      letter-spacing: .12em; text-transform: uppercase;
+      padding-top: 7rem; margin-bottom: 3rem;
+      transition: color .2s, gap .2s;
+    }
+    .dv-back:hover { color: var(--olive); gap: .7rem; }
+
+    /* ── Section spacing ── */
+    .dv-section { margin-bottom: 5rem; }
+
+    /* ── Shared section eyebrow ── */
+    .dv-section-eyebrow {
+      font-family: var(--f-mono); font-size: .6rem; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--lt-3); margin-bottom: .9rem;
+      display: flex; align-items: center; gap: .65rem;
+    }
+    .dv-section-eyebrow::before {
+      content: ''; width: 1.5rem; height: 1px; background: currentColor; display: block; flex-shrink: 0;
+    }
+    .dv-section-title {
+      font-family: var(--f-display);
+      font-size: clamp(2.5rem, 5.5vw, 5rem);
+      font-weight: 600; color: var(--lt-1); line-height: .95;
+      letter-spacing: -.035em; margin-bottom: 1rem;
+    }
+    .dv-section-title em {
+      font-style: italic; color: transparent;
+      -webkit-text-stroke: 1px rgba(26,25,20,.14);
+    }
+    .dv-section-desc {
+      font-family: var(--f-sans); font-size: .9rem; color: var(--lt-2); line-height: 1.85;
+      max-width: 58ch;
+    }
+    .dv-section-header {
+      display: grid; grid-template-columns: 80px 1fr; gap: 2rem; align-items: start;
+      margin-bottom: 2.5rem;
+    }
+    @media (max-width: 560px) { .dv-section-header { grid-template-columns: 1fr; } }
+    .dv-section-num {
+      font-family: var(--f-display); font-size: 5rem; font-weight: 700;
+      color: rgba(26,25,20,.06); line-height: 1; letter-spacing: -.04em; user-select: none;
+    }
+
+    /* ── MAP ── */
+    .dv-map-wrap {
+      position: relative; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 4px 32px rgba(0,0,0,.1);
+      border: 1px solid rgba(26,25,20,.08);
+    }
+    .dv-map-controls {
+      position: absolute; top: .875rem; right: .875rem; z-index: 1000;
+      display: flex; gap: .4rem;
+    }
+    .dv-ctrl-btn {
+      font-family: var(--f-mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
+      padding: .38rem .8rem; border-radius: 6px; cursor: pointer;
+      border: 1px solid rgba(26,25,20,.15); background: rgba(248,247,244,.95);
+      color: var(--lt-2); transition: all .2s; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    }
+    .dv-ctrl-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+    #mexico-map { height: 500px; }
+
+    .dv-map-legend {
+      display: flex; align-items: center; gap: 1.25rem; margin-top: 1rem; flex-wrap: wrap;
+    }
+    .dv-legend-label {
+      font-family: var(--f-mono); font-size: .58rem; color: var(--lt-3);
+      letter-spacing: .1em; text-transform: uppercase;
+    }
+    .dv-legend-bar {
+      display: flex; align-items: center; gap: .35rem;
+      font-family: var(--f-mono); font-size: .58rem; color: var(--lt-3);
+    }
+    .dv-legend-swatch { width: 22px; height: 11px; border-radius: 3px; }
+
+    /* ── NETWORK ── */
+    .dv-net-wrap {
+      position: relative; border-radius: 16px; overflow: hidden;
+      background: #09090f; box-shadow: 0 8px 48px rgba(0,0,0,.35);
+    }
+    #network-svg { width: 100%; height: 520px; display: block; }
+    .dv-net-hint {
+      position: absolute; bottom: .875rem; left: 1rem;
+      font-family: var(--f-mono); font-size: .55rem; letter-spacing: .1em;
+      text-transform: uppercase; color: rgba(255,255,255,.2);
+    }
+
+    .dv-net-stats {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.06);
+      border-radius: 12px; overflow: hidden; margin-top: 1.5rem;
+    }
+    @media (max-width: 480px) { .dv-net-stats { grid-template-columns: repeat(2,1fr); } }
+    .dv-net-stat {
+      padding: 1.25rem; background: rgba(9,9,15,.9); text-align: center;
+    }
+    .dv-net-stat-n {
+      font-family: var(--f-display); font-size: 2.2rem; font-weight: 700;
+      color: var(--t-1); line-height: 1;
+    }
+    .dv-net-stat-l {
+      font-family: var(--f-mono); font-size: .52rem; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--t-3); margin-top: .3rem;
+    }
+
+    /* ── SHINY SECTION (dark card) ── */
+    .dv-shiny-section {
+      background: #0E0E12;
+      border-radius: 20px;
+      padding: 3rem 3.5rem;
+      margin-bottom: 5rem;
+      border: 1px solid rgba(255,255,255,.06);
+    }
+    @media (max-width: 640px) { .dv-shiny-section { padding: 2rem 1.5rem; } }
+    .dv-shiny-section .dv-section-eyebrow { color: var(--cyan); }
+    .dv-shiny-section .dv-section-title  { color: var(--t-1); }
+    .dv-shiny-section .dv-section-title em { -webkit-text-stroke: 1px rgba(255,255,255,.1); }
+    .dv-shiny-section .dv-section-desc   { color: var(--t-2); }
+    .dv-shiny-section .dv-section-num    { color: rgba(255,255,255,.04); }
+    .dv-shiny-section .dv-section-header { margin-bottom: 1.5rem; }
+
+    .dv-code-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: .5rem;
+    }
+    @media (max-width: 640px) { .dv-code-grid { grid-template-columns: 1fr; } }
+    .dv-code-label {
+      font-family: var(--f-mono); font-size: .6rem; color: rgba(255,255,255,.3);
+      letter-spacing: .1em; text-transform: uppercase; margin-bottom: .6rem;
+    }
+    .dv-code {
+      background: rgba(0,0,0,.5); border: 1px solid rgba(255,255,255,.07);
+      border-radius: 10px; padding: 1.1rem 1.3rem; overflow-x: auto;
+      font-family: var(--f-mono); font-size: .75rem; line-height: 1.85;
+      color: var(--t-2);
+    }
+    .dv-code .kw  { color: #A78BFA; }
+    .dv-code .fn  { color: #60A5FA; }
+    .dv-code .str { color: #4ADE80; }
+    .dv-code .cm  { color: rgba(255,255,255,.28); font-style: italic; }
+    .dv-code .nb  { color: #22D3EE; }
+
+    .dv-shiny-features {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 1.75rem;
+    }
+    @media (max-width: 640px) { .dv-shiny-features { grid-template-columns: 1fr; } }
+    .dv-shiny-feat {
+      padding: 1.1rem 1.25rem; background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07); border-radius: 10px;
+    }
+    .dv-shiny-feat-title {
+      font-family: var(--f-mono); font-size: .68rem; font-weight: 600;
+      color: var(--t-1); margin: .45rem 0 .3rem;
+    }
+    .dv-shiny-feat-desc {
+      font-family: var(--f-sans); font-size: .78rem; color: var(--t-3); line-height: 1.65;
+    }
+
+    /* ── PRACTICES GRID ── */
+    .dv-practices-grid {
+      display: grid; grid-template-columns: repeat(2,1fr); gap: 1.25rem;
+    }
+    @media (max-width: 640px) { .dv-practices-grid { grid-template-columns: 1fr; } }
+    .dv-practice-card {
+      padding: 1.5rem 1.5rem 1.5rem 1.75rem;
+      border: 1px solid rgba(26,25,20,.1); border-radius: 14px;
+      background: #f8f7f4; position: relative; overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .dv-practice-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px rgba(0,0,0,.07);
+    }
+    .dv-practice-wm {
+      position: absolute; top: .5rem; right: 1rem;
+      font-family: var(--f-display); font-size: 4rem; font-weight: 700;
+      color: rgba(26,25,20,.045); line-height: 1; user-select: none; pointer-events: none;
+    }
+    .dv-practice-tag {
+      font-family: var(--f-mono); font-size: .55rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--olive); margin-bottom: .6rem;
+    }
+    .dv-practice-title {
+      font-family: var(--f-display); font-size: 1.35rem; font-weight: 600;
+      color: var(--lt-1); margin-bottom: .4rem; line-height: 1.2;
+    }
+    .dv-practice-desc {
+      font-family: var(--f-sans); font-size: .82rem; color: var(--lt-2); line-height: 1.65;
+    }
+    .dv-practice-tools {
+      display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .85rem;
+    }
+    .dv-practice-tool {
+      font-family: var(--f-mono); font-size: .54rem; letter-spacing: .08em;
+      padding: .18rem .5rem; border-radius: 3px;
+      background: rgba(26,25,20,.06); color: var(--lt-2);
+    }
+
+    /* ── TOOLS GRID ── */
+    .dv-tools-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem;
+    }
+    @media (max-width: 768px) { .dv-tools-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 460px) { .dv-tools-grid { grid-template-columns: 1fr; } }
+    .dv-tool-card {
+      padding: 1.5rem; border: 1px solid rgba(26,25,20,.1);
+      border-radius: 14px; background: #f8f7f4;
+      border-top: 3px solid var(--ti-accent, var(--blue));
+      transition: transform .25s, box-shadow .25s;
+    }
+    .dv-tool-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.08); }
+    .dv-tool-header {
+      display: flex; align-items: center; gap: .75rem; margin-bottom: .85rem;
+    }
+    .dv-tool-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: var(--ti-bg, rgba(37,99,235,.08));
+      border: 1px solid var(--ti-bd, rgba(37,99,235,.18));
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .dv-tool-name {
+      font-family: var(--f-mono); font-size: .72rem; font-weight: 700;
+      color: var(--lt-1); letter-spacing: .04em;
+    }
+    .dv-tool-use {
+      font-family: var(--f-sans); font-size: .72rem; color: var(--lt-3);
+      margin-bottom: .6rem; line-height: 1.4;
+    }
+    .dv-tool-desc {
+      font-family: var(--f-sans); font-size: .8rem; color: var(--lt-2); line-height: 1.65;
+    }
+    .dv-tool-badge {
+      display: inline-block; margin-top: .85rem;
+      font-family: var(--f-mono); font-size: .52rem; letter-spacing: .14em;
+      text-transform: uppercase; padding: .2rem .55rem; border-radius: 100px;
+      background: var(--ti-bg, rgba(37,99,235,.08));
+      color: var(--ti-accent, var(--blue));
+      border: 1px solid var(--ti-bd, rgba(37,99,235,.18));
+    }
+
+    /* ── Leaflet popup override ── */
+    .leaflet-popup-content-wrapper {
+      font-family: var(--f-sans) !important;
+      border-radius: 10px !important;
+      box-shadow: 0 4px 20px rgba(0,0,0,.15) !important;
+    }
+    .leaflet-popup-content { font-size: .85rem !important; margin: .6rem .8rem !important; }
+
+    /* ── D3 tooltip ── */
+    #dv-net-tooltip {
+      position: fixed; z-index: 8000; pointer-events: none;
+      background: rgba(9,9,15,.94); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 8px; padding: .5rem .9rem;
+      font-family: var(--f-mono); font-size: .72rem; color: var(--t-1);
+      opacity: 0; transition: opacity .15s; white-space: nowrap;
+    }
+
+    /* ── Viz section divider (dark band) ── */
+    .dv-viz-band {
+      background: #0b0b0f;
+      margin: 0 0 5rem;
+      padding: 3.5rem 0;
+      border-top: 1px solid rgba(255,255,255,.05);
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+
+    /* ── Map section (light) ── */
+    .dv-map-section {
+      padding: 4rem 0 5rem;
+      background: #f8f7f4;
+      margin: 0 0 5rem;
+      border-top: 1px solid rgba(26,25,20,.07);
+      border-bottom: 1px solid rgba(26,25,20,.07);
+    }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Ir al contenido</a>
+<div id="scroll-bar"></div>
+<div id="grain-overlay" aria-hidden="true"></div>
+<div id="matrix-overlay" role="dialog" aria-modal="true" aria-label="Matrix mode">
+  <canvas id="matrix-canvas"></canvas>
+  <p id="matrix-label">PROTOCOLO MATRIX · AIV</p>
+  <p id="matrix-exit-hint">[ ESC ] · CLICK PARA SALIR</p>
+</div>
+<aside class="social-sidebar">
+  <a href="https://github.com/maip-fred" target="_blank" rel="noopener" aria-label="GitHub"><i data-lucide="github" class="w-5 h-5"></i></a>
+  <a href="mailto:ibanez.alfredo.02.10@gmail.com" aria-label="Email"><i data-lucide="mail" class="w-5 h-5"></i></a>
+</aside>
+
+<header id="header">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" data-t>AIV</a>
+    <ul class="nav-links">
+      <li><a href="index.html"    class="nav-link" data-num="00" data-t>Inicio</a></li>
+      <li><a href="about.html"    class="nav-link" data-num="01" data-t>Sobre mí</a></li>
+      <li><a href="skills.html"   class="nav-link" data-num="02" data-t>Habilidades</a></li>
+      <li><a href="retos.html"    class="nav-link" data-num="03" data-t>Retos</a></li>
+      <li><a href="projects.html" class="nav-link active" data-num="04" data-t>Proyectos</a></li>
+      <li><a href="contact.html"  class="nav-cta"  data-t>Contacto</a></li>
+    </ul>
+    <button id="hamburger" class="hamburger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div id="mobile-menu">
+    <ul class="mobile-links">
+      <li><a href="index.html"    data-t>Inicio</a></li>
+      <li><a href="about.html"    data-t>Sobre mí</a></li>
+      <li><a href="skills.html"   data-t>Habilidades</a></li>
+      <li><a href="retos.html"    data-t>Retos</a></li>
+      <li><a href="projects.html" data-t>Proyectos</a></li>
+      <li><a href="contact.html"  data-t>Contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- D3 tooltip (always in DOM) -->
+<div id="dv-net-tooltip"></div>
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<div id="main-content" class="page-header" style="position:relative;overflow:hidden;">
+  <div class="dv-content" style="padding-top:7rem;padding-bottom:4rem;">
+    <a href="projects.html" class="dv-back" style="padding-top:0;margin-bottom:2rem;" data-t>
+      <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+      Proyectos
+    </a>
+    <span class="wm" aria-hidden="true">04</span>
+    <p class="page-tag animate-fade-in" style="font-family:var(--f-mono);font-size:.65rem;color:var(--olive-l);letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.25rem;">04 — DataViz · ITAM 2026</p>
+    <h1 class="page-title animate-hero-name" style="font-family:var(--f-display);font-size:clamp(4rem,10vw,9rem);font-weight:600;line-height:.88;letter-spacing:-.04em;margin-bottom:2rem;">
+      <span data-scramble data-scramble-delay="900">Datos que</span><br>
+      <span class="page-title-outline" data-scramble data-scramble-delay="1100">hablan.</span>
+    </h1>
+
+    <!-- Stats row -->
+    <div style="display:flex;gap:2.5rem;flex-wrap:wrap;margin-top:2rem;" class="animate-fade-in">
+      <div style="text-align:center;">
+        <div style="font-family:var(--f-display);font-size:2.5rem;font-weight:700;color:var(--t-1);line-height:1;">6</div>
+        <div style="font-family:var(--f-mono);font-size:.6rem;color:var(--t-3);letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem;">Prácticas</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:var(--f-display);font-size:2.5rem;font-weight:700;color:var(--t-1);line-height:1;">388</div>
+        <div style="font-family:var(--f-mono);font-size:.6rem;color:var(--t-3);letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem;">Nodos Red</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:var(--f-display);font-size:2.5rem;font-weight:700;color:var(--t-1);line-height:1;">32</div>
+        <div style="font-family:var(--f-mono);font-size:.6rem;color:var(--t-3);letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem;">Estados MX</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:var(--f-display);font-size:2.5rem;font-weight:700;color:var(--t-1);line-height:1;">9</div>
+        <div style="font-family:var(--f-mono);font-size:.6rem;color:var(--t-3);letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem;">Herramientas</div>
+      </div>
+    </div>
+
+    <!-- Tool pills -->
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.75rem;" class="animate-slide-up">
+      <span style="font-family:var(--f-mono);font-size:.68rem;padding:.28rem .75rem;background:rgba(107,140,82,.12);color:var(--olive-l);border:1px solid rgba(107,140,82,.25);border-radius:999px;">R</span>
+      <span style="font-family:var(--f-mono);font-size:.68rem;padding:.28rem .75rem;background:rgba(107,140,82,.12);color:var(--olive-l);border:1px solid rgba(107,140,82,.25);border-radius:999px;">Leaflet</span>
+      <span style="font-family:var(--f-mono);font-size:.68rem;padding:.28rem .75rem;background:rgba(107,140,82,.12);color:var(--olive-l);border:1px solid rgba(107,140,82,.25);border-radius:999px;">D3.js</span>
+      <span style="font-family:var(--f-mono);font-size:.68rem;padding:.28rem .75rem;background:rgba(107,140,82,.12);color:var(--olive-l);border:1px solid rgba(107,140,82,.25);border-radius:999px;">igraph</span>
+      <span style="font-family:var(--f-mono);font-size:.68rem;padding:.28rem .75rem;background:rgba(107,140,82,.12);color:var(--olive-l);border:1px solid rgba(107,140,82,.25);border-radius:999px;">Shiny</span>
+      <span style="font-family:var(--f-mono);font-size:.68rem;padding:.28rem .75rem;background:rgba(107,140,82,.12);color:var(--olive-l);border:1px solid rgba(107,140,82,.25);border-radius:999px;">sf</span>
+      <span style="font-family:var(--f-mono);font-size:.68rem;padding:.28rem .75rem;background:rgba(107,140,82,.12);color:var(--olive-l);border:1px solid rgba(107,140,82,.25);border-radius:999px;">ggplot2</span>
+      <span style="font-family:var(--f-mono);font-size:.68rem;padding:.28rem .75rem;background:rgba(107,140,82,.12);color:var(--olive-l);border:1px solid rgba(107,140,82,.25);border-radius:999px;">Gephi</span>
+      <span style="font-family:var(--f-mono);font-size:.68rem;padding:.28rem .75rem;background:rgba(107,140,82,.12);color:var(--olive-l);border:1px solid rgba(107,140,82,.25);border-radius:999px;">ggraph</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SEMESTER TIMELINE — horizontal progress bar
+══════════════════════════════════════════ -->
+<div class="dv-content" style="max-width:1100px;margin:0 auto;padding:0 2rem;">
+  <div data-aos="fade-up" style="margin:3.5rem 0;overflow-x:auto;">
+    <div style="min-width:600px;">
+      <p style="font-family:var(--f-mono);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lt-3);margin-bottom:1.75rem;display:flex;align-items:center;gap:.65rem;">
+        <span style="width:1.5rem;height:1px;background:currentColor;display:inline-block;flex-shrink:0;"></span>
+        Progresión del semestre · Ene–May 2026
+      </p>
+      <div style="display:flex;align-items:flex-start;gap:0;position:relative;padding-bottom:3rem;">
+        <!-- Connecting line -->
+        <div style="position:absolute;top:20px;left:40px;right:40px;height:2px;background:linear-gradient(to right,var(--olive),var(--cyan));opacity:.5;"></div>
+        <!-- P01 -->
+        <div style="flex:1;text-align:center;position:relative;">
+          <div style="width:40px;height:40px;background:var(--olive);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;font-family:var(--f-mono);font-size:.62rem;font-weight:700;color:white;position:relative;z-index:1;box-shadow:0 0 0 4px rgba(107,140,82,.15);">P01</div>
+          <div style="margin-top:.75rem;font-family:var(--f-mono);font-size:.62rem;color:var(--lt-1);font-weight:600;line-height:1.3;">ggplot2</div>
+          <div style="font-family:var(--f-sans);font-size:.62rem;color:var(--lt-3);line-height:1.4;margin-top:.2rem;">Visualización<br>estadística</div>
+        </div>
+        <!-- P02 -->
+        <div style="flex:1;text-align:center;position:relative;">
+          <div style="width:40px;height:40px;background:#7C3AED;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;font-family:var(--f-mono);font-size:.62rem;font-weight:700;color:white;position:relative;z-index:1;box-shadow:0 0 0 4px rgba(124,58,237,.15);">P02</div>
+          <div style="margin-top:.75rem;font-family:var(--f-mono);font-size:.62rem;color:var(--lt-1);font-weight:600;line-height:1.3;">igraph</div>
+          <div style="font-family:var(--f-sans);font-size:.62rem;color:var(--lt-3);line-height:1.4;margin-top:.2rem;">Redes<br>en R</div>
+        </div>
+        <!-- P03 -->
+        <div style="flex:1;text-align:center;position:relative;">
+          <div style="width:40px;height:40px;background:var(--cyan);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;font-family:var(--f-mono);font-size:.62rem;font-weight:700;color:#0b0b0f;position:relative;z-index:1;box-shadow:0 0 0 4px rgba(34,211,238,.15);">P03</div>
+          <div style="margin-top:.75rem;font-family:var(--f-mono);font-size:.62rem;color:var(--lt-1);font-weight:600;line-height:1.3;">Shiny</div>
+          <div style="font-family:var(--f-sans);font-size:.62rem;color:var(--lt-3);line-height:1.4;margin-top:.2rem;">Dashboard<br>reactivo</div>
+        </div>
+        <!-- P04 -->
+        <div style="flex:1;text-align:center;position:relative;">
+          <div style="width:40px;height:40px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;font-family:var(--f-mono);font-size:.62rem;font-weight:700;color:white;position:relative;z-index:1;box-shadow:0 0 0 4px rgba(184,137,42,.15);">P04</div>
+          <div style="margin-top:.75rem;font-family:var(--f-mono);font-size:.62rem;color:var(--lt-1);font-weight:600;line-height:1.3;">sf básico</div>
+          <div style="font-family:var(--f-sans);font-size:.62rem;color:var(--lt-3);line-height:1.4;margin-top:.2rem;">Intro<br>espacial</div>
+        </div>
+        <!-- P05 -->
+        <div style="flex:1;text-align:center;position:relative;">
+          <div style="width:40px;height:40px;background:var(--olive-l);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;font-family:var(--f-mono);font-size:.62rem;font-weight:700;color:white;position:relative;z-index:1;box-shadow:0 0 0 4px rgba(150,193,116,.15);">P05</div>
+          <div style="margin-top:.75rem;font-family:var(--f-mono);font-size:.62rem;color:var(--lt-1);font-weight:600;line-height:1.3;">Leaflet</div>
+          <div style="font-family:var(--f-sans);font-size:.62rem;color:var(--lt-3);line-height:1.4;margin-top:.2rem;">Mapas<br>interactivos</div>
+        </div>
+        <!-- P06 -->
+        <div style="flex:1;text-align:center;position:relative;">
+          <div style="width:40px;height:40px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;font-family:var(--f-mono);font-size:.62rem;font-weight:700;color:white;position:relative;z-index:1;box-shadow:0 0 0 4px rgba(248,113,113,.15);">P06</div>
+          <div style="margin-top:.75rem;font-family:var(--f-mono);font-size:.62rem;color:var(--lt-1);font-weight:600;line-height:1.3;">Gephi + sf</div>
+          <div style="font-family:var(--f-sans);font-size:.62rem;color:var(--lt-3);line-height:1.4;margin-top:.2rem;">Análisis<br>avanzado</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     01 — LEAFLET MAP (light section)
+══════════════════════════════════════════ -->
+<div class="dv-map-section">
+  <div class="dv-content" style="max-width:1100px;margin:0 auto;padding:0 2rem;">
+
+    <!-- Section header -->
+    <div data-aos="fade-up" style="display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(26,25,20,.07);">
+      <div style="width:48px;height:48px;background:rgba(234,88,12,.08);border:1px solid rgba(234,88,12,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;">🗺️</div>
+      <div>
+        <div style="font-family:var(--f-mono);font-size:.62rem;color:var(--olive);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.25rem;">Práctica 05 · Leaflet.js</div>
+        <h2 style="font-family:var(--f-display);font-size:clamp(1.5rem,3vw,2.25rem);font-weight:600;color:var(--lt-1);line-height:1.1;margin:0;">Mapa Choropleth de México</h2>
+      </div>
+    </div>
+    <p data-aos="fade-up" style="font-family:var(--f-sans);font-size:.9rem;color:var(--lt-2);line-height:1.7;max-width:60ch;margin-bottom:1.75rem;">32 estados con datos del Censo INEGI 2020. Toggle entre <strong>densidad poblacional</strong> y <strong>población total</strong>. Haz clic en un estado para ver sus datos.</p>
+
+    <div class="dv-map-wrap" data-aos="fade-up">
+      <div class="dv-map-controls">
+        <button class="dv-ctrl-btn active" id="btn-density" onclick="setMapMode('density')">Densidad</button>
+        <button class="dv-ctrl-btn" id="btn-pop" onclick="setMapMode('population')">Población</button>
+      </div>
+      <div id="mexico-map"></div>
+    </div>
+
+    <div class="dv-map-legend" id="map-legend">
+      <span class="dv-legend-label">Densidad (hab/km²) →</span>
+      <div class="dv-legend-bar"><div class="dv-legend-swatch" style="background:#ffffd4;border:1px solid rgba(0,0,0,.08);"></div>&lt; 20</div>
+      <div class="dv-legend-bar"><div class="dv-legend-swatch" style="background:#fed98e;"></div>20–80</div>
+      <div class="dv-legend-bar"><div class="dv-legend-swatch" style="background:#fe9929;"></div>80–200</div>
+      <div class="dv-legend-bar"><div class="dv-legend-swatch" style="background:#d95f0e;"></div>200–500</div>
+      <div class="dv-legend-bar"><div class="dv-legend-swatch" style="background:#993404;"></div>&gt; 500</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     02 — NETWORK GRAPH (dark section)
+══════════════════════════════════════════ -->
+<div class="dv-viz-band">
+  <div class="dv-content" style="max-width:1100px;margin:0 auto;padding:0 2rem;">
+
+    <!-- Section header -->
+    <div data-aos="fade-up" style="display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.06);">
+      <div style="width:48px;height:48px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;">🕸️</div>
+      <div>
+        <div style="font-family:var(--f-mono);font-size:.62rem;color:var(--cyan);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.25rem;">Práctica 02 · igraph + D3.js</div>
+        <h2 style="font-family:var(--f-display);font-size:clamp(1.5rem,3vw,2.25rem);font-weight:600;color:var(--t-1);line-height:1.1;margin:0;">Red Social · 388 Nodos</h2>
+      </div>
+    </div>
+    <p data-aos="fade-up" style="font-family:var(--f-sans);font-size:.9rem;color:var(--t-3);line-height:1.7;max-width:60ch;margin-bottom:1.75rem;">3,598 aristas · 6 comunidades · física interactiva. Arrastrá nodos, hacé zoom, hover para info.</p>
+
+    <div class="dv-net-wrap" data-aos="fade-up">
+      <svg id="network-svg" aria-label="Grafo de red social interactivo"></svg>
+      <div class="dv-net-hint">Arrastra · Zoom · Hover para info</div>
+    </div>
+
+    <div class="dv-net-stats" data-aos="fade-up">
+      <div class="dv-net-stat">
+        <div class="dv-net-stat-n">388</div>
+        <div class="dv-net-stat-l">nodos</div>
+      </div>
+      <div class="dv-net-stat">
+        <div class="dv-net-stat-n">3,598</div>
+        <div class="dv-net-stat-l">aristas</div>
+      </div>
+      <div class="dv-net-stat">
+        <div class="dv-net-stat-n">93</div>
+        <div class="dv-net-stat-l">grado máximo</div>
+      </div>
+      <div class="dv-net-stat">
+        <div class="dv-net-stat-n" style="color:var(--cyan);">6</div>
+        <div class="dv-net-stat-l">comunidades</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     03 — SHINY (dark card)
+══════════════════════════════════════════ -->
+<div class="dv-content" style="max-width:1100px;margin:0 auto;padding:0 2rem;">
+  <div class="dv-shiny-section" data-aos="fade-up">
+    <div class="dv-section-header">
+      <div class="dv-section-num">03</div>
+      <div>
+        <p class="dv-section-eyebrow">Dashboards reactivos · Práctica 03</p>
+        <h2 class="dv-section-title">Shiny:<br><em>todo en vivo.</em></h2>
+        <p class="dv-section-desc">
+          Apps web interactivas directamente en R — sin tocar JavaScript. El paradigma reactivo reconecta el análisis estadístico con la UI: cada cambio en un input dispara re-ejecución automática de outputs.
+        </p>
+      </div>
+    </div>
+
+    <div class="dv-code-grid">
+      <div>
+        <p class="dv-code-label">ui.R — Interfaz (fragmento clave)</p>
+        <div class="dv-code">
+ui &lt;- <span class="fn">fluidPage</span>(<br>
+&nbsp;&nbsp;<span class="fn">sidebarLayout</span>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">sidebarPanel</span>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">sliderInput</span>(<span class="str">"bins"</span>, <span class="str">"Bins:"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min=<span class="nb">5</span>, max=<span class="nb">50</span>, value=<span class="nb">20</span>)),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">mainPanel</span>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">plotOutput</span>(<span class="str">"histogram"</span>))))<br>
+        </div>
+      </div>
+      <div>
+        <p class="dv-code-label">server.R — Lógica reactiva (fragmento clave)</p>
+        <div class="dv-code">
+<span class="cm"># Re-ejecuta al cambiar input</span><br>
+server &lt;- <span class="kw">function</span>(input, output) {<br>
+&nbsp;&nbsp;output$histogram &lt;- <span class="fn">renderPlot</span>({<br>
+&nbsp;&nbsp;&nbsp;&nbsp;x &lt;- faithful[, <span class="nb">2</span>]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bins &lt;- <span class="fn">seq</span>(<span class="fn">min</span>(x),<span class="fn">max</span>(x),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length.out=input$bins+<span class="nb">1</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">hist</span>(x, breaks=bins,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;col=<span class="str">"#3B82F6"</span>)})<br>
+}<br>
+        </div>
+      </div>
+    </div>
+
+    <div class="dv-shiny-features">
+      <div class="dv-shiny-feat">
+        <i data-lucide="sliders" style="width:18px;height:18px;color:var(--cyan);"></i>
+        <div class="dv-shiny-feat-title">Inputs reactivos</div>
+        <div class="dv-shiny-feat-desc">sliderInput, selectInput, checkboxInput — actualización instantánea del output sin recargar.</div>
+      </div>
+      <div class="dv-shiny-feat">
+        <i data-lucide="mouse-pointer-click" style="width:18px;height:18px;color:var(--blue-l);"></i>
+        <div class="dv-shiny-feat-title">Click events en mapa</div>
+        <div class="dv-shiny-feat-desc">Selección de condados con click, reactiveValues para estado compartido, hover sobre puntos.</div>
+      </div>
+      <div class="dv-shiny-feat">
+        <i data-lucide="bar-chart-2" style="width:18px;height:18px;color:var(--green);"></i>
+        <div class="dv-shiny-feat-title">renderPlot dinámico</div>
+        <div class="dv-shiny-feat-desc">Histogramas paramétricos, county maps, scatter plots con ggplot2 en tiempo real.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       04 — OTRAS PRÁCTICAS (2×2 compact grid)
+  ══════════════════════════════════════════ -->
+  <div class="dv-section" data-aos="fade-up">
+    <p class="dv-section-eyebrow">Más del semestre</p>
+    <h2 class="dv-section-title" style="margin-bottom:2rem;">Cuatro<br><em>prácticas más.</em></h2>
+
+    <div class="dv-practices-grid">
+      <div class="dv-practice-card">
+        <div class="dv-practice-wm">01</div>
+        <div class="dv-practice-tag">ggplot2 · Estadística visual</div>
+        <div class="dv-practice-title">Visualizaciones desde cero</div>
+        <div class="dv-practice-desc">Mapas de calor, scatter plots, barras apiladas con la gramática de gráficos de ggplot2. Primer acercamiento formal a la visualización declarativa.</div>
+        <div class="dv-practice-tools">
+          <span class="dv-practice-tool">ggplot2</span>
+          <span class="dv-practice-tool">R base</span>
+          <span class="dv-practice-tool">RMarkdown</span>
+        </div>
+      </div>
+      <div class="dv-practice-card">
+        <div class="dv-practice-wm">03</div>
+        <div class="dv-practice-tag">Shiny Dashboard</div>
+        <div class="dv-practice-title">Inputs y outputs reactivos</div>
+        <div class="dv-practice-desc">Inputs reactivos, sliders, renderPlot dinámico — el puente directo entre análisis estadístico y producto web sin salir de R.</div>
+        <div class="dv-practice-tools">
+          <span class="dv-practice-tool">Shiny</span>
+          <span class="dv-practice-tool">reactiveValues</span>
+          <span class="dv-practice-tool">renderPlot</span>
+        </div>
+      </div>
+      <div class="dv-practice-card">
+        <div class="dv-practice-wm">04</div>
+        <div class="dv-practice-tag">sf · Simple Features en R</div>
+        <div class="dv-practice-title">Geometrías como datos</div>
+        <div class="dv-practice-desc">Operaciones espaciales, centroides, intersecciones — el modelo de geometrías como columnas de data frames con proyecciones CRS y lectura de shapefiles.</div>
+        <div class="dv-practice-tools">
+          <span class="dv-practice-tool">sf</span>
+          <span class="dv-practice-tool">sp</span>
+          <span class="dv-practice-tool">CRS</span>
+          <span class="dv-practice-tool">Shapefile</span>
+        </div>
+      </div>
+      <div class="dv-practice-card">
+        <div class="dv-practice-wm">06</div>
+        <div class="dv-practice-tag">Gephi + sf avanzado</div>
+        <div class="dv-practice-title">Análisis espacial completo</div>
+        <div class="dv-practice-desc">Layouts Fruchterman-Reingold, análisis de betweenness — Gephi para exploración visual de grafos grandes más pipeline geo completo en R.</div>
+        <div class="dv-practice-tools">
+          <span class="dv-practice-tool">Gephi</span>
+          <span class="dv-practice-tool">Fruchterman-Reingold</span>
+          <span class="dv-practice-tool">Betweenness</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       05 — TOOLS GRID
+  ══════════════════════════════════════════ -->
+  <div class="dv-section" data-aos="fade-up">
+    <p class="dv-section-eyebrow">Stack de visualización</p>
+    <h2 class="dv-section-title" style="margin-bottom:2.5rem;">Herramientas<br><em>del oficio.</em></h2>
+
+    <div class="dv-tools-grid">
+      <!-- R -->
+      <div class="dv-tool-card" style="--ti-bg:rgba(37,99,235,.08);--ti-bd:rgba(37,99,235,.18);--ti-accent:var(--blue);">
+        <div class="dv-tool-header">
+          <div class="dv-tool-icon">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" width="22" height="22" alt="R" loading="lazy">
+          </div>
+          <div class="dv-tool-name">R + RMarkdown</div>
+        </div>
+        <div class="dv-tool-use">Lenguaje base — análisis, modelado, reportes reproducibles.</div>
+        <div class="dv-tool-desc">RMarkdown mezcla código, outputs y narrativa en un solo archivo. Base de todas las prácticas del semestre.</div>
+        <span class="dv-tool-badge">Intermedio</span>
+      </div>
+      <!-- Leaflet -->
+      <div class="dv-tool-card" style="--ti-bg:rgba(107,140,82,.08);--ti-bd:rgba(107,140,82,.18);--ti-accent:var(--olive);">
+        <div class="dv-tool-header">
+          <div class="dv-tool-icon">
+            <i data-lucide="map-pin" style="width:22px;height:22px;color:var(--olive);"></i>
+          </div>
+          <div class="dv-tool-name">Leaflet</div>
+        </div>
+        <div class="dv-tool-use">Mapas web interactivos — tiles, choropleth, clustering.</div>
+        <div class="dv-tool-desc">Marcadores, popups, capas múltiples y choropleth. Usado en R y JavaScript nativo en este mismo caso de estudio.</div>
+        <span class="dv-tool-badge">Intermedio–Avanzado</span>
+      </div>
+      <!-- igraph -->
+      <div class="dv-tool-card" style="--ti-bg:rgba(124,58,237,.08);--ti-bd:rgba(124,58,237,.18);--ti-accent:#7C3AED;">
+        <div class="dv-tool-header">
+          <div class="dv-tool-icon">
+            <i data-lucide="network" style="width:22px;height:22px;color:#7C3AED;"></i>
+          </div>
+          <div class="dv-tool-name">igraph + ggraph</div>
+        </div>
+        <div class="dv-tool-use">Análisis de grafos — centralidad, comunidades, grado.</div>
+        <div class="dv-tool-desc">Grado, betweenness, closeness, pagerank, detección de comunidades. ggraph como capa visual con gramática de gráficos.</div>
+        <span class="dv-tool-badge">Intermedio</span>
+      </div>
+      <!-- Shiny -->
+      <div class="dv-tool-card" style="--ti-bg:rgba(251,146,60,.08);--ti-bd:rgba(251,146,60,.2);--ti-accent:var(--orange);">
+        <div class="dv-tool-header">
+          <div class="dv-tool-icon">
+            <i data-lucide="zap" style="width:22px;height:22px;color:var(--orange);"></i>
+          </div>
+          <div class="dv-tool-name">R Shiny</div>
+        </div>
+        <div class="dv-tool-use">Apps web reactivas en R — sin JavaScript.</div>
+        <div class="dv-tool-desc">Server + UI separados, reactiveValues para estado, renderPlot/renderLeaflet. El puente entre análisis y producto interactivo.</div>
+        <span class="dv-tool-badge">Básico–Intermedio</span>
+      </div>
+      <!-- sf -->
+      <div class="dv-tool-card" style="--ti-bg:rgba(20,184,166,.08);--ti-bd:rgba(20,184,166,.2);--ti-accent:#14B8A6;">
+        <div class="dv-tool-header">
+          <div class="dv-tool-icon">
+            <i data-lucide="layers" style="width:22px;height:22px;color:#14B8A6;"></i>
+          </div>
+          <div class="dv-tool-name">sf / sp</div>
+        </div>
+        <div class="dv-tool-use">Datos geoespaciales — Simple Features, CRS, vectorial.</div>
+        <div class="dv-tool-desc">Geometrías como columnas de data frames, proyecciones, operaciones vectoriales, joins espaciales e integración tidyverse.</div>
+        <span class="dv-tool-badge">Básico–Intermedio</span>
+      </div>
+      <!-- Gephi -->
+      <div class="dv-tool-card" style="--ti-bg:rgba(248,113,113,.08);--ti-bd:rgba(248,113,113,.18);--ti-accent:var(--red);">
+        <div class="dv-tool-header">
+          <div class="dv-tool-icon">
+            <i data-lucide="share-2" style="width:22px;height:22px;color:var(--red);"></i>
+          </div>
+          <div class="dv-tool-name">Gephi</div>
+        </div>
+        <div class="dv-tool-use">Exploración visual de grafos grandes — layout + métricas.</div>
+        <div class="dv-tool-desc">ForceAtlas2, Fruchterman-Reingold, análisis de comunidades, ranking de nodos por centralidad, exportación SVG/PNG de publicación.</div>
+        <span class="dv-tool-badge">Básico–Intermedio</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       CTA
+  ══════════════════════════════════════════ -->
+  <div style="padding:3.5rem;background:#0E0E12;border:1px solid rgba(255,255,255,.07);border-radius:20px;text-align:center;margin-bottom:6rem;" data-aos="fade-up">
+    <p style="font-family:var(--f-mono);font-size:.68rem;color:var(--olive-l);letter-spacing:.22em;text-transform:uppercase;margin-bottom:1rem;">¿Tienes datos que necesitan hablar?</p>
+    <h3 style="font-family:var(--f-display);font-size:clamp(2rem,5vw,3rem);font-weight:600;color:var(--t-1);margin-bottom:1.5rem;line-height:1.1;">Conversemos.</h3>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="contact.html" class="btn btn-primary" data-t>
+        <i data-lucide="mail" class="w-4 h-4"></i>
+        Contactar
+      </a>
+      <a href="projects.html" class="btn btn-outline" data-t>
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Más proyectos
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>© 2026 Alfredo Ibáñez Vargas</p>
+    <p style="font-style:italic;">~/dataviz</p>
+    <a href="projects.html" data-t style="font-family:var(--f-mono);font-size:.65rem;color:var(--t-4);transition:color .2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--t-4)'">← Proyectos</a>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════
+     External libraries — load before inline scripts
+═══════════════════════════════════════════════════ -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
+<!-- Deferred site scripts -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+<script src="js/sound.js" defer></script>
+<script src="js/cmdk.js" defer></script>
+<script src="js/easter-egg.js" defer></script>
+<script src="js/cursor.js" defer></script>
+<script src="js/core.js" defer></script>
+<script src="js/chatbot.js" defer></script>
+<script src="js/dock.js" defer></script>
+<script src="js/magnetic.js" defer></script>
+<script src="js/scramble.js" defer></script>
+<script src="js/matrix.js" defer></script>
+
+<!-- ═══════════════════════════════════════════════════
+     DataViz interactive scripts
+═══════════════════════════════════════════════════ -->
+<script>
+/* ─────────────────────────────────────────────────────
+   1. LEAFLET CHOROPLETH MAP — Mexico
+───────────────────────────────────────────────────── */
+var mapMode    = 'density';
+var geoLayer   = null;
+var mapInst    = null;
+
+var MX = {
+  "Aguascalientes":     { pop: 1425607,  density: 254  },
+  "Baja California":    { pop: 3769020,  density: 54   },
+  "Baja California Sur":{ pop: 798447,   density: 11   },
+  "Campeche":           { pop: 928363,   density: 16   },
+  "Chiapas":            { pop: 5543828,  density: 76   },
+  "Chihuahua":          { pop: 3741869,  density: 15   },
+  "Ciudad de México":   { pop: 9209944,  density: 6202 },
+  "Coahuila":           { pop: 3146771,  density: 21   },
+  "Colima":             { pop: 731391,   density: 134  },
+  "Durango":            { pop: 1832650,  density: 15   },
+  "Guanajuato":         { pop: 6166934,  density: 201  },
+  "Guerrero":           { pop: 3540685,  density: 56   },
+  "Hidalgo":            { pop: 3082841,  density: 148  },
+  "Jalisco":            { pop: 8348151,  density: 106  },
+  "México":             { pop: 16992418, density: 760  },
+  "Michoacán":          { pop: 4748846,  density: 81   },
+  "Morelos":            { pop: 1971520,  density: 403  },
+  "Nayarit":            { pop: 1235456,  density: 44   },
+  "Nuevo León":         { pop: 5784442,  density: 90   },
+  "Oaxaca":             { pop: 4132148,  density: 44   },
+  "Puebla":             { pop: 6583278,  density: 192  },
+  "Querétaro":          { pop: 2368467,  density: 202  },
+  "Quintana Roo":       { pop: 1857985,  density: 44   },
+  "San Luis Potosí":    { pop: 2822255,  density: 46   },
+  "Sinaloa":            { pop: 3026943,  density: 52   },
+  "Sonora":             { pop: 2944840,  density: 16   },
+  "Tabasco":            { pop: 2402598,  density: 97   },
+  "Tamaulipas":         { pop: 3527735,  density: 44   },
+  "Tlaxcala":           { pop: 1342977,  density: 336  },
+  "Veracruz":           { pop: 8112505,  density: 111  },
+  "Yucatán":            { pop: 2320898,  density: 59   },
+  "Zacatecas":          { pop: 1622138,  density: 22   }
+};
+
+function densityColor(d) {
+  return d > 500 ? '#993404' : d > 200 ? '#d95f0e' : d > 80 ? '#fe9929' : d > 20 ? '#fed98e' : '#ffffd4';
+}
+function popColor(p) {
+  return p > 8e6 ? '#084594' : p > 4e6 ? '#2171b5' : p > 2e6 ? '#4292c6' : p > 1e6 ? '#9ecae1' : '#deebf7';
+}
+
+function stateName(props) {
+  return props.name || props.NAME || props.NOMBRE || props.NOM_ENT || props.estado || '';
+}
+function stateInfo(props) {
+  var n = stateName(props);
+  if (MX[n]) return MX[n];
+  for (var k in MX) {
+    if (n.toLowerCase().indexOf(k.toLowerCase()) >= 0 || k.toLowerCase().indexOf(n.toLowerCase()) >= 0)
+      return MX[k];
+  }
+  /* fallback: 'Distrito Federal' → 'Ciudad de México' */
+  if (/distrito|federal|cdmx/i.test(n)) return MX["Ciudad de México"];
+  if (/estado.de.m/i.test(n) || n === 'Mexico' || n === 'Edo. México') return MX["México"];
+  return { pop: 0, density: 0 };
+}
+function featureStyle(feature) {
+  var d = stateInfo(feature.properties);
+  return {
+    fillColor: mapMode === 'density' ? densityColor(d.density) : popColor(d.pop),
+    weight: 1, opacity: 1, color: 'rgba(80,70,50,.3)',
+    dashArray: '', fillOpacity: 0.82
+  };
+}
+function onEach(feature, layer) {
+  var d = stateName(feature.properties) || 'Estado';
+  var info = stateInfo(feature.properties);
+  layer.bindPopup(
+    '<div style="font-family:\'DM Sans\',sans-serif;">' +
+    '<strong style="font-size:.95rem;color:#1a1914;display:block;margin-bottom:.25rem;">' + d + '</strong>' +
+    '<span style="font-family:\'JetBrains Mono\',monospace;font-size:.75rem;color:#6b6455;">Población · </span>' +
+    '<strong style="font-family:\'JetBrains Mono\',monospace;font-size:.75rem;">' + info.pop.toLocaleString('es-MX') + '</strong><br>' +
+    '<span style="font-family:\'JetBrains Mono\',monospace;font-size:.75rem;color:#6b6455;">Densidad · </span>' +
+    '<strong style="font-family:\'JetBrains Mono\',monospace;font-size:.75rem;">' + info.density + ' hab/km²</strong>' +
+    '</div>'
+  );
+  layer.on({
+    mouseover: function(e) {
+      e.target.setStyle({ weight: 2, color: 'rgba(26,25,20,.7)', fillOpacity: 0.95 });
+      e.target.bringToFront();
+    },
+    mouseout: function(e) { geoLayer.resetStyle(e.target); }
+  });
+}
+
+function setMapMode(mode) {
+  mapMode = mode;
+  document.getElementById('btn-density').classList.toggle('active', mode === 'density');
+  document.getElementById('btn-pop').classList.toggle('active', mode === 'population');
+  if (geoLayer) geoLayer.setStyle(featureStyle);
+  var lg = document.getElementById('map-legend');
+  if (mode === 'density') {
+    lg.innerHTML = '<span class="dv-legend-label">Densidad (hab/km²) →</span>' +
+      '<div class="dv-legend-bar"><div class="dv-legend-swatch" style="background:#ffffd4;border:1px solid rgba(0,0,0,.08);"></div>&lt; 20</div>' +
+      '<div class="dv-legend-bar"><div class="dv-legend-swatch" style="background:#fed98e;"></div>20–80</div>' +
+      '<div class="dv-legend-bar"><div class="dv-legend-swatch" style="background:#fe9929;"></div>80–200</div>' +
+      '<div class="dv-legend-bar"><div class="dv-legend-swatch" style="background:#d95f0e;"></div>200–500</div>' +
+      '<div class="dv-legend-bar"><div class="dv-legend-swatch" style="background:#993404;"></div>&gt; 500</div>';
+  } else {
+    lg.innerHTML = '<span class="dv-legend-label">Población total →</span>' +
+      '<div class="dv-legend-bar"><div class="dv-legend-swatch" style="background:#deebf7;border:1px solid rgba(0,0,0,.08);"></div>&lt; 1 M</div>' +
+      '<div class="dv-legend-bar"><div class="dv-legend-swatch" style="background:#9ecae1;"></div>1–2 M</div>' +
+      '<div class="dv-legend-bar"><div class="dv-legend-swatch" style="background:#4292c6;"></div>2–4 M</div>' +
+      '<div class="dv-legend-bar"><div class="dv-legend-swatch" style="background:#2171b5;"></div>4–8 M</div>' +
+      '<div class="dv-legend-bar"><div class="dv-legend-swatch" style="background:#084594;"></div>&gt; 8 M</div>';
+  }
+}
+
+function initMap() {
+  mapInst = L.map('mexico-map', { center: [23.5, -102], zoom: 5, zoomControl: true });
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+    attribution: '© <a href="https://openstreetmap.org">OpenStreetMap</a>, © <a href="https://carto.com">CARTO</a>',
+    subdomains: 'abcd', maxZoom: 19
+  }).addTo(mapInst);
+
+  fetch('https://raw.githubusercontent.com/angelnmara/geojson/master/mexicoHigh.json')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      geoLayer = L.geoJSON(data, { style: featureStyle, onEachFeature: onEach }).addTo(mapInst);
+      mapInst.fitBounds(geoLayer.getBounds(), { padding: [10, 10] });
+    })
+    .catch(function() {
+      document.getElementById('mexico-map').innerHTML =
+        '<div style="display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:.75rem;font-family:\'JetBrains Mono\',monospace;font-size:.78rem;color:#8a8070;text-align:center;padding:2rem;">' +
+        '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>' +
+        'No se pudo cargar el mapa.<br>Requiere conexión a internet.</div>';
+    });
+}
+
+/* ─────────────────────────────────────────────────────
+   2. D3 FORCE-DIRECTED NETWORK GRAPH
+───────────────────────────────────────────────────── */
+function initNetwork() {
+  var el  = document.getElementById('network-svg');
+  var W   = el.parentElement.clientWidth || 900;
+  var H   = 520;
+  var tip = document.getElementById('dv-net-tooltip');
+
+  var svg = d3.select('#network-svg').attr('viewBox', '0 0 ' + W + ' ' + H);
+
+  /* Community palette — matches the site's accent colors */
+  var CLRS = ['#3B82F6','#22D3EE','#4ADE80','#A78BFA','#FCD34D','#F87171'];
+  var N = 130;
+
+  /* Generate nodes with realistic social-network degree distribution */
+  var nodes = d3.range(N).map(function(i) {
+    return {
+      id: i,
+      comm: Math.floor(Math.random() * 6),
+      deg: i < 8 ? 0 : Math.max(1, Math.floor(Math.pow(Math.random(), 2.2) * 18 + 1))
+    };
+  });
+  /* Assign hub degrees to match practice data */
+  [93,67,54,48,42,38,31,27].forEach(function(d,i){ nodes[i].deg = d; });
+
+  /* Generate links with preferential attachment */
+  var links = [];
+  /* Intra-community dense mesh */
+  [0,1,2,3,4,5].forEach(function(c) {
+    var cn = nodes.filter(function(n){ return n.comm === c; });
+    cn.forEach(function(a, ai) {
+      cn.slice(ai+1).forEach(function(b) {
+        if (Math.random() < 0.14) links.push({ source: a.id, target: b.id });
+      });
+    });
+  });
+  /* Hubs connect broadly across communities */
+  nodes.slice(0,8).forEach(function(hub) {
+    nodes.forEach(function(n) {
+      if (n.id !== hub.id && Math.random() < 0.30) links.push({ source: hub.id, target: n.id });
+    });
+  });
+  /* Sparse inter-community bridges */
+  for (var r=0; r<90; r++) {
+    var s = Math.floor(Math.random()*N), t = Math.floor(Math.random()*N);
+    if (s !== t) links.push({ source: s, target: t });
+  }
+
+  /* Compute actual degree from links for node sizing */
+  var degCount = {};
+  nodes.forEach(function(n){ degCount[n.id] = 0; });
+  links.forEach(function(l){
+    degCount[typeof l.source==='object'?l.source.id:l.source]++;
+    degCount[typeof l.target==='object'?l.target.id:l.target]++;
+  });
+  nodes.forEach(function(n){ if (n.id < 8) degCount[n.id] = n.deg; });
+
+  function nr(n){ return Math.sqrt((degCount[n.id]||1)) * 2.0 + 2.5; }
+
+  /* Simulation */
+  var sim = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(links).id(function(d){ return d.id; }).distance(45).strength(0.25))
+    .force('charge', d3.forceManyBody().strength(-55))
+    .force('center', d3.forceCenter(W/2, H/2))
+    .force('collide', d3.forceCollide().radius(function(d){ return nr(d)+2; }));
+
+  var link = svg.append('g')
+    .selectAll('line').data(links).join('line')
+    .attr('stroke','rgba(255,255,255,0.06)').attr('stroke-width', 0.7);
+
+  var node = svg.append('g')
+    .selectAll('circle').data(nodes).join('circle')
+    .attr('r', nr)
+    .attr('fill', function(d){ return CLRS[d.comm] + '88'; })
+    .attr('stroke', function(d){ return CLRS[d.comm]; })
+    .attr('stroke-width', function(d){ return degCount[d.id] > 20 ? 1.5 : 0.8; })
+    .style('cursor','grab')
+    .call(d3.drag()
+      .on('start', function(ev,d){ if(!ev.active) sim.alphaTarget(.3).restart(); d.fx=d.x; d.fy=d.y; })
+      .on('drag',  function(ev,d){ d.fx=ev.x; d.fy=ev.y; })
+      .on('end',   function(ev,d){ if(!ev.active) sim.alphaTarget(0); d.fx=null; d.fy=null; })
+    )
+    .on('mouseover', function(ev,d){
+      tip.style.opacity = '1';
+      var dc = degCount[d.id];
+      tip.innerHTML = 'Nodo <strong>' + (23007+d.id) + '</strong> · Grado: <strong style="color:' + CLRS[d.comm] + '">' + dc + '</strong><br><span style="color:rgba(255,255,255,.4)">Comunidad ' + (d.comm+1) + '</span>';
+      d3.select(this).attr('stroke-width', 2.5).attr('fill', CLRS[d.comm]+'cc');
+    })
+    .on('mousemove', function(ev){
+      tip.style.left = (ev.clientX+14)+'px';
+      tip.style.top  = (ev.clientY-38)+'px';
+    })
+    .on('mouseout', function(ev,d){
+      tip.style.opacity = '0';
+      d3.select(this)
+        .attr('stroke-width', degCount[d.id]>20?1.5:0.8)
+        .attr('fill', CLRS[d.comm]+'88');
+    });
+
+  sim.on('tick', function(){
+    link
+      .attr('x1',function(d){ return d.source.x; })
+      .attr('y1',function(d){ return d.source.y; })
+      .attr('x2',function(d){ return d.target.x; })
+      .attr('y2',function(d){ return d.target.y; });
+    node
+      .attr('cx',function(d){ return Math.max(nr(d), Math.min(W-nr(d), d.x)); })
+      .attr('cy',function(d){ return Math.max(nr(d), Math.min(H-nr(d), d.y)); });
+  });
+
+  /* Refit on resize */
+  window.addEventListener('resize', function(){
+    var nW = el.parentElement.clientWidth;
+    svg.attr('viewBox','0 0 '+nW+' '+H);
+    sim.force('center', d3.forceCenter(nW/2, H/2)).alpha(.3).restart();
+  }, { passive: true });
+}
+
+/* ─────────────────────────────────────────────────────
+   Init on DOMContentLoaded
+───────────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', function() {
+  initMap();
+  initNetwork();
+});
+</script>
+</body>
+</html>

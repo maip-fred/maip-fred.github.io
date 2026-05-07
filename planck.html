@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study — Planck Innovación y Desarrollo: sistema visual corporativo, multiidioma ES/EN, galería de obras y 12 páginas entregadas." />
+  <meta name="author" content="Alfredo Ibáñez Vargas" />
+  <title>Planck — Case Study · Alfredo Ibáñez</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Poppins:wght@400;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily: {
+        sans:    ['"DM Sans"', 'Inter', 'sans-serif'],
+        display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        mono:    ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+        poppins: ['Poppins', 'sans-serif'],
+      } } },
+    };
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="manifest" href="/assets/manifest.json" />
+  <meta name="theme-color" content="#030810" />
+
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/effects.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/about.css" />
+  <link rel="stylesheet" href="css/skills.css" />
+  <link rel="stylesheet" href="css/projects.css" />
+  <link rel="stylesheet" href="css/contact.css" />
+  <link rel="stylesheet" href="css/journey.css" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/chatbot.css" />
+
+  <style>
+    /* ── LAYOUT ── */
+    .cs-page { max-width: 980px; margin: 0 auto; padding: 0 2rem 6rem; }
+
+    /* ── BACK ── */
+    .cs-back {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-family: var(--f-mono); font-size: .72rem; color: var(--lt-3);
+      letter-spacing: .12em; text-transform: uppercase;
+      padding-top: 7rem; margin-bottom: 2rem;
+      transition: color .2s, gap .2s;
+    }
+    .cs-back:hover { color: #1E5FA8; gap: .7rem; }
+
+    /* ── HERO ── */
+    .cs-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; margin-bottom: 5rem; }
+    @media (max-width: 720px) { .cs-hero { grid-template-columns: 1fr; } }
+
+    .cs-hero-title {
+      font-family: var(--f-display); font-size: clamp(3.5rem, 8vw, 6rem);
+      font-weight: 700; color: var(--lt-1); line-height: 1.0; margin-bottom: 1rem;
+    }
+    .cs-hero-title .outline { font-style: italic; color: transparent; -webkit-text-stroke: 1.5px rgba(30,95,168,.25); }
+    .cs-hero-desc { font-size: 1.05rem; color: var(--lt-2); line-height: 1.8; max-width: 48ch; margin-bottom: 1.5rem; }
+    .cs-hero-desc strong { color: var(--lt-1); }
+
+    /* ── META TAGS ── */
+    .cs-meta { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .cs-meta-tag { font-family: var(--f-mono); font-size: .68rem; padding: .22rem .65rem; border-radius: 3px; letter-spacing: .05em; }
+    .cs-meta-tag.blue   { background: rgba(30,95,168,.08); color: #1E5FA8; border: 1px solid rgba(30,95,168,.18); }
+    .cs-meta-tag.green  { background: rgba(22,163,74,.08);  color: #15803D; border: 1px solid rgba(22,163,74,.18); }
+    .cs-meta-tag.yellow { background: rgba(161,98,7,.08);   color: #92400E; border: 1px solid rgba(161,98,7,.18); }
+    .cs-meta-tag.gray   { background: rgba(0,0,0,.04);      color: var(--lt-3); border: 1px solid rgba(0,0,0,.09); }
+    .cs-meta-tag.nda    { background: rgba(161,98,7,.06);   color: #92400E; border: 1px solid rgba(161,98,7,.14); }
+
+    /* ── DIVIDER ── */
+    .cs-divider { height: 1px; background: rgba(0,0,0,.07); margin: 0; }
+
+    /* ── HEADINGS ── */
+    .cs-h2 {
+      font-family: var(--f-display); font-size: clamp(1.9rem, 4vw, 2.75rem);
+      font-weight: 600; color: var(--lt-1); line-height: 1.15; margin: 5rem 0 1.5rem;
+    }
+    .cs-h2 .sym { font-family: var(--f-mono); font-weight: 400; font-size: .7em; color: #1E5FA8; margin-right: .2em; }
+    .cs-h3 { font-family: var(--f-display); font-size: 1.3rem; font-weight: 600; color: var(--lt-1); margin: 2rem 0 .75rem; }
+
+    /* ── TEXT ── */
+    .cs-p { font-size: 1rem; color: var(--lt-2); line-height: 1.85; margin-bottom: 1rem; }
+    .cs-p strong { color: var(--lt-1); }
+    .cs-p code { font-family: var(--f-mono); font-size: .85em; background: rgba(0,0,0,.05); padding: .1rem .38rem; border-radius: 3px; color: #0E7490; border: 1px solid rgba(0,0,0,.08); }
+
+    /* ── CALLOUT ── */
+    .cs-callout {
+      background: linear-gradient(135deg, rgba(30,95,168,.05) 0%, rgba(78,173,234,.03) 100%);
+      border-left: 3px solid #1E5FA8; padding: 1.5rem 1.75rem; margin: 2rem 0;
+      border-radius: 0 var(--r-md) var(--r-md) 0;
+    }
+    .cs-callout p { font-family: var(--f-display); font-style: italic; font-size: 1.15rem; color: var(--lt-1); line-height: 1.65; }
+    .cs-callout small { font-family: var(--f-mono); font-size: .68rem; color: var(--lt-3); margin-top: .6rem; display: block; }
+
+    /* ── METRICS ── */
+    .cs-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 1rem; margin: 2.5rem 0; }
+    .cs-metric {
+      background: #FFFFFF; border: 1px solid rgba(0,0,0,.07); border-top: 2px solid #1E5FA8;
+      border-radius: var(--r-md); padding: 1.5rem 1.25rem; text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,.04); transition: transform .2s, box-shadow .2s;
+    }
+    .cs-metric:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(30,95,168,.1); }
+    .cs-metric .v {
+      font-family: var(--f-display); font-size: 2.2rem; font-weight: 700; line-height: 1; margin-bottom: .4rem;
+      background: linear-gradient(135deg, var(--lt-1) 0%, #1E5FA8 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .cs-metric .l { font-family: var(--f-mono); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--lt-3); }
+
+    /* ══════════════════════════════════════════════
+       BROWSER MOCKUP — site design (stays dark, it IS the design)
+    ══════════════════════════════════════════════ */
+    .browser-mock {
+      border-radius: 14px; overflow: hidden;
+      border: 1px solid rgba(0,0,0,.1);
+      box-shadow: 0 24px 64px rgba(0,0,0,.15), 0 4px 16px rgba(0,0,0,.08);
+    }
+    .browser-bar {
+      background: #E8E8E8; padding: .65rem 1rem;
+      display: flex; align-items: center; gap: .75rem;
+      border-bottom: 1px solid rgba(0,0,0,.08);
+    }
+    .browser-dots { display: flex; gap: .4rem; }
+    .b-dot { width: 11px; height: 11px; border-radius: 50%; }
+    .b-dot.r { background: #FF5F57; }
+    .b-dot.y { background: #FFBD2E; }
+    .b-dot.g { background: #27C93F; }
+    .browser-url {
+      flex: 1; background: rgba(255,255,255,.8); border-radius: 6px;
+      padding: .3rem .8rem; font-size: .68rem; font-family: var(--f-mono);
+      color: rgba(0,0,0,.4); letter-spacing: .03em; border: 1px solid rgba(0,0,0,.08);
+    }
+    .browser-url span { color: rgba(0,0,0,.6); }
+
+    /* Simulated Planck navbar */
+    .nxs-nav {
+      background: #091929; padding: .9rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .nxs-brand-name { font-family: 'Poppins', sans-serif; font-size: .9rem; font-weight: 700; color: #fff; letter-spacing: .02em; }
+    .nxs-brand-sub  { font-family: 'Poppins', sans-serif; font-size: .52rem; color: rgba(255,255,255,.4); letter-spacing: .08em; display: block; }
+    .nxs-links { display: flex; gap: 1.5rem; }
+    .nxs-link { font-family: 'Poppins', sans-serif; font-size: .65rem; color: rgba(255,255,255,.6); letter-spacing: .05em; font-weight: 500; }
+    .nxs-link.active { color: #fff; }
+    .nxs-cta { font-family: 'Poppins', sans-serif; font-size: .62rem; background: #1E5FA8; color: #fff; padding: .3rem .75rem; border-radius: 5px; font-weight: 600; }
+    .nxs-hero {
+      background: linear-gradient(135deg, #091929 0%, #0D2444 60%, #0A1E38 100%);
+      padding: 2.5rem 1.5rem 2rem; position: relative; overflow: hidden;
+    }
+    .nxs-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(30,95,168,.25) 0%, transparent 65%); }
+    .nxs-tagline { display: flex; align-items: center; gap: .4rem; margin-bottom: .75rem; }
+    .nxs-dot { width: 6px; height: 6px; border-radius: 50%; background: #1E5FA8; }
+    .nxs-tagline span { font-family: 'Poppins', sans-serif; font-size: .6rem; color: #4EADEA; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; }
+    .nxs-title { font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 800; color: #fff; line-height: 1.15; margin-bottom: .6rem; }
+    .nxs-title em { color: #4EADEA; font-style: normal; }
+    .nxs-desc { font-family: 'Poppins', sans-serif; font-size: .65rem; color: rgba(255,255,255,.55); line-height: 1.7; max-width: 52ch; margin-bottom: .75rem; }
+    .nxs-companies { font-family: 'Poppins', sans-serif; font-size: .55rem; color: rgba(255,255,255,.35); letter-spacing: .06em; margin-bottom: 1rem; }
+    .nxs-btns { display: flex; gap: .5rem; }
+    .nxs-btn-ghost { font-family: 'Poppins', sans-serif; font-size: .6rem; border: 1px solid rgba(255,255,255,.3); color: #fff; padding: .35rem .8rem; border-radius: 5px; font-weight: 500; }
+    .nxs-btn-outline { font-family: 'Poppins', sans-serif; font-size: .6rem; border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.7); padding: .35rem .8rem; border-radius: 5px; }
+    .nxs-stats { background: rgba(30,95,168,.12); border-top: 1px solid rgba(30,95,168,.2); display: grid; grid-template-columns: repeat(4,1fr); text-align: center; padding: .75rem 0; }
+    .nxs-stat-v { font-family: 'Poppins', sans-serif; font-size: .85rem; font-weight: 700; color: #4EADEA; }
+    .nxs-stat-l { font-family: 'Poppins', sans-serif; font-size: .5rem; color: rgba(255,255,255,.4); letter-spacing: .08em; }
+
+    /* ── SUBSIDIARIES ── */
+    .subsidiary-row { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.25rem 0; }
+    .sub-badge { display: flex; align-items: center; gap: .5rem; background: #FFFFFF; border: 1px solid rgba(0,0,0,.08); border-radius: var(--r-md); padding: .65rem 1rem; box-shadow: 0 1px 4px rgba(0,0,0,.04); }
+    .sub-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .sub-name { font-family: 'Poppins', sans-serif; font-size: .82rem; font-weight: 600; color: var(--lt-1); }
+    .sub-area { font-family: var(--f-mono); font-size: .6rem; color: var(--lt-3); }
+
+    /* ── PAGES GRID ── */
+    .pages-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1rem; margin: 2rem 0; }
+    .page-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,.07); border-radius: var(--r-md); padding: 1.25rem; box-shadow: 0 1px 4px rgba(0,0,0,.04); transition: border-color .2s, transform .2s; }
+    .page-card:hover { border-color: rgba(30,95,168,.25); transform: translateY(-2px); }
+    .page-icon { font-size: 1.4rem; margin-bottom: .6rem; display: block; }
+    .page-name { font-family: var(--f-mono); font-size: .72rem; font-weight: 700; color: var(--lt-1); margin-bottom: .3rem; }
+    .page-desc { font-size: .78rem; color: var(--lt-3); line-height: 1.5; }
+    .page-badge { font-family: var(--f-mono); font-size: .58rem; display: inline-block; margin-top: .5rem; padding: .1rem .4rem; border-radius: 2px; }
+    .page-badge.i18n { background: rgba(30,95,168,.07); color: #1E5FA8; border: 1px solid rgba(30,95,168,.16); }
+    .page-badge.js   { background: rgba(161,98,7,.07); color: #92400E; border: 1px solid rgba(161,98,7,.16); }
+
+    /* ── RESULTS STATS ── */
+    .result-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin: 2rem 0; }
+    @media (max-width: 580px) { .result-stats { grid-template-columns: 1fr; } }
+    .result-stat {
+      text-align: center; padding: 2rem 1rem;
+      background: white; border: 1px solid rgba(0,0,0,.07);
+      border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.04);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .result-stat:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(30,95,168,.1); }
+    .result-stat .rs-v { font-family: var(--f-display); font-size: 4rem; font-weight: 700; color: #1E5FA8; line-height: 1; }
+    .result-stat .rs-l { font-family: var(--f-mono); font-size: .65rem; color: var(--lt-3); letter-spacing: .1em; text-transform: uppercase; margin-top: .5rem; }
+
+    /* ── LEARNINGS ── */
+    .result-row { display: flex; flex-direction: column; gap: .5rem; margin: 2rem 0; }
+    .result-item { display: flex; align-items: flex-start; gap: .75rem; padding: .9rem 1.25rem; background: #FFFFFF; border: 1px solid rgba(0,0,0,.07); border-radius: var(--r-md); box-shadow: 0 1px 4px rgba(0,0,0,.04); }
+    .result-check { color: #16A34A; font-size: 1rem; flex-shrink: 0; margin-top: .1rem; }
+    .result-text { font-size: .9rem; color: var(--lt-2); line-height: 1.6; }
+    .result-text strong { color: var(--lt-1); }
+    .result-text code { font-family: var(--f-mono); font-size: .84em; background: rgba(0,0,0,.04); color: #0E7490; padding: .05rem .3rem; border-radius: 2px; border: 1px solid rgba(0,0,0,.07); }
+
+    /* ── CTA ── */
+    .cs-cta {
+      margin-top: 5rem; padding: 2.75rem;
+      background: linear-gradient(135deg, rgba(30,95,168,.05) 0%, rgba(78,173,234,.03) 100%);
+      border: 1px solid rgba(30,95,168,.12); border-radius: var(--r-lg);
+      display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(30,95,168,.05);
+    }
+    .cs-cta-label { font-family: var(--f-mono); font-size: .7rem; color: #1E5FA8; letter-spacing: .18em; text-transform: uppercase; margin-bottom: .35rem; }
+    .cs-cta p { color: var(--lt-2); font-size: .9rem; line-height: 1.6; max-width: 42ch; }
+    .cs-cta p strong { color: var(--lt-1); }
+
+    /* ── FEATURE PILLS ── */
+    .feature-pills { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.5rem 0; }
+    .feat-pill {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .4rem .85rem;
+      background: rgba(30,95,168,.08); border: 1px solid rgba(30,95,168,.18);
+      border-radius: 999px; font-family: var(--f-mono); font-size: .72rem; color: #1E5FA8;
+    }
+
+    /* ── ARCH SVG WRAP ── */
+    .arch-svg-wrap {
+      background: #FFFFFF; border: 1px solid rgba(0,0,0,.07); border-radius: var(--r-lg);
+      padding: 2rem; margin: 2rem 0; overflow-x: auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+    }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Ir al contenido</a>
+<div id="scroll-bar"></div>
+
+<!-- GRAIN OVERLAY -->
+<div id="grain-overlay" aria-hidden="true"></div>
+
+<!-- MATRIX OVERLAY -->
+<div id="matrix-overlay" role="dialog" aria-modal="true" aria-label="Matrix mode">
+  <canvas id="matrix-canvas"></canvas>
+  <p id="matrix-label">PROTOCOLO MATRIX · AIV</p>
+  <p id="matrix-exit-hint">[ ESC ] · CLICK PARA SALIR</p>
+</div>
+
+<aside class="social-sidebar" aria-label="Redes sociales">
+  <a href="https://github.com/maip-fred" target="_blank" rel="noopener" aria-label="GitHub"><i data-lucide="github" class="w-5 h-5"></i></a>
+  <a href="mailto:ibanez.alfredo.02.10@gmail.com" aria-label="Email"><i data-lucide="mail" class="w-5 h-5"></i></a>
+</aside>
+
+<header id="header">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" data-t>AIV</a>
+    <ul class="nav-links">
+      <li><a href="index.html"    class="nav-link" data-num="00" data-t>Inicio</a></li>
+      <li><a href="about.html"    class="nav-link" data-num="01" data-t>Sobre mí</a></li>
+      <li><a href="skills.html"   class="nav-link" data-num="02" data-t>Habilidades</a></li>
+      <li><a href="retos.html"    class="nav-link" data-num="03" data-t>Retos</a></li>
+      <li><a href="projects.html" class="nav-link" data-num="04" data-t>Proyectos</a></li>
+      <li><a href="contact.html"  class="nav-cta"  data-t>Contacto</a></li>
+    </ul>
+    <button id="hamburger" class="hamburger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div id="mobile-menu">
+    <ul class="mobile-links">
+      <li><a href="index.html"    data-t>Inicio</a></li>
+      <li><a href="about.html"    data-t>Sobre mí</a></li>
+      <li><a href="skills.html"   data-t>Habilidades</a></li>
+      <li><a href="retos.html"    data-t>Retos</a></li>
+      <li><a href="projects.html" data-t>Proyectos</a></li>
+      <li><a href="contact.html"  data-t>Contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main-content" class="cs-page">
+
+  <a href="projects.html" class="cs-back animate-fade-in" data-t>
+    <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+    Volver a proyectos
+  </a>
+
+  <!-- ══════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════ -->
+  <section class="cs-hero">
+    <div class="cs-hero-left">
+      <p class="page-tag animate-fade-in">Case Study · 02</p>
+      <h1 class="cs-hero-title animate-hero-name">
+        Planck<br><span class="outline">Innovación</span>
+      </h1>
+      <p class="cs-hero-desc animate-slide-up" style="animation-delay:.2s;">
+        Sitio web corporativo para <strong>Planck Innovación y Desarrollo S.A de C.V</strong> — empresa mexicana de construcción con más de 30 años de experiencia y tres subsidiarias especializadas.
+      </p>
+      <div class="cs-meta animate-fade-in" style="animation-delay:.3s;">
+        <span class="cs-meta-tag blue">Diseño Web</span>
+        <span class="cs-meta-tag blue">Frontend</span>
+        <span class="cs-meta-tag green">12 páginas</span>
+        <span class="cs-meta-tag yellow">ES / EN</span>
+        <span class="cs-meta-tag nda">Cliente Privado · NDA</span>
+        <span class="cs-meta-tag gray">2026</span>
+      </div>
+    </div>
+
+    <!-- Browser mockup showing the Planck site design -->
+    <div data-aos="fade-left">
+      <div class="browser-mock">
+        <div class="browser-bar">
+          <div class="browser-dots">
+            <div class="b-dot r"></div>
+            <div class="b-dot y"></div>
+            <div class="b-dot g"></div>
+          </div>
+          <div class="browser-url">planck.mx/<span>index.html</span></div>
+        </div>
+        <div class="nxs-nav">
+          <div>
+            <span class="nxs-brand-name">Planck</span>
+            <span class="nxs-brand-sub">Infraestructura y Construcción Urbana</span>
+          </div>
+          <div class="nxs-links">
+            <span class="nxs-link active">Inicio</span>
+            <span class="nxs-link">Nosotros ▾</span>
+            <span class="nxs-link">Proyectos</span>
+            <span class="nxs-link">Galería</span>
+          </div>
+          <span class="nxs-cta">Contacto</span>
+        </div>
+        <div class="nxs-hero">
+          <div class="nxs-tagline"><div class="nxs-dot"></div><span>Infraestructura y Construcción Urbana</span></div>
+          <div class="nxs-title"><em>Planck</em> Innovación<br>y Desarrollo S.A de C.V</div>
+          <div class="nxs-desc">Grupo de empresas que ofrece soluciones de construcción con altos estándares de calidad; maximizando eficiencia en tiempo y costo para nuestros clientes.</div>
+          <div class="nxs-companies">Vekthor Infraestructura &nbsp;·&nbsp; Metall Ingeniería &nbsp;·&nbsp; TH Construcciones</div>
+          <div class="nxs-btns">
+            <span class="nxs-btn-ghost">Contáctanos</span>
+            <span class="nxs-btn-outline">Conoce nuestros proyectos</span>
+          </div>
+        </div>
+        <div class="nxs-stats">
+          <div><div class="nxs-stat-v">30+</div><div class="nxs-stat-l">Años</div></div>
+          <div><div class="nxs-stat-v">200+</div><div class="nxs-stat-l">Proyectos</div></div>
+          <div><div class="nxs-stat-v">9</div><div class="nxs-stat-l">Clientes</div></div>
+          <div><div class="nxs-stat-v">8</div><div class="nxs-stat-l">Sectores</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÉTRICAS -->
+  <div class="cs-metrics" data-aos="fade-up">
+    <div class="cs-metric"><div class="v">12</div><div class="l">páginas entregadas</div></div>
+    <div class="cs-metric"><div class="v">2</div><div class="l">idiomas (ES / EN)</div></div>
+    <div class="cs-metric"><div class="v">8</div><div class="l">sectores cubiertos</div></div>
+    <div class="cs-metric"><div class="v">200+</div><div class="l">proyectos en galería</div></div>
+    <div class="cs-metric"><div class="v">3</div><div class="l">subsidiarias</div></div>
+    <div class="cs-metric"><div class="v">30+</div><div class="l">años de experiencia</div></div>
+  </div>
+
+  <!-- TYPOGRAPHY SPECIMEN -->
+  <div data-aos="fade-up" style="margin:3rem 0;padding:3rem;background:#091929;border-radius:12px;overflow:hidden;position:relative;">
+    <div style="position:absolute;top:-2rem;right:-1rem;font-family:'Poppins',sans-serif;font-size:8rem;font-weight:800;color:rgba(255,255,255,.04);line-height:1;pointer-events:none;white-space:nowrap;">Poppins 800</div>
+    <p style="font-family:var(--f-mono);font-size:.62rem;color:#4EADEA;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.5rem;">Tipografía principal</p>
+    <div style="font-family:'Poppins',sans-serif;font-size:clamp(3rem,8vw,6rem);font-weight:800;color:#fff;line-height:1;margin-bottom:.5rem;">Planck</div>
+    <div style="font-family:'Poppins',sans-serif;font-size:clamp(1.2rem,3vw,2rem);font-weight:800;color:#4EADEA;margin-bottom:1.5rem;">INFRAESTRUCTURA Y CONSTRUCCIÓN URBANA</div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+      <span style="font-family:var(--f-mono);font-size:.72rem;color:rgba(255,255,255,.45);padding:.3rem .7rem;border:1px solid rgba(255,255,255,.12);border-radius:4px;">Poppins 800 · Títulos</span>
+      <span style="font-family:var(--f-mono);font-size:.72rem;color:rgba(255,255,255,.45);padding:.3rem .7rem;border:1px solid rgba(255,255,255,.12);border-radius:4px;">Poppins 400 · Cuerpo</span>
+      <span style="font-family:var(--f-mono);font-size:.72rem;color:rgba(255,255,255,.45);padding:.3rem .7rem;border:1px solid rgba(255,255,255,.12);border-radius:4px;">ES / EN · Bilingüe</span>
+    </div>
+  </div>
+
+  <div class="cs-divider" data-aos="fade-up"></div>
+
+  <!-- CONTEXTO -->
+  <h2 class="cs-h2" data-aos="fade-up"><span class="sym">§</span>Contexto del proyecto</h2>
+  <p class="cs-p" data-aos="fade-up">
+    <strong>Planck Innovación y Desarrollo</strong> es una empresa 100% mexicana con más de 30 años construyendo hospitales, plazas comerciales y centros de aprendizaje. Opera a través de tres subsidiarias — Vekthor Infraestructura, Metall Ingeniería y TH Construcciones — cada una con especialización distinta. Sin presencia web previa, el objetivo era un sitio corporativo que proyectara su escala real, funcionara en español e inglés para clientes internacionales, y exhibiera un portafolio de 200+ obras sin depender de frameworks ni entornos de desarrollo.
+  </p>
+  <div class="subsidiary-row" data-aos="fade-up">
+    <div class="sub-badge">
+      <div class="sub-dot" style="background:#1E5FA8;"></div>
+      <div>
+        <div class="sub-name">Vekthor Infraestructura</div>
+        <div class="sub-area">Obra civil y supervisión de proyectos</div>
+      </div>
+    </div>
+    <div class="sub-badge">
+      <div class="sub-dot" style="background:#4EADEA;"></div>
+      <div>
+        <div class="sub-name">Metall Ingeniería Avanzada</div>
+        <div class="sub-area">Estructuras metálicas y especialidades</div>
+      </div>
+    </div>
+    <div class="sub-badge">
+      <div class="sub-dot" style="background:#94A3B8;"></div>
+      <div>
+        <div class="sub-name">TH Construcciones Especializadas</div>
+        <div class="sub-area">Proyectos de construcción especializada</div>
+      </div>
+    </div>
+  </div>
+  <div class="cs-callout" data-aos="fade-up">
+    <p>"Necesitamos algo que proyecte nuestra escala real: 30 años construyendo hospitales, plazas comerciales, centros de aprendizaje. Que cuando alguien llegue al sitio entienda de inmediato con quién está hablando."</p>
+    <small>— Sesión de análisis de requerimientos, 31 Mar 2026</small>
+  </div>
+
+  <div class="cs-divider" data-aos="fade-up"></div>
+
+  <!-- SISTEMA VISUAL -->
+  <h2 class="cs-h2" data-aos="fade-up"><span class="sym">§</span>El sistema visual</h2>
+  <p class="cs-p" data-aos="fade-up">
+    La identidad gira en torno a un <strong>navy profundo</strong> que comunica escala y autoridad institucional, combinado con un <strong>azul corporativo</strong> que aporta energía y modernidad. La tipografía Poppins 800 da peso visual sin rigidez.
+  </p>
+
+  <!-- Color palette swatches -->
+  <div data-aos="fade-up" style="display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin:2rem 0;">
+    <div style="aspect-ratio:1;background:#091929;border-radius:10px;display:flex;flex-direction:column;justify-content:flex-end;padding:1rem;cursor:pointer;" title="Click para copiar">
+      <div style="font-family:monospace;font-size:.65rem;color:rgba(255,255,255,.6);">Navy</div>
+      <div style="font-family:monospace;font-size:.75rem;color:#fff;font-weight:700;">#091929</div>
+    </div>
+    <div style="aspect-ratio:1;background:#1E5FA8;border-radius:10px;display:flex;flex-direction:column;justify-content:flex-end;padding:1rem;cursor:pointer;">
+      <div style="font-family:monospace;font-size:.65rem;color:rgba(255,255,255,.6);">Blue</div>
+      <div style="font-family:monospace;font-size:.75rem;color:#fff;font-weight:700;">#1E5FA8</div>
+    </div>
+    <div style="aspect-ratio:1;background:#4EADEA;border-radius:10px;display:flex;flex-direction:column;justify-content:flex-end;padding:1rem;cursor:pointer;">
+      <div style="font-family:monospace;font-size:.65rem;color:rgba(255,255,255,.8);">Sky</div>
+      <div style="font-family:monospace;font-size:.75rem;color:#fff;font-weight:700;">#4EADEA</div>
+    </div>
+    <div style="aspect-ratio:1;background:#EAF2FB;border:1px solid rgba(0,0,0,.08);border-radius:10px;display:flex;flex-direction:column;justify-content:flex-end;padding:1rem;cursor:pointer;">
+      <div style="font-family:monospace;font-size:.65rem;color:rgba(26,25,20,.45);">Pale</div>
+      <div style="font-family:monospace;font-size:.75rem;color:rgba(26,25,20,.8);font-weight:700;">#EAF2FB</div>
+    </div>
+  </div>
+
+  <div class="cs-divider" data-aos="fade-up"></div>
+
+  <!-- CARACTERÍSTICAS TÉCNICAS — FEATURE PILLS -->
+  <h2 class="cs-h2" data-aos="fade-up"><span class="sym">§</span>Características técnicas</h2>
+  <p class="cs-p" data-aos="fade-up">Un sitio estático de HTML/CSS/JS puro, sin dependencias externas, desplegable en cualquier hosting y mantenible por el cliente sin entorno de desarrollo.</p>
+  <div class="feature-pills" data-aos="fade-up">
+    <span class="feat-pill"><span>🌐</span>Bilingüe ES/EN</span>
+    <span class="feat-pill"><span>📱</span>Responsive</span>
+    <span class="feat-pill"><span>🖼</span>Galería 200+ obras</span>
+    <span class="feat-pill"><span>⚡</span>0 dependencias</span>
+    <span class="feat-pill"><span>🔍</span>FAQ interactivo</span>
+    <span class="feat-pill"><span>🎨</span>Sistema visual</span>
+    <span class="feat-pill"><span>🔗</span>12 páginas</span>
+    <span class="feat-pill"><span>📊</span>Contador estadísticas</span>
+    <span class="feat-pill"><span>🔒</span>localStorage i18n</span>
+    <span class="feat-pill"><span>🖱</span>Lightbox + zoom</span>
+    <span class="feat-pill"><span>👁</span>IntersectionObserver</span>
+    <span class="feat-pill"><span>🏷</span>SEO + Open Graph</span>
+  </div>
+
+  <div class="cs-divider" data-aos="fade-up"></div>
+
+  <!-- ARQUITECTURA DEL SITIO -->
+  <h2 class="cs-h2" data-aos="fade-up"><span class="sym">§</span>Arquitectura del sitio</h2>
+  <p class="cs-p" data-aos="fade-up">
+    12 páginas organizadas en cinco secciones. La navegación principal tiene un dropdown "Nosotros" para agrupar las páginas informativas sin saturar la barra.
+  </p>
+
+  <div class="arch-svg-wrap" data-aos="fade-up">
+    <svg viewBox="0 0 600 160" style="width:100%;max-width:600px;margin:0 auto;display:block;" aria-label="Arquitectura del sitio">
+      <!-- Root node -->
+      <rect x="240" y="10" width="120" height="32" rx="6" fill="#1E5FA8" />
+      <text x="300" y="31" text-anchor="middle" font-family="monospace" font-size="11" fill="white" font-weight="700">planck.mx</text>
+      <!-- Vertical stem -->
+      <line x1="300" y1="42" x2="300" y2="60" stroke="rgba(30,95,168,.3)" stroke-width="1.5"/>
+      <!-- Horizontal rail -->
+      <line x1="60" y1="60" x2="540" y2="60" stroke="rgba(30,95,168,.2)" stroke-width="1"/>
+      <!-- Branch: index.html -->
+      <line x1="60" y1="60" x2="60" y2="78" stroke="rgba(30,95,168,.2)" stroke-width="1"/>
+      <rect x="20" y="78" width="80" height="28" rx="5" fill="rgba(30,95,168,.08)" stroke="rgba(30,95,168,.2)" stroke-width="1"/>
+      <text x="60" y="96" text-anchor="middle" font-family="monospace" font-size="9" fill="#1E5FA8">index.html</text>
+      <!-- Branch: nosotros -->
+      <line x1="160" y1="60" x2="160" y2="78" stroke="rgba(30,95,168,.2)" stroke-width="1"/>
+      <rect x="120" y="78" width="80" height="28" rx="5" fill="rgba(30,95,168,.08)" stroke="rgba(30,95,168,.2)" stroke-width="1"/>
+      <text x="160" y="96" text-anchor="middle" font-family="monospace" font-size="9" fill="#1E5FA8">nosotros</text>
+      <!-- Branch: proyectos (highlighted) -->
+      <line x1="260" y1="60" x2="260" y2="78" stroke="rgba(30,95,168,.3)" stroke-width="1.5"/>
+      <rect x="220" y="78" width="80" height="28" rx="5" fill="#1E5FA8"/>
+      <text x="260" y="96" text-anchor="middle" font-family="monospace" font-size="9" fill="white">proyectos</text>
+      <!-- Branch: servicios -->
+      <line x1="360" y1="60" x2="360" y2="78" stroke="rgba(30,95,168,.2)" stroke-width="1"/>
+      <rect x="320" y="78" width="80" height="28" rx="5" fill="rgba(30,95,168,.08)" stroke="rgba(30,95,168,.2)" stroke-width="1"/>
+      <text x="360" y="96" text-anchor="middle" font-family="monospace" font-size="9" fill="#1E5FA8">servicios</text>
+      <!-- Branch: galería -->
+      <line x1="460" y1="60" x2="460" y2="78" stroke="rgba(30,95,168,.2)" stroke-width="1"/>
+      <rect x="420" y="78" width="80" height="28" rx="5" fill="rgba(30,95,168,.08)" stroke="rgba(30,95,168,.2)" stroke-width="1"/>
+      <text x="460" y="96" text-anchor="middle" font-family="monospace" font-size="9" fill="#1E5FA8">galería</text>
+      <!-- Branch: contacto -->
+      <line x1="540" y1="60" x2="540" y2="78" stroke="rgba(30,95,168,.2)" stroke-width="1"/>
+      <rect x="500" y="78" width="80" height="28" rx="5" fill="rgba(30,95,168,.08)" stroke="rgba(30,95,168,.2)" stroke-width="1"/>
+      <text x="540" y="96" text-anchor="middle" font-family="monospace" font-size="9" fill="#1E5FA8">contacto</text>
+      <!-- Sub-pages under nosotros -->
+      <line x1="160" y1="106" x2="160" y2="118" stroke="rgba(30,95,168,.15)" stroke-width="1"/>
+      <line x1="100" y1="118" x2="220" y2="118" stroke="rgba(30,95,168,.12)" stroke-width="1"/>
+      <line x1="100" y1="118" x2="100" y2="128" stroke="rgba(30,95,168,.15)" stroke-width="1"/>
+      <rect x="60" y="128" width="80" height="22" rx="4" fill="rgba(0,0,0,.03)" stroke="rgba(0,0,0,.09)" stroke-width="1"/>
+      <text x="100" y="143" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(26,25,20,.4)">servicios · faq</text>
+      <line x1="220" y1="118" x2="220" y2="128" stroke="rgba(30,95,168,.15)" stroke-width="1"/>
+      <rect x="175" y="128" width="90" height="22" rx="4" fill="rgba(0,0,0,.03)" stroke="rgba(0,0,0,.09)" stroke-width="1"/>
+      <text x="220" y="143" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(26,25,20,.4)">experiencia · más</text>
+    </svg>
+  </div>
+
+  <div class="cs-divider" data-aos="fade-up"></div>
+
+  <!-- PÁGINAS ENTREGADAS -->
+  <h2 class="cs-h2" data-aos="fade-up"><span class="sym">§</span>Páginas entregadas</h2>
+  <div class="pages-grid">
+    <div class="page-card" data-aos="fade-up" data-aos-delay="0">
+      <span class="page-icon">🏠</span>
+      <div class="page-name">index.html</div>
+      <div class="page-desc">Hero navy, contadores animados, subsidiarias, clientes y CTA principal.</div>
+      <span class="page-badge i18n">ES/EN</span>
+    </div>
+    <div class="page-card" data-aos="fade-up" data-aos-delay="40">
+      <span class="page-icon">📋</span>
+      <div class="page-name">about.html</div>
+      <div class="page-desc">Historia, misión, visión, equipo y valores corporativos.</div>
+      <span class="page-badge i18n">ES/EN</span>
+    </div>
+    <div class="page-card" data-aos="fade-up" data-aos-delay="80">
+      <span class="page-icon">🔧</span>
+      <div class="page-name">servicios.html</div>
+      <div class="page-desc">Grid de servicios con tabs por subsidiaria: Vekthor, Metall, TH.</div>
+      <span class="page-badge js">JS tabs</span>
+    </div>
+    <div class="page-card" data-aos="fade-up" data-aos-delay="0">
+      <span class="page-icon">⭐</span>
+      <div class="page-name">bestOption.html</div>
+      <div class="page-desc">Diferenciadores competitivos y propuesta de valor única.</div>
+      <span class="page-badge i18n">ES/EN</span>
+    </div>
+    <div class="page-card" data-aos="fade-up" data-aos-delay="40">
+      <span class="page-icon">📈</span>
+      <div class="page-name">experiencia.html</div>
+      <div class="page-desc">Timeline de 30 años y estadísticas clave con contadores animados.</div>
+      <span class="page-badge js">JS counters</span>
+    </div>
+    <div class="page-card" data-aos="fade-up" data-aos-delay="80">
+      <span class="page-icon">❓</span>
+      <div class="page-name">faq.html</div>
+      <div class="page-desc">Preguntas frecuentes con acordeón JavaScript — smooth y accesible.</div>
+      <span class="page-badge js">JS accordion</span>
+    </div>
+    <div class="page-card" data-aos="fade-up" data-aos-delay="0">
+      <span class="page-icon">🏗</span>
+      <div class="page-name">obras.html</div>
+      <div class="page-desc">Catálogo con filtro por sector: oficinas, salud, comercial, civil...</div>
+      <span class="page-badge js">JS filter</span>
+    </div>
+    <div class="page-card" data-aos="fade-up" data-aos-delay="40">
+      <span class="page-icon">🖼</span>
+      <div class="page-name">galería.html</div>
+      <div class="page-desc">Grid masonry de 200+ fotografías con lightbox interactivo y zoom.</div>
+      <span class="page-badge js">Lightbox</span>
+    </div>
+    <div class="page-card" data-aos="fade-up" data-aos-delay="80">
+      <span class="page-icon">🤝</span>
+      <div class="page-name">clientes.html</div>
+      <div class="page-desc">Logos de clientes activos y sectores atendidos con slider automático.</div>
+      <span class="page-badge js">Slider</span>
+    </div>
+    <div class="page-card" data-aos="fade-up" data-aos-delay="0">
+      <span class="page-icon">📬</span>
+      <div class="page-name">contacto.html</div>
+      <div class="page-desc">Formulario, ubicación de oficinas y datos de cada subsidiaria.</div>
+      <span class="page-badge i18n">ES/EN</span>
+    </div>
+  </div>
+
+  <div class="cs-divider" data-aos="fade-up"></div>
+
+  <!-- RESULTADOS Y APRENDIZAJES -->
+  <h2 class="cs-h2" data-aos="fade-up"><span class="sym">§</span>Resultados y aprendizajes</h2>
+
+  <!-- Big stat moments -->
+  <div class="result-stats" data-aos="fade-up">
+    <div class="result-stat">
+      <div class="rs-v">12</div>
+      <div class="rs-l">páginas entregadas</div>
+    </div>
+    <div class="result-stat">
+      <div class="rs-v">200+</div>
+      <div class="rs-l">obras en galería</div>
+    </div>
+    <div class="result-stat">
+      <div class="rs-v">0</div>
+      <div class="rs-l">dependencias externas</div>
+    </div>
+  </div>
+
+  <!-- Learnings -->
+  <div class="result-row" data-aos="fade-up">
+    <div class="result-item">
+      <span class="result-check">✓</span>
+      <div class="result-text"><strong>Sistema i18n vanilla robusto.</strong> Implementar multiidioma sin librería exigió entender bien el DOM — el resultado es más ligero y controlable que soluciones como i18next para un sitio estático.</div>
+    </div>
+    <div class="result-item">
+      <span class="result-check">✓</span>
+      <div class="result-text"><strong>Navy vs negro: la diferencia es enorme.</strong> El navy <code>#091929</code> transmite confianza institucional que el negro puro no logra. Pequeña decisión de color, gran impacto en percepción de marca.</div>
+    </div>
+    <div class="result-item">
+      <span class="result-check">✓</span>
+      <div class="result-text"><strong>La restricción de no usar frameworks fue un regalo.</strong> Sin abstracciones intermedias, el CSS y el JS son completamente predecibles. El cliente mantiene el sitio sin necesidad de entorno de desarrollo.</div>
+    </div>
+    <div class="result-item">
+      <span class="result-check">✓</span>
+      <div class="result-text"><strong>Galería con 200+ imágenes necesita lazy loading.</strong> El primer intento cargaba todo en el DOM. <code>IntersectionObserver</code> para lazy loading redujo el tiempo inicial de carga significativamente.</div>
+    </div>
+    <div class="result-item">
+      <span class="result-check">✓</span>
+      <div class="result-text"><strong>Poppins 800 como headline hace todo el trabajo visual.</strong> La tipografía correcta, en el peso correcto, elimina la necesidad de imágenes de fondo complejas en el hero.</div>
+    </div>
+  </div>
+
+  <div class="cs-callout" data-aos="fade-up">
+    <p>"El sitio tiene que hablar por la empresa cuando nosotros no estamos. Tiene que proyectar los 30 años de historia que no caben en una tarjeta de presentación."</p>
+    <small>— Cliente, sesión de revisión final</small>
+  </div>
+
+  <!-- CTA -->
+  <div class="cs-cta" data-aos="fade-up">
+    <div>
+      <p class="cs-cta-label">Proyecto privado · NDA</p>
+      <p>Planck es un <strong>cliente privado bajo NDA</strong>. El repositorio y la URL de producción no son públicos. Si te interesa ver el trabajo en detalle o discutir un proyecto similar, escríbeme.</p>
+    </div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+      <a href="contact.html" class="btn btn-primary" data-t>
+        <i data-lucide="mail" class="w-4 h-4"></i>
+        Contacto
+      </a>
+      <a href="projects.html" class="btn btn-outline" data-t>
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Otros proyectos
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>© 2026 Alfredo Ibáñez Vargas</p>
+    <p style="font-style:italic;">~/projects/planck</p>
+    <a href="https://github.com/maip-fred/maip-fred.github.io" target="_blank" rel="noopener">
+      <i data-lucide="github" class="w-3.5 h-3.5 inline-block mr-1"></i>Ver código del portfolio
+    </a>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+<script src="js/sound.js" defer></script>
+<script src="js/cmdk.js" defer></script>
+<script src="js/easter-egg.js" defer></script>
+<script src="js/cursor.js" defer></script>
+<script src="js/core.js" defer></script>
+<script src="js/chatbot.js" defer></script>
+<script src="js/dock.js" defer></script>
+<script src="js/magnetic.js" defer></script>
+<script src="js/scramble.js" defer></script>
+<script src="js/matrix.js" defer></script>
+</body>
+</html>

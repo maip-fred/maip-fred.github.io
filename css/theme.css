@@ -1,0 +1,818 @@
+/* ============================================================
+   theme.css — Palette Overrides + Full Light Theme
+   Source: styles.css lines 3321–4135
+   ============================================================ */
+
+/* ============================================================
+   PALETA EXPANDIDA — overrides de color por componente
+   ============================================================ */
+
+/* — Spans de color en "DATA × SECURITY × FINANCE" — */
+.id-disc-data { color: var(--t-1); }
+.id-disc-sec  {
+  color: var(--olive-xl);
+  font-style: italic;
+  font-weight: 600;
+}
+.id-disc-fin  {
+  color: var(--gold-xl);
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* — Intersection card — diagonal stripe texture — */
+.id-card--intersection {
+  background:
+    repeating-linear-gradient(
+      -58deg,
+      rgba(37,99,235,.03) 0px,
+      rgba(37,99,235,.03) 1px,
+      transparent 1px,
+      transparent 24px
+    ),
+    linear-gradient(155deg, var(--bg-2) 0%, rgba(37,99,235,.07) 100%) !important;
+}
+
+/* — pkgxray card — olive/military — */
+.id-card--pkg { border-top-color: var(--olive) !important; }
+.id-card--pkg::after {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(107,140,82,.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.id-card--pkg .id-card-kicker { color: var(--olive-xl); }
+.id-card--pkg .id-pkg-ver     { color: var(--olive-l); }
+.id-card--pkg .id-pkg-badge {
+  color: var(--olive-l);
+  border-color: rgba(107,140,82,.28);
+  background: rgba(107,140,82,.07);
+}
+
+/* — ITAM card — gold / academic — */
+.id-card--school {
+  border-top-color: var(--gold) !important;
+  background:
+    linear-gradient(rgba(184,137,42,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184,137,42,.04) 1px, transparent 1px),
+    var(--bg-2) !important;
+  background-size: 26px 26px, 26px 26px, auto !important;
+}
+.id-card--school::after {
+  content: 'ℝ';
+  position: absolute;
+  bottom: .5rem; right: 1.5rem;
+  font-family: 'Georgia', serif;
+  font-size: 5rem;
+  color: rgba(184,137,42,.07);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+.id-card--school .id-card-kicker { color: var(--gold-xl); }
+.id-card--school .id-school-degree { color: var(--gold-l); }
+.id-card--school .id-school-meta   { color: rgba(212,170,88,.45); }
+
+/* — Available card — cálido, no azul puro — */
+.id-card--available {
+  border: 1px solid rgba(150,193,116,.2) !important;
+  background: linear-gradient(155deg, var(--bg-3) 0%, rgba(107,140,82,.06) 100%) !important;
+}
+.id-card--available:hover { border-color: rgba(150,193,116,.4) !important; }
+.id-avail-cta {
+  background: var(--olive) !important;
+}
+.id-avail-cta:hover {
+  background: var(--olive-l) !important;
+  box-shadow: 0 0 0 1px rgba(107,140,82,.4), 0 8px 32px rgba(107,140,82,.25) !important;
+}
+
+/* Decoración matemática — identity board */
+.identity-board::after {
+  content: 'ε';
+  position: absolute;
+  right: 3vw; bottom: -4rem;
+  font-family: 'Georgia', serif;
+  font-size: clamp(14rem, 22vw, 26rem);
+  line-height: 1;
+  color: rgba(238,242,255,.013);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* Decoración matemática — tray-section */
+.tray-section::after {
+  content: '∑';
+  position: absolute;
+  right: 2vw; bottom: -3rem;
+  font-family: 'Georgia', serif;
+  font-size: clamp(12rem, 18vw, 22rem);
+  line-height: 1;
+  color: rgba(238,242,255,.014);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* — Tray year num — dorado/olive según era — */
+.tray-item--current .tray-year-num { color: rgba(184,137,42,.3) !important; }
+.tray-item--current:hover .tray-year-num { color: rgba(184,137,42,.55) !important; }
+.tray-item--current .tray-year-badge {
+  color: var(--gold-l);
+  background: rgba(184,137,42,.1);
+  border-color: rgba(184,137,42,.25);
+}
+
+/* — Tray tags — nuevas variantes olive y gold — */
+.tray-tag--olive { background: rgba(107,140,82,.09); color: var(--olive-xl); border: 1px solid rgba(107,140,82,.2); }
+.tray-tag--gold  { background: rgba(184,137,42,.09); color: var(--gold-xl);  border: 1px solid rgba(184,137,42,.2); }
+.tray-tag--warm  { background: rgba(141,157,173,.08); color: var(--warm-gray); border: 1px solid rgba(141,157,173,.18); }
+
+/* — Page-tag — romper el azul uniforme en secciones — */
+.tray-section .page-tag    { color: var(--gold-l);  }
+.tray-section .page-tag::before { background: var(--gold-l); }
+.stack-section .page-tag   { color: var(--olive-l); }
+.stack-section .page-tag::before { background: var(--olive-l); }
+.hobbies-section .page-tag { color: var(--gold-l);  }
+.hobbies-section .page-tag::before { background: var(--gold-l); }
+
+/* — Stack personal — books section accent — */
+.stack-block-h { color: var(--olive-l) !important; }
+
+/* — Podcast col-label — */
+.podcast-col-label { color: var(--warm-gray); border-bottom-color: rgba(141,157,173,.12); }
+
+/* — Softskill icons — colores variados en lugar de todo azul — */
+.softskill-card:nth-child(3) .softskill-icon,
+.softskill-card:nth-child(4) .softskill-icon {
+  background: rgba(107,140,82,.1);
+  border-color: rgba(107,140,82,.22);
+  color: var(--olive-xl);
+}
+.softskill-card:nth-child(5) .softskill-icon,
+.softskill-card:nth-child(6) .softskill-icon {
+  background: rgba(184,137,42,.1);
+  border-color: rgba(184,137,42,.22);
+  color: var(--gold-xl);
+}
+.softskill-card:nth-child(7) .softskill-icon,
+.softskill-card:nth-child(8) .softskill-icon {
+  background: rgba(167,139,250,.1);
+  border-color: rgba(167,139,250,.22);
+  color: var(--purple);
+}
+
+/* — Hobby cards — ícono con color variado — */
+.hobby-card:nth-child(2) .hobby-icon { color: var(--olive-l); }
+.hobby-card:nth-child(3) .hobby-icon { color: var(--gold-l); }
+.hobby-card:nth-child(4) .hobby-icon { color: var(--olive-xl); }
+.hobby-card:nth-child(5) .hobby-icon { color: var(--gold-xl); }
+
+/* — Hobby photo placeholder — sutil color diferenciado — */
+.hobby-card--featured .hobby-photo { background: linear-gradient(155deg, var(--bg-3), rgba(107,140,82,.08)); }
+.hobby-card:nth-child(3) .hobby-photo { background: linear-gradient(155deg, var(--bg-3), rgba(184,137,42,.06)); }
+.hobby-card:nth-child(4) .hobby-photo { background: linear-gradient(155deg, var(--bg-3), rgba(107,140,82,.05)); }
+
+/* — Radar section — quitar el azul monocromático — */
+.radar-section .page-tag   { color: var(--olive-l); }
+.radar-section .page-tag::before { background: var(--olive-l); }
+
+/* — Now section cards — variados — */
+.now-card:nth-child(2) { border-top-color: var(--olive); }
+.now-card:nth-child(3) { border-top-color: var(--gold); }
+.now-card:nth-child(4) { border-top-color: var(--purple); }
+.now-card:nth-child(5) { border-top-color: var(--olive-l); }
+.now-card:nth-child(6) { border-top-color: var(--gold-l); }
+
+/* — Review-section (testimonios) — badge variados — */
+.review-card:nth-child(2) .review-badge.approved {
+  background: rgba(107,140,82,.1);
+  color: var(--olive-xl);
+  border-color: rgba(107,140,82,.25);
+}
+
+/* — Nav logo (~/AIV) — mantener identidad pero cálido — */
+.nav-logo::before { color: var(--olive-l); }
+
+/* — Hero eyebrow — olive en vez de verde neón — */
+.hero-eyebrow { color: var(--olive-xl); }
+.hero-eyebrow::before { background: var(--olive-xl); }
+
+/* — Scroll progress bar — añadir olive — */
+#scroll-bar { background: linear-gradient(to right, var(--blue), var(--olive-l)); }
+
+/* — Page section rules — color variado — */
+.tray-section .section-rule { background: linear-gradient(to right, var(--gold), var(--olive-l)); }
+
+/* — Decoración matemática en about hero — */
+.page-header[class] .wm {
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(184,137,42,.03);
+}
+
+/* ============================================================
+   TEMA CLARO — blancos, crema, sage, stone
+   Sólo hero + footer permanecen oscuros
+   ============================================================ */
+
+/* --- Proteger texto en secciones oscuras --- */
+.hero,
+.site-footer,
+#loader,
+#mobile-menu { color: var(--t-1); }
+
+/* Social sidebar — explícitamente claro (flota sobre hero) */
+.social-sidebar a        { color: rgba(237,234,228,.5) !important; }
+.social-sidebar a:hover  { color: var(--olive-l) !important; }
+.social-sidebar::after   { background: rgba(237,234,228,.15) !important; }
+
+/* === IDENTITY BOARD — blanco puro === */
+.identity-board {
+  background: #FFFFFF !important;
+  border-top: none !important;
+}
+.id-eyebrow { color: var(--lt-3) !important; }
+
+.id-card {
+  background: #F7F6F4 !important;
+  border-color: rgba(0,0,0,.07) !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04) !important;
+}
+.id-card:hover {
+  border-color: rgba(0,0,0,.13) !important;
+  box-shadow: 0 6px 24px rgba(0,0,0,.08) !important;
+}
+.id-card-kicker { color: var(--blue-l) !important; }
+
+/* Intersection card — light blue tint */
+.id-card--intersection {
+  background:
+    repeating-linear-gradient(
+      -58deg,
+      rgba(37,99,235,.025) 0px, rgba(37,99,235,.025) 1px,
+      transparent 1px, transparent 24px
+    ),
+    linear-gradient(155deg, #F4F7FF 0%, #EEF3FF 100%) !important;
+  border-top-color: var(--blue) !important;
+  border-color: rgba(37,99,235,.12) !important;
+}
+.id-intersection-text { color: var(--lt-1) !important; }
+.id-disc-data  { color: var(--lt-1) !important; }
+.id-disc-sec   { color: var(--olive) !important; font-style: italic; }
+.id-disc-fin   { color: var(--gold)  !important; font-style: italic; }
+.id-x          { color: var(--blue)  !important; }
+.id-intersection-sub {
+  color: var(--lt-2) !important;
+  border-top-color: rgba(0,0,0,.07) !important;
+}
+
+/* pkgxray card — olive tint */
+.id-card--pkg {
+  background: linear-gradient(155deg, #F2F6EE 0%, #ECF2E6 100%) !important;
+  border-top-color: var(--olive) !important;
+  border-color: rgba(107,140,82,.14) !important;
+}
+.id-card--pkg .id-card-kicker { color: var(--olive)   !important; }
+.id-pkg-name                  { color: var(--lt-1)   !important; }
+.id-pkg-ver                   { color: var(--olive)   !important; }
+.id-pkg-desc                  { color: var(--lt-2)   !important; }
+
+/* ITAM card — gold tint */
+.id-card--school {
+  background:
+    linear-gradient(rgba(184,137,42,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184,137,42,.06) 1px, transparent 1px),
+    #FFFEF8 !important;
+  background-size: 26px 26px, 26px 26px, auto !important;
+  border-top-color: var(--gold) !important;
+  border-color: rgba(184,137,42,.14) !important;
+}
+.id-card--school .id-card-kicker { color: var(--gold)  !important; }
+.id-school-name                  { color: var(--lt-1)  !important; }
+.id-school-degree                { color: var(--gold)  !important; }
+.id-school-meta                  { color: var(--lt-3)  !important; }
+
+/* Available card — sage tint */
+.id-card--available {
+  background: linear-gradient(155deg, #F0F7EB 0%, #E8F2E1 100%) !important;
+  border-color: rgba(107,140,82,.18) !important;
+}
+.id-card--available:hover { border-color: rgba(107,140,82,.38) !important; }
+.id-avail-heading         { color: var(--lt-1) !important; }
+.id-avail-areas           { color: var(--olive) !important; }
+.id-avail-cta {
+  background: var(--olive) !important;
+  color: #fff !important;
+}
+.id-avail-cta:hover {
+  background: #4a6336 !important;
+  box-shadow: 0 4px 20px rgba(107,140,82,.35) !important;
+}
+
+/* ε ghost decoration on white bg */
+.identity-board::before { color: rgba(26,25,20,.025) !important; }
+
+/* === QUICK NAV — stone cálido === */
+section:has(.focus-area) {
+  background: #F2F0EC !important;
+  color: var(--lt-1) !important;
+}
+section:has(.focus-area) .page-tag        { color: var(--blue) !important; }
+section:has(.focus-area) .page-tag::before { background: var(--blue) !important; }
+.focus-area {
+  background: #FFFFFF !important;
+  border-color: rgba(0,0,0,.07) !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,.04) !important;
+}
+.focus-area:hover {
+  background: #FAFAF8 !important;
+  border-left-color: var(--blue-l) !important;
+  box-shadow: 0 3px 12px rgba(0,0,0,.06) !important;
+}
+.focus-area-icon { color: var(--blue-l) !important; }
+.focus-area-name { color: var(--lt-1)   !important; }
+.focus-area-desc { color: var(--lt-3)   !important; }
+/* Arrow icon (inline style override) */
+.focus-area > [style] { color: rgba(26,25,20,.22) !important; }
+
+/* === PAGE HEADERS (about, skills, projects, contact) — blanco === */
+.page-header   { background: #FFFFFF !important; }
+.page-title    { color: var(--lt-1) !important; }
+.page-title-outline {
+  -webkit-text-stroke: 1px rgba(26,25,20,.14) !important;
+  color: transparent !important;
+}
+.page-subtitle { color: var(--lt-2) !important; }
+.page-header .page-tag        { color: var(--blue-l) !important; }
+.page-header .page-tag::before { background: var(--blue-l) !important; }
+/* Math decorations en fondo claro */
+.page-header .math-deco { color: rgba(26,25,20,.04) !important; }
+.wm { color: rgba(26,25,20,.02) !important; }
+
+/* === ABOUT SPLIT — warm white === */
+.about-split {
+  background: #F9F8F6 !important;
+  color: var(--lt-1) !important;
+}
+.about-bio-lead { color: var(--lt-1) !important; }
+.about-bio-body { color: var(--lt-2) !important; }
+.profile-img    { background: #E6E2DC !important; border-color: rgba(0,0,0,.08) !important; }
+.profile-frame::before { border-color: rgba(37,99,235,.12) !important; }
+.info-table tr  { border-bottom-color: rgba(0,0,0,.07) !important; }
+.info-table tr:hover { background: rgba(0,0,0,.025) !important; }
+.td-label { color: var(--lt-3) !important; }
+.td-value { color: var(--lt-1) !important; }
+.td-icon  { color: var(--blue-l) !important; }
+
+/* === TRAY SECTION — sage claro === */
+.tray-section {
+  background: #E8EDE0 !important;
+  border-top-color: rgba(0,0,0,.06) !important;
+  border-bottom-color: rgba(0,0,0,.06) !important;
+}
+.tray-section::before {
+  background-image:
+    linear-gradient(rgba(107,140,82,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(107,140,82,.05) 1px, transparent 1px) !important;
+}
+.tray-big-title    { color: var(--lt-1) !important; }
+.tray-big-title em { color: var(--lt-3) !important; }
+.tray-item         { border-bottom-color: rgba(0,0,0,.08) !important; }
+.tray-item:hover   { background: rgba(0,0,0,.018) !important; }
+.tray-heading      { color: var(--lt-1) !important; }
+.tray-body         { color: var(--lt-2) !important; }
+.tray-year-num     { color: rgba(26,25,20,.07) !important; }
+.tray-item:hover .tray-year-num          { color: rgba(26,25,20,.18) !important; }
+.tray-item--current .tray-year-num       { color: rgba(184,137,42,.38) !important; }
+.tray-item--current:hover .tray-year-num { color: rgba(184,137,42,.58) !important; }
+.tray-year-badge {
+  background: rgba(107,140,82,.1) !important;
+  border-color: rgba(107,140,82,.28) !important;
+  color: var(--olive) !important;
+}
+.tray-item--current .tray-year-badge {
+  background: rgba(184,137,42,.1) !important;
+  border-color: rgba(184,137,42,.28) !important;
+  color: var(--gold) !important;
+}
+.tray-section .page-tag         { color: var(--gold) !important; }
+.tray-section .page-tag::before  { background: var(--gold) !important; }
+.tray-section .section-rule {
+  background: linear-gradient(to right, var(--gold), var(--olive)) !important;
+}
+/* ∑ ghost on light sage */
+.tray-section::after { color: rgba(26,25,20,.03) !important; }
+
+/* Tags on light sage — text darker para contraste */
+.tray-tag--olive  { background: rgba(107,140,82,.12) !important; color: #4a6336 !important; border-color: rgba(107,140,82,.25) !important; }
+.tray-tag--gold   { background: rgba(184,137,42,.1) !important;  color: #8a6216 !important; border-color: rgba(184,137,42,.22) !important; }
+.tray-tag--warm   { background: rgba(100,120,140,.1) !important; color: #4e6070 !important; border-color: rgba(100,120,140,.2) !important; }
+.tray-tag--blue   { background: rgba(37,99,235,.08) !important;  color: #1d4ed8 !important; border-color: rgba(37,99,235,.18) !important; }
+.tray-tag--cyan   { background: rgba(8,145,178,.08) !important;  color: #0e7490 !important; border-color: rgba(8,145,178,.18) !important; }
+.tray-tag--green  { background: rgba(22,163,74,.08) !important;  color: #15803d !important; border-color: rgba(22,163,74,.18) !important; }
+.tray-tag--purple { background: rgba(109,40,217,.08) !important; color: #7c3aed !important; border-color: rgba(109,40,217,.18) !important; }
+.tray-tag--yellow { background: rgba(161,98,7,.08) !important;   color: #92400e !important; border-color: rgba(161,98,7,.18) !important; }
+
+/* === NOW SECTION — warm white === */
+.now-section {
+  background: #FBF8F3 !important;
+  border-top-color: rgba(0,0,0,.06) !important;
+  border-bottom-color: rgba(0,0,0,.06) !important;
+  color: var(--lt-1) !important;
+}
+.now-section::before {
+  background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(107,140,82,.06) 0%, transparent 70%) !important;
+}
+.now-title { color: var(--lt-1) !important; }
+.now-sub   { color: var(--lt-2) !important; }
+.now-meta  { color: var(--lt-3) !important; }
+.now-section .page-tag         { color: var(--blue) !important; }
+.now-section .page-tag::before  { background: var(--blue) !important; }
+.now-card {
+  background: #FFFFFF !important;
+  border-color: rgba(0,0,0,.07) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05) !important;
+}
+.now-card:hover {
+  background: #FAFAF8 !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,.08) !important;
+}
+.now-card-body { color: var(--lt-2) !important; }
+.now-card-body code {
+  background: #F0EEE9 !important;
+  color: var(--olive) !important;
+}
+
+/* === GH SECTION — si existe === */
+.gh-section { background: #F2F0EC !important; }
+
+/* ============================================================
+   SECCIÓN CREMA — Stack mental (libros / podcasts)
+   ============================================================ */
+.stack-section {
+  background: #F0EBE1 !important;
+  border-color: rgba(26,25,20,.1) !important;
+  position: relative;
+  overflow: hidden;
+}
+.stack-section .stack-title   { color: var(--lt-1) !important; }
+.stack-section .stack-sub     { color: var(--lt-2) !important; }
+.stack-section .page-tag      { color: var(--olive) !important; }
+.stack-section .page-tag::before { background: var(--olive) !important; }
+.stack-section .stack-block-h { color: var(--olive) !important; border-bottom-color: rgba(26,25,20,.1) !important; }
+.stack-section .stack-item {
+  background: rgba(255,255,255,.7) !important;
+  border-color: rgba(26,25,20,.1) !important;
+  backdrop-filter: blur(4px);
+}
+.stack-section .stack-item:hover { background: #fff !important; border-color: rgba(107,140,82,.3) !important; }
+.stack-section .stack-name   { color: var(--lt-1) !important; }
+.stack-section .stack-author { color: var(--olive) !important; }
+.stack-section .stack-note   { color: var(--lt-2) !important; }
+.stack-section .podcast-col-label { color: var(--lt-3) !important; border-bottom-color: rgba(26,25,20,.1) !important; }
+.stack-section .podcast-name { color: var(--lt-1) !important; }
+.stack-section .podcast-type { color: var(--lt-3) !important; }
+.stack-section .podcast-row  { border-bottom-color: rgba(26,25,20,.06) !important; }
+.stack-section .podcast-row:hover { background: rgba(26,25,20,.04) !important; }
+/* .podcast-art no longer used in universo.html — replaced by inline badge divs */
+.stack-section .stack-tag {
+  background: rgba(26,25,20,.06) !important;
+  border-color: rgba(26,25,20,.14) !important;
+  color: var(--lt-2) !important;
+}
+.stack-section .stack-tag:hover { background: rgba(107,140,82,.1) !important; border-color: var(--olive) !important; color: var(--olive) !important; }
+/* π ghost decoration */
+.stack-section::after {
+  content: 'π';
+  position: absolute;
+  right: 2vw; top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Georgia', serif;
+  font-size: clamp(14rem, 22vw, 28rem);
+  line-height: 1;
+  color: rgba(107,140,82,.05);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+.stack-inner { position: relative; z-index: 1; }
+
+/* === HOBBIES SECTION — blanco === */
+.hobbies-section {
+  background: #FFFFFF !important;
+  color: var(--lt-1) !important;
+}
+.hobbies-section .page-tag         { color: var(--gold) !important; }
+.hobbies-section .page-tag::before  { background: var(--gold) !important; }
+.hobby-card {
+  background: #F7F6F4 !important;
+  border-color: rgba(0,0,0,.07) !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04) !important;
+}
+.hobby-card:hover {
+  border-color: rgba(107,140,82,.28) !important;
+  box-shadow: 0 6px 24px rgba(0,0,0,.07) !important;
+}
+.hobby-card--featured .hobby-photo      { background: linear-gradient(155deg, #D8EACE 0%, #B8D9AE 100%) !important; }
+.hobby-card:nth-child(3) .hobby-photo   { background: linear-gradient(155deg, #EDE0C8 0%, #D5C498 100%) !important; }
+.hobby-card:nth-child(4) .hobby-photo   { background: linear-gradient(155deg, #D5E5CE 0%, #B8D1B0 100%) !important; }
+.hobby-photo       { border-bottom-color: rgba(0,0,0,.06) !important; }
+.hobby-photo-ph    { color: var(--lt-3) !important; }
+.hobby-name        { color: var(--lt-1) !important; }
+.hobby-desc        { color: var(--lt-2) !important; }
+.hobby-card .hobby-icon                 { color: var(--blue-l) !important; }
+.hobby-card:nth-child(2) .hobby-icon   { color: var(--olive) !important; }
+.hobby-card:nth-child(3) .hobby-icon   { color: var(--gold) !important; }
+.hobby-card:nth-child(4) .hobby-icon   { color: var(--olive) !important; }
+.hobby-card:nth-child(5) .hobby-icon   { color: var(--gold) !important; }
+
+/* === CHIPS SECTION — stone cálido === */
+.chips-section {
+  background: #F2F0EC !important;
+  color: var(--lt-1) !important;
+}
+.chips-section .page-tag         { color: var(--blue) !important; }
+.chips-section .page-tag::before  { background: var(--blue) !important; }
+.interest-chip {
+  background: #FFFFFF !important;
+  border-color: rgba(0,0,0,.08) !important;
+  color: var(--lt-2) !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,.04) !important;
+}
+.interest-chip:hover {
+  border-color: var(--blue-l) !important;
+  color: var(--blue) !important;
+  background: rgba(37,99,235,.04) !important;
+}
+
+/* === REVIEWS SECTION — blanco === */
+.reviews-section {
+  background: #FFFFFF !important;
+  border-top-color: rgba(0,0,0,.06) !important;
+  color: var(--lt-1) !important;
+}
+.reviews-section .page-tag         { color: var(--blue) !important; }
+.reviews-section .page-tag::before  { background: var(--blue) !important; }
+.review-card {
+  background: #F7F6F4 !important;
+  border-color: rgba(0,0,0,.07) !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04) !important;
+}
+.review-card:hover {
+  border-color: rgba(37,99,235,.22) !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,.07) !important;
+}
+.review-name { color: var(--lt-1) !important; }
+.review-role { color: var(--lt-3) !important; }
+.review-body { color: var(--lt-2) !important; }
+.review-body em { color: var(--lt-1) !important; }
+
+/* === RADAR SECTION — stone === */
+.radar-section {
+  background: #F2F0EC !important;
+  color: var(--lt-1) !important;
+}
+.radar-section .page-tag          { color: var(--olive) !important; }
+.radar-section .page-tag::before  { background: var(--olive) !important; }
+.radar-section .radar-title        { color: var(--lt-1) !important; }
+.radar-section .radar-title span   { color: #1D4ED8 !important; }
+.radar-section .radar-sub          { color: var(--lt-2) !important; }
+.radar-section .radar-legend li    { color: var(--lt-2) !important; }
+.radar-section .radar-legend strong { color: var(--lt-1) !important; }
+/* SVG radar — strokes y labels sobre fondo piedra */
+.radar-section #skills-radar .radar-grid polygon             { stroke: rgba(26,25,20,.12) !important; }
+.radar-section #skills-radar .radar-grid polygon[data-rings="1"] { stroke: rgba(26,25,20,.22) !important; }
+.radar-section #skills-radar .radar-axes line                { stroke: rgba(26,25,20,.1) !important; }
+.radar-section #skills-radar .radar-labels text              { fill: rgba(26,25,20,.55) !important; }
+
+/* === SKILLS CONTENT — warm white === */
+.skills-content {
+  background: #F9F8F6 !important;
+  color: var(--lt-1) !important;
+}
+.skill-tag {
+  background: #FFFFFF !important;
+  border-color: rgba(0,0,0,.09) !important;
+  color: var(--lt-2) !important;
+}
+.skill-tag:hover {
+  border-color: var(--blue-l) !important;
+  color: var(--blue) !important;
+  background: rgba(37,99,235,.04) !important;
+}
+.softskill-card,
+.skills-content [style*="background:var(--bg-char)"] {
+  background: #FFFFFF !important;
+  border-top-color: rgba(0,0,0,.07) !important;
+  border-right-color: rgba(0,0,0,.07) !important;
+  border-bottom-color: rgba(0,0,0,.07) !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04) !important;
+}
+.softskill-card:hover {
+  border-color: rgba(0,0,0,.12) !important;
+  background: #FAFAF8 !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,.07) !important;
+}
+.softskill-name { color: var(--lt-1) !important; }
+.softskill-desc { color: var(--lt-2) !important; }
+/* Softskill icon colors — usar variantes más oscuras */
+.softskill-card:nth-child(1) .softskill-icon,
+.softskill-card:nth-child(2) .softskill-icon {
+  color: var(--blue-l) !important;
+  background: rgba(37,99,235,.08) !important;
+  border-color: rgba(37,99,235,.15) !important;
+}
+.softskill-card:nth-child(3) .softskill-icon,
+.softskill-card:nth-child(4) .softskill-icon {
+  color: var(--olive) !important;
+  background: rgba(107,140,82,.1) !important;
+  border-color: rgba(107,140,82,.18) !important;
+}
+.softskill-card:nth-child(5) .softskill-icon,
+.softskill-card:nth-child(6) .softskill-icon {
+  color: var(--gold) !important;
+  background: rgba(184,137,42,.1) !important;
+  border-color: rgba(184,137,42,.18) !important;
+}
+.softskill-card:nth-child(7) .softskill-icon,
+.softskill-card:nth-child(8) .softskill-icon {
+  color: var(--purple) !important;
+  background: rgba(167,139,250,.1) !important;
+  border-color: rgba(167,139,250,.18) !important;
+}
+
+/* === PAGE HEADER — about, skills, etc. === */
+.page-header { background: #FFFFFF !important; }
+
+/* === PROJECTS / CONTACT — warm white === */
+.projects-content {
+  background: #F9F8F6 !important;
+  color: var(--lt-1) !important;
+}
+.contact-page {
+  background: #F9F8F6 !important;
+  color: var(--lt-1) !important;
+}
+.project-hero {
+  background: #FFFFFF !important;
+  border-color: rgba(0,0,0,.08) !important;
+}
+.project-hero .project-hero-num { color: rgba(26,25,20,.03) !important; }
+
+/* ============================================================
+   NAV SCROLLED — blanco sobre página clara
+   ============================================================ */
+#header.scrolled {
+  background: rgba(249,248,246,.97) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: 0 1px 0 rgba(0,0,0,.08) !important;
+}
+#header.scrolled .nav-logo          { color: var(--lt-1) !important; }
+#header.scrolled .nav-logo:hover    { color: var(--blue) !important; }
+#header.scrolled .nav-logo::before  { color: var(--olive) !important; }
+#header.scrolled .nav-link          { color: var(--lt-2) !important; }
+#header.scrolled .nav-link:hover,
+#header.scrolled .nav-link.active   { color: var(--lt-1) !important; }
+#header.scrolled .nav-cta {
+  color: var(--blue) !important;
+  border-color: rgba(37,99,235,.25) !important;
+}
+#header.scrolled .nav-cta:hover {
+  background: var(--blue) !important;
+  color: #fff !important;
+}
+#header.scrolled .hamburger span    { background: var(--lt-2) !important; }
+
+/* ============================================================
+   MOBILE MENU — oscuro (siempre)
+   ============================================================ */
+#mobile-menu {
+  background: rgba(14,14,18,.99) !important;
+  color: var(--t-1) !important;
+}
+
+/* ============================================================
+   FOOTER — charcoal oscuro
+   ============================================================ */
+.site-footer {
+  background: #0E0E12 !important;
+  border-top-color: rgba(255,255,255,.05) !important;
+  color: var(--t-1) !important;
+}
+
+/* ============================================================
+   DARK SUB-CARDS EN PÁGINAS CLARAS — fix bordes invisibles
+   ============================================================ */
+/* Demo section pkgxray (dark card en projects-content blanca) */
+.projects-content .demo-section {
+  border-color: rgba(0,0,0,.08) !important;
+  box-shadow: 0 4px 28px rgba(0,0,0,.1) !important;
+}
+/* Repo cards (dark flip-cards en projects-content blanca) */
+.projects-content .repo-front {
+  border-color: rgba(0,0,0,.08) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06) !important;
+}
+.projects-content .repo-back { border-color: rgba(37,99,235,.3) !important; }
+
+/* Blockquote oscura en about-split clara */
+.about-split blockquote {
+  box-shadow: 0 4px 16px rgba(0,0,0,.1) !important;
+}
+
+/* Terminal windows y cform-wrap en páginas claras */
+.contact-page .terminal-win,
+.contact-page .cform-wrap {
+  box-shadow: 0 4px 24px rgba(0,0,0,.12) !important;
+}
+.contact-page [style*="border-top:1px solid var(--bd)"],
+.contact-page > div > [style*="border-top:1px solid var(--bd)"] {
+  border-top-color: rgba(0,0,0,.08) !important;
+}
+
+/* Divider en contact.html */
+.contact-inner [style*="border-top:1px solid var(--bd)"] {
+  border-top-color: rgba(0,0,0,.1) !important;
+}
+
+/* ============================================================
+   LIGHT THEME — FIXES & NEW COMPONENTS
+   ============================================================ */
+
+/* --- Page header: títulos invisibles sobre fondo blanco --- */
+.page-header .page-title       { color: var(--lt-1) !important; }
+.page-header .page-title-outline {
+  color: transparent !important;
+  -webkit-text-stroke: 1.5px rgba(26,25,20,.18) !important;
+}
+.page-header .page-subtitle    { color: var(--lt-2) !important; }
+.page-header .section-rule     { background: linear-gradient(to right, var(--blue), var(--cyan)) !important; }
+
+/* Añadir respiro entre page-header y primer bloque de contenido */
+.skills-content   { padding-top: 4rem !important; }
+.projects-content { padding-top: 3.5rem !important; }
+
+/* --- Skills content — texto invisible sobre crema --- */
+.skills-content .skill-group {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(0,0,0,.07) !important;
+  border-radius: var(--r-lg) !important;
+  padding: 1.75rem 2rem !important;
+  margin-bottom: 1.5rem !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,.05) !important;
+}
+.skills-content .skill-group:last-child { margin-bottom: 0 !important; }
+.skills-content .skill-group-title {
+  color: var(--blue) !important;
+  border-bottom-color: rgba(0,0,0,.07) !important;
+}
+.skills-content .skill-name    { color: var(--lt-1) !important; }
+.skills-content .skill-level   { color: var(--lt-3) !important; }
+.skills-content .skill-bar     { background: rgba(0,0,0,.08) !important; }
+.skills-content .skill-row     { border-bottom-color: rgba(0,0,0,.05) !important; }
+.skills-content .skill-row:hover { background: rgba(0,0,0,.022) !important; }
+.skills-content .focus-area {
+  background: #FFFFFF !important;
+  border-color: rgba(0,0,0,.07) !important;
+}
+.skills-content .focus-area:hover {
+  background: #FAFAF8 !important;
+  border-left-color: var(--blue) !important;
+}
+.skills-content .focus-area-name { color: var(--lt-1) !important; }
+.skills-content .focus-area-desc { color: var(--lt-3) !important; }
+.skills-content .focus-area-icon { color: var(--blue-l) !important; }
+
+/* Columna derecha de skills: sticky como unidad (fix del overlap req-panel + focus areas) */
+.skills-right-col {
+  position: sticky;
+  top: 5.5rem;
+  align-self: start;
+}
+
+/* --- Projects content — texto invisible sobre crema --- */
+.projects-content .project-tag         { color: var(--blue) !important; }
+.projects-content .project-tag::before { background: var(--blue) !important; }
+.projects-content .project-name-featured { color: var(--lt-1) !important; }
+.projects-content .project-desc        { color: var(--lt-2) !important; }
+.projects-content .tech-tag.dark {
+  background: rgba(0,0,0,.06) !important;
+  color: var(--lt-1) !important;
+  border-color: rgba(0,0,0,.1) !important;
+}
+.projects-content .project-link.secondary       { color: var(--lt-3) !important; }
+.projects-content .project-link.secondary:hover { color: var(--lt-1) !important; }
+.projects-content .project-hero-terminal {
+  background: rgba(0,0,0,.03) !important;
+  border-left-color: rgba(0,0,0,.07) !important;
+}
+/* Corrección separación featured hero en light */
+.projects-content .project-hero {
+  margin-bottom: 3rem !important;
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#0d1117"/>
+  <circle cx="100" cy="150" r="30" fill="none" stroke="#F472B6" stroke-width="2" opacity="0.3"/>
+  <circle cx="200" cy="80" r="30" fill="none" stroke="#F472B6" stroke-width="2" opacity="0.3"/>
+  <circle cx="300" cy="150" r="30" fill="none" stroke="#F472B6" stroke-width="2" opacity="0.3"/>
+  <circle cx="200" cy="220" r="30" fill="none" stroke="#F472B6" stroke-width="2" opacity="0.3"/>
+  <line x1="120" y1="140" x2="180" y2="95" stroke="#F472B6" stroke-width="2" opacity="0.4"/>
+  <line x1="220" y1="95" x2="280" y2="140" stroke="#F472B6" stroke-width="2" opacity="0.4"/>
+  <line x1="120" y1="160" x2="180" y2="205" stroke="#F472B6" stroke-width="2" opacity="0.4"/>
+  <line x1="220" y1="205" x2="280" y2="160" stroke="#F472B6" stroke-width="2" opacity="0.4"/>
+  <circle cx="320" cy="50" r="20" fill="#F472B6" opacity="0.4"/>
+  <text x="200" y="280" font-family="Georgia, serif" font-size="20" fill="#F472B6" text-anchor="middle" opacity="0.5">PageRank</text>
+</svg>

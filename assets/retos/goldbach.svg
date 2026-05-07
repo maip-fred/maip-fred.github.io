@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#0d1117"/>
+  <text x="200" y="160" font-family="Georgia, serif" font-size="100" fill="#6B8C52" text-anchor="middle" opacity="0.3">∑</text>
+  <text x="200" y="240" font-family="monospace" font-size="24" fill="#6B8C52" text-anchor="middle" opacity="0.4">n = a + b</text>
+</svg>

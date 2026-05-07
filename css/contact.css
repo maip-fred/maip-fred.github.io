@@ -1,0 +1,159 @@
+/* ============================================================
+   contact.css — Contact Form + Contact Page
+   Source: styles.css lines 1050–1128 and 1878–1952
+   ============================================================ */
+
+/* CONTACT FORM */
+.cform-wrap {
+  background: var(--bg-0);
+  border: 1px solid var(--bd);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin: 1rem 0 0;
+}
+.cform-head {
+  background: #161B22;
+  padding: .75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  font-family: var(--f-mono);
+  font-size: .78rem;
+  border-bottom: 1px solid var(--bd);
+}
+.cform-prompt { color: var(--green); font-weight: 700; }
+.cform-cmd    { color: var(--t-2); }
+.cform { padding: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+.cform-row { display: flex; flex-direction: column; gap: .35rem; }
+.cform-label {
+  font-family: var(--f-mono);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--blue-xl);
+}
+.cform-input {
+  background: var(--bg-3);
+  border: 1px solid var(--bd-hi);
+  border-radius: var(--r-sm);
+  padding: .75rem .9rem;
+  font-family: var(--f-mono);
+  font-size: .85rem;
+  color: var(--t-1);
+  transition: border-color .18s, background .18s;
+  outline: none;
+  resize: vertical;
+}
+.cform-input::placeholder { color: var(--t-3); }
+.cform-input:focus {
+  border-color: var(--blue-l);
+  background: var(--bg-4);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.1);
+}
+.cform-input.cf-invalid {
+  border-color: var(--red);
+  background: rgba(248,113,113,.04);
+}
+.cform-error {
+  font-family: var(--f-mono);
+  font-size: .68rem;
+  color: var(--red);
+  min-height: 1em;
+  letter-spacing: .03em;
+}
+.cform-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: .5rem;
+  border-top: 1px solid var(--bd);
+  margin-top: .5rem;
+}
+.cform-status {
+  font-family: var(--f-mono);
+  font-size: .72rem;
+  color: var(--t-3);
+}
+.cf-status-pending { color: var(--cyan); }
+.cf-status-ok      { color: var(--green); }
+.cf-status-err     { color: var(--red); }
+.cf-status-warn    { color: var(--yellow); }
+
+/* ============================================================
+   CONTACT PAGE
+   ============================================================ */
+.contact-page {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 2rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.contact-page::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(74,222,128,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74,222,128,.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+.contact-inner {
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+  z-index: 2;
+}
+.contact-terminal-wrapper { margin: 3rem 0; }
+.contact-email-display {
+  font-family: var(--f-display);
+  font-size: clamp(1.75rem, 4vw, 3.25rem);
+  color: var(--t-1);
+  position: relative;
+  display: inline-block;
+  transition: color 0.25s;
+  font-weight: 400;
+}
+.contact-email-display::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--blue), var(--cyan));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-out);
+}
+.contact-email-display:hover { color: var(--blue-xl); }
+.contact-email-display:hover::after { transform: scaleX(1); }
+.contact-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.contact-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--bg-3);
+  border: 1px solid var(--bd);
+  border-radius: var(--r-sm);
+  font-family: var(--f-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--t-2);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.contact-social:hover {
+  border-color: var(--blue-l);
+  color: var(--t-1);
+  background: rgba(37,99,235,.08);
+}
