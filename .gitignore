@@ -35,4 +35,5 @@ build/
 # Archivos locales — no van al repo
 CONTEXTO-SITIO.md
 t.py
+gen_cv.py
 Prácticas - Visualización de Datos/
